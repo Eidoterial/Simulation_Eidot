@@ -40,9 +40,6 @@ namespace Sm {
 
 	class Environment {
 		Sm::Environment_config environment_config;
-		sf::Vector2i size_organism;
-
-
 
 		Sm::Zone_status** environment_zone_status;
 		int resources_count = 0;
@@ -70,7 +67,7 @@ namespace Sm {
 		int get_Season();
 		int get_Time();
 		int get_temperature();
-		Sm::Zone_status& get_Environment_Zone_Status();
+		Sm::Zone_status** get_Environment_Zone_Status();
 
 		// Function
 

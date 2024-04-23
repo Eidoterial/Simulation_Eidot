@@ -11,27 +11,37 @@ Sm::Environment::Environment(sf::Vector2i size, int start_resource_count) {
 	}
 
 
-	Sm::Environment::Spawn_Resource(start_resource_count);
-
 }
 
-void Sm::Environment::Spawn_Resource(int resource_count) {
-	Sm::Environment::Add_Elements_Array(this->resources[this->resources_count], resource_count);
 
-	
-
-
+// Setter
+void Sm::Environment::set_Period_Spawn_Resource(int period) {
+	this->environment_config.period_spawn_resource = period;
+}
+void Sm::Environment::set_Season(int season) {
+	this->environment_config.season_environment = season;
+}
+void Sm::Environment::set_Time(int time) {
+	this->environment_config.time_environment = time;
+}
+void Sm::Environment::set_Temperature(int temperature) {
+	this->environment_config.temperature_environment = temperature;
 }
 
-void Sm::Environment::Add_Elements_Array(Sm::Resource*& ar, int count) {
-	Sm::Resource* memory_array = ar;
 
-	ar = new Sm::Resource[this->resources_count + count];
-	for (int i{ 0 }; i < this->resources_count; i++) {
-		ar[i] = memory_array[i];
-	}
-	delete memory_array;
-
-	this->resources_count += count;
-
+// Getter
+sf::Vector2i Sm::Environment::get_Size() {
+	return this->environment_config.size_environment;
+}
+int Sm::Environment::get_Season() {
+	return this->environment_config.season_environment;
+}
+int Sm::Environment::get_Time() {
+	return this->environment_config.time_environment;
+}
+int Sm::Environment::get_temperature() {
+	return this->environment_config.temperature_environment;
+}
+Sm::Zone_status** Sm::Environment::get_Environment_Zone_Status() {
+	return this->environment_zone_status;
 }
