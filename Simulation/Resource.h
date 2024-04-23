@@ -12,7 +12,6 @@ namespace Sm {
 
 	class Resource {
 		Sm::Type_resource type_resource;
-		bool energi_status;
 		int energi_count;
 		sf::Vector2i id_position;
 
@@ -22,13 +21,11 @@ namespace Sm {
 
 		// Setter
 		void set_Type_Resource(int);
-		void set_Energi_Status(bool);
 		void set_Energi_Count(int);
 		void set_Id_Position(sf::Vector2i);
 
 		// Getter
 		int get_Type_Resource();
-		bool get_Energi_Status();
 		int get_Energi_Count();
 		sf::Vector2i get_Id_Position();
 

@@ -42,8 +42,10 @@ namespace Sm {
 		Sm::Environment_config environment_config;
 
 		Sm::Zone_status** environment_zone_status;
+
+
 		int resources_count = 0;
-		Sm::Resource* resources[1];
+		Sm::Resource* resources;
 		//Organism
 
 	public:
@@ -70,10 +72,8 @@ namespace Sm {
 		Sm::Zone_status** get_Environment_Zone_Status();
 
 		// Function
-
-		// Count spawn resource
-		void Spawn_Resource(int);
-		void Add_Elements_Array(Sm::Resource*&, int);
+		void Add_Resource(Sm::Resource*&, int);
+		void set_Resource(Sm::Resource&)
 	};
 
 }

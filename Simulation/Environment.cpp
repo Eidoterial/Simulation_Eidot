@@ -3,14 +3,32 @@
 
 Sm::Environment::Environment(sf::Vector2i size, int start_resource_count) {
 	this->environment_config.size_environment = size;
-	this->resources_count = start_resource_count;
 
 	this->environment_zone_status = new Sm::Zone_status* [size.y];
 	for (int i{ 0 }; i < size.y; i++) {
 		this->environment_zone_status[i] = new Sm::Zone_status[size.x];
 	}
 
+	this->resources = new Sm::Resource[start_resource_count];
 
+	for (int i{ 0 }; i < start_resource_count; i++) {
+		Sm::Environment::set_Resource(this->resources[i]);
+	}
+
+}
+
+
+void Sm::Environment::Add_Resource(Sm::Resource*& resource, int count) {
+	Sm::Resource* memory_resource = resource;
+
+	resource = new Sm::Resource[count];
+
+}
+
+void Sm::Environment::set_Resource(Sm::Resource& resource) {
+	resource.set_Type_Resource(0);
+	resource.set_Energi_Count(10);
+	resource.set_Id_Position(sf::Vector2i(0, 0));
 }
 
 
