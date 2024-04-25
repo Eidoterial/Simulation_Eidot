@@ -1,13 +1,14 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Resource.h"
+#include <stdio.h>
+#include <stdlib.h>     
+#include <time.h>
 
 
 namespace Sm {
 
-	
-
-	struct Zone_status {
+	struct Environment_elements_status {
 
 		// 0 - void zone
 		// 1 - organism zone
@@ -36,15 +37,15 @@ namespace Sm {
 		// Temperature in Celsius
 		int temperature_environment;
 
+		unsigned int resources_count = 0;
+
 	};
 
 	class Environment {
 		Sm::Environment_config environment_config;
 
-		Sm::Zone_status** environment_zone_status;
+		Sm::Environment_elements_status** environment_elements_status;
 
-
-		int resources_count = 0;
 		Sm::Resource* resources;
 		//Organism
 
@@ -52,13 +53,10 @@ namespace Sm {
 
 		// Size environment
 		// Start resourse count
-		//
-		//
-		Environment(sf::Vector2i, int); // Constructor
+		Environment(sf::Vector2i, unsigned int); // Constructor
 
 
 		// Setter
-		void set_Period_Spawn_Resource(int);
 		void set_Season(int);
 		void set_Time(int);
 		void set_Temperature(int);
@@ -69,11 +67,13 @@ namespace Sm {
 		int get_Season();
 		int get_Time();
 		int get_temperature();
-		Sm::Zone_status** get_Environment_Zone_Status();
+		Sm::Environment_elements_status** get_Environment_Elements_Status();
+		Sm::Resource* get_Resources();
+		Sm::Environment_config& get_Environment_Config();
 
 		// Function
-		void Add_Resource(Sm::Resource*&, int);
-		void set_Resource(Sm::Resource&)
+		void set_Resource(int);
+		void add_Resource();
 	};
 
 }

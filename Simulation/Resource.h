@@ -1,19 +1,19 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Element_Environment.h"
 
 namespace Sm {
 
-	struct Type_resource {
-		// 0 - default
-		// 1 - super-resource
-		// 2 - unresource
-		int type;
-	};
+	
 
-	class Resource {
-		Sm::Type_resource type_resource;
-		int energi_count;
-		sf::Vector2i id_position;
+	class Resource : public Sm::Element_Environment {
+
+		// 0 - Default resource
+		// 1 - Super resource
+		// 2 - Destruct resource
+		int type_resource;
+
+		int energi_recover_resource;
 
 	public:
 
@@ -21,14 +21,11 @@ namespace Sm {
 
 		// Setter
 		void set_Type_Resource(int);
-		void set_Energi_Count(int);
-		void set_Id_Position(sf::Vector2i);
+		void set_Energi_Recover_Resource(int);
 
 		// Getter
 		int get_Type_Resource();
-		int get_Energi_Count();
-		sf::Vector2i get_Id_Position();
-
+		int get_Energi_Recover_Resource();
 	};
 
 }

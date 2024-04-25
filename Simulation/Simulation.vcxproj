@@ -133,11 +133,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Element_Environment.cpp" />
     <ClCompile Include="Environment.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Resource.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Element_Environment.h" />
     <ClInclude Include="Environment.h" />
     <ClInclude Include="Resource.h" />
   </ItemGroup>

@@ -13,30 +13,42 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Файлы заголовков\Map_h">
+    <Filter Include="Исходные файлы\Environment_cpp">
+      <UniqueIdentifier>{d7115ce1-bc88-4d6f-b1f7-894dd3f13189}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Environment_h">
       <UniqueIdentifier>{d7628eb2-67cf-4fc9-930c-8ff34493992f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Map_cpp">
-      <UniqueIdentifier>{d7115ce1-bc88-4d6f-b1f7-894dd3f13189}</UniqueIdentifier>
+    <Filter Include="Исходные файлы\Resource_cpp">
+      <UniqueIdentifier>{8a825c44-67c8-4049-8c66-591497c04046}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Resource_h">
+      <UniqueIdentifier>{fdb8ae36-9a03-4466-b8f8-421b704bf976}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Resource.cpp">
-      <Filter>Исходные файлы\Map_cpp</Filter>
-    </ClCompile>
     <ClCompile Include="Environment.cpp">
-      <Filter>Исходные файлы\Map_cpp</Filter>
+      <Filter>Исходные файлы\Environment_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource.cpp">
+      <Filter>Исходные файлы\Resource_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Element_Environment.cpp">
+      <Filter>Исходные файлы\Environment_cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Resource.h">
-      <Filter>Файлы заголовков\Map_h</Filter>
-    </ClInclude>
     <ClInclude Include="Environment.h">
-      <Filter>Файлы заголовков\Map_h</Filter>
+      <Filter>Файлы заголовков\Environment_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Файлы заголовков\Resource_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Element_Environment.h">
+      <Filter>Файлы заголовков\Environment_h</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
