@@ -137,12 +137,15 @@
     <ClCompile Include="Environment.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Organism.cpp" />
+    <ClCompile Include="Organism_Check_Around.cpp" />
     <ClCompile Include="Resource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Element_Environment.h" />
     <ClInclude Include="Environment.h" />
     <ClInclude Include="Organism.h" />
+    <ClInclude Include="Organism_Check_Around.h" />
+    <ClInclude Include="Organism_Move.h" />
     <ClInclude Include="Resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

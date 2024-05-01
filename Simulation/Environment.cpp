@@ -81,7 +81,6 @@ void Sm::Environment::set_Organism(int id){
 			break;
 		}
 	}
-
 }
 
 void Sm::Environment::add_Organism() {
@@ -129,6 +128,9 @@ Sm::Environment_elements_status** Sm::Environment::get_Environment_Elements_Stat
 }
 Sm::Resource* Sm::Environment::get_Resources() {
 	return this->resources;
+}
+Sm::Organism* Sm::Environment::get_Organisms() const {
+	return this->organisms;
 }
 Sm::Environment_config& Sm::Environment::get_Environment_Config() {
 	return this->environment_config;

@@ -30,8 +30,6 @@ int main() {
 
 		window.clear();
 
-		
-
 		if (frame_indecator == 60) {
 			environment.add_Resource();
 			environment.add_Organism();

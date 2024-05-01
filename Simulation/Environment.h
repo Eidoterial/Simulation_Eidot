@@ -40,15 +40,16 @@ namespace Sm {
 
 		unsigned int resources_count = 0;
 		unsigned int organisms_count = 0;
-
 	};
 
 	class Environment {
+
 		Sm::Environment_config environment_config;
 
 		Sm::Environment_elements_status** environment_elements_status;
 
 		Sm::Resource* resources;
+
 		Sm::Organism* organisms;
 
 	public:
@@ -72,13 +73,13 @@ namespace Sm {
 		int get_temperature();
 		Sm::Environment_elements_status** get_Environment_Elements_Status();
 		Sm::Resource* get_Resources();
+		Sm::Organism* get_Organisms() const;
 		Sm::Environment_config& get_Environment_Config();
 
 
 		// Function
 		void set_Resource(int);
 		void add_Resource();
-
 		void set_Organism(int);
 		void add_Organism();
 	};

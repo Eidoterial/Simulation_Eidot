@@ -15,7 +15,9 @@ namespace Sm {
 		int type{};
 
 	public:
+
 		Element_Environment(); // Constructor
+
 
 		// Setter
 		void set_Position(sf::Vector2i);

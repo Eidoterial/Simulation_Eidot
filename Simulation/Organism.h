@@ -19,7 +19,6 @@ namespace Sm {
 		Organism(); // Constructor
 
 
-
 		// Setter
 		void set_Age_Organism(int);
 		void set_Generation_Organism(int);
@@ -31,8 +30,6 @@ namespace Sm {
 		int get_Generation_Organism();
 		int get_Temperature_Organism();
 
-
 	};
-
 
 }
