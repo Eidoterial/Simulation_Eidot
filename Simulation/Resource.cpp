@@ -1,7 +1,9 @@
 #include "Resource.h"
+#include <iostream>
 
 // Constructor
 Sm::Resource::Resource(){}
+
 
 
 // Setter

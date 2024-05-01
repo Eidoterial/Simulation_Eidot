@@ -25,6 +25,12 @@
     <Filter Include="Файлы заголовков\Resource_h">
       <UniqueIdentifier>{fdb8ae36-9a03-4466-b8f8-421b704bf976}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Organism_h">
+      <UniqueIdentifier>{1d6affb7-6076-4ccd-8267-1dd5c4aa522a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Organism_cpp">
+      <UniqueIdentifier>{0db75d79-cd88-4dce-b7dd-04b412c192b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -39,6 +45,9 @@
     <ClCompile Include="Element_Environment.cpp">
       <Filter>Исходные файлы\Environment_cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Organism.cpp">
+      <Filter>Исходные файлы\Organism_cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Environment.h">
@@ -49,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="Element_Environment.h">
       <Filter>Файлы заголовков\Environment_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Organism.h">
+      <Filter>Файлы заголовков\Organism_h</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

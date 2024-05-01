@@ -1,8 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Resource.h"
+#include "Organism.h"
 #include <stdio.h>
-#include <stdlib.h>     
+#include <stdlib.h>
 #include <time.h>
 
 
@@ -13,7 +14,7 @@ namespace Sm {
 		// 0 - void zone
 		// 1 - organism zone
 		// 2 - resource zone
-		int zone_stats = 0;
+		int element_status = 0;
 	};
 
 	struct Environment_config {
@@ -38,6 +39,7 @@ namespace Sm {
 		int temperature_environment;
 
 		unsigned int resources_count = 0;
+		unsigned int organisms_count = 0;
 
 	};
 
@@ -47,13 +49,14 @@ namespace Sm {
 		Sm::Environment_elements_status** environment_elements_status;
 
 		Sm::Resource* resources;
-		//Organism
+		Sm::Organism* organisms;
 
 	public:
 
 		// Size environment
 		// Start resourse count
-		Environment(sf::Vector2i, unsigned int); // Constructor
+		// start organism count
+		Environment(sf::Vector2i, unsigned int, unsigned int); // Constructor
 
 
 		// Setter
@@ -71,9 +74,13 @@ namespace Sm {
 		Sm::Resource* get_Resources();
 		Sm::Environment_config& get_Environment_Config();
 
+
 		// Function
 		void set_Resource(int);
 		void add_Resource();
+
+		void set_Organism(int);
+		void add_Organism();
 	};
 
 }

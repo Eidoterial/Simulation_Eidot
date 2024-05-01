@@ -1,9 +1,8 @@
 #include "Environment.h"
-
 #include <iostream>
 
 
-Sm::Environment::Environment(sf::Vector2i size, unsigned int start_resource_count) {
+Sm::Environment::Environment(sf::Vector2i size, unsigned int start_resource_count, unsigned int start_organism_count) {
 	std::srand(std::time(NULL));
 
 
@@ -21,22 +20,32 @@ Sm::Environment::Environment(sf::Vector2i size, unsigned int start_resource_coun
 		this->set_Resource(i);
 	}
 	this->environment_config.resources_count = start_resource_count;
+
+
+	// Create start organism
+	this->organisms = new Sm::Organism[start_organism_count];
+	for (int i{ 0 }; i < start_organism_count; i++) {
+		this->set_Organism(i);
+	}
+	this->environment_config.organisms_count = start_organism_count;
 }
+
+
 
 void Sm::Environment::set_Resource(int id) {
 
 	while (true) {
-		int resource_position_x = std::rand() % this->environment_config.size_environment.x;
-		int resource_position_y = std::rand() % this->environment_config.size_environment.y;
+		int position_x = std::rand() % this->environment_config.size_environment.x;
+		int position_y = std::rand() % this->environment_config.size_environment.y;
 
-		if (!this->environment_elements_status[resource_position_y][resource_position_x].zone_stats) {
-			this->resources[id].set_Position(sf::Vector2i(resource_position_x, resource_position_y));
+		if (!this->environment_elements_status[position_y][position_x].element_status) {
+			this->resources[id].set_Position(sf::Vector2i(position_x, position_y));
 			this->resources[id].set_Type(2);
 			this->resources[id].set_Type_Resource(std::rand() % 3);
 			if (this->resources[id].get_Type_Resource()) this->resources[id].set_Energi_Recover_Resource(std::rand() % 11);
 			else this->resources[id].set_Energi_Recover_Resource(std::rand() % 5);
 			
-			this->environment_elements_status[resource_position_y][resource_position_x].zone_stats = 2;
+			this->environment_elements_status[position_y][position_x].element_status = 2;
 			break;
 		}
 	}
@@ -51,6 +60,39 @@ void Sm::Environment::add_Resource() {
 		if (i == this->environment_config.resources_count - 1) this->set_Resource(this->environment_config.resources_count - 1);
 		else this->resources[i] = resource_memory[i];
 		
+	}
+	delete resource_memory;
+}
+
+void Sm::Environment::set_Organism(int id){
+
+	while (true) {
+		int position_x = std::rand() % this->environment_config.size_environment.x;
+		int position_y = std::rand() % this->environment_config.size_environment.y;
+
+		if (!this->environment_elements_status[position_y][position_x].element_status) {
+			this->organisms[id].set_Position(sf::Vector2i(position_x, position_y));
+			this->organisms[id].set_Type(1);
+			this->organisms[id].set_Age_Organism(0);
+			this->organisms[id].set_Generation_Organism(1);
+			this->organisms[id].set_Temperature_Organism(15);
+
+			this->environment_elements_status[position_y][position_x].element_status = 1;
+			break;
+		}
+	}
+
+}
+
+void Sm::Environment::add_Organism() {
+	Sm::Organism* resource_memory = this->organisms;
+
+	this->organisms = new Sm::Organism[this->environment_config.organisms_count += 1];
+
+	for (int i{ 0 }; i < this->environment_config.organisms_count; i++) {
+		if (i == this->environment_config.organisms_count - 1) this->set_Organism(this->environment_config.organisms_count - 1);
+		else this->organisms[i] = resource_memory[i];
+
 	}
 	delete resource_memory;
 }
