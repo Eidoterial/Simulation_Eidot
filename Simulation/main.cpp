@@ -13,14 +13,16 @@ int main() {
 	Sm::Resource_Manager resource_manager(30, environment.get_Config().count_environment_zone, environment.get_Zones_Information());
 
 	/// Simulation Loop
-	/*
+	
 	sf::RenderWindow window(sf::VideoMode(400, 400), "Simulation", sf::Style::Default);
 	window.setFramerateLimit(60);
 
+	int frame{ 0 };
 
 	while (window.isOpen()) {
 		sf::Event event;
 		
+
 
 		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::KeyPressed) {
@@ -31,6 +33,11 @@ int main() {
 			}
 		}
 
+		if (frame == 10) {
+			resource_manager.add_New_Resource();
+			frame = 0;
+		}
+		else frame++;
 
 		window.clear();
 
@@ -56,7 +63,7 @@ int main() {
 		window.display();
 
 	}
-	*/
+	
 
 
 	

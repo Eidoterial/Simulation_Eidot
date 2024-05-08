@@ -14,6 +14,9 @@ namespace Sm {
 		/// axisX; axisY -- Source Environment.h
 		sf::Vector2i count_environment_zone;
 
+		/// Save count all resources in environment
+		unsigned int resource_count{ 0 };
+
 	public:
 
 		/// Main constructor
@@ -32,6 +35,9 @@ namespace Sm {
 		/// Take 1 argument
 		/// Id resource
 		void set_Resource_Config(int);
+
+		/// Addition new resource in environment
+		void add_New_Resource();
 
 	};
 

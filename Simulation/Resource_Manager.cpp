@@ -4,8 +4,10 @@
 #include <time.h>
 #include <iostream>
 
-Sm::Resource_Manager::Resource_Manager(unsigned int start_count_resource, sf::Vector2i count_zone, int** zones_information)
-{
+/// CONSTRUCTOR
+/// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Sm::Resource_Manager::Resource_Manager(unsigned int start_count_resource, sf::Vector2i count_zone, int** zones_information) {
+    this->resource_count = start_count_resource;
 
     this->zones_information = zones_information;
     this->count_environment_zone = count_zone;
@@ -14,8 +16,31 @@ Sm::Resource_Manager::Resource_Manager(unsigned int start_count_resource, sf::Ve
         this->set_Resource_Config(i);
     }
 }
+/// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+/// ADD NEW RESOURCE
+/// ///////////////////////////////////////////
+void Sm::Resource_Manager::add_New_Resource() {
+    Sm::Resource* memory = this->resources_information;
+
+    this->resources_information = new Sm::Resource[this->resource_count++];
+
+    for (int i{ 0 }; i < this->resource_count - 1; i++) {
+        this->resources_information[i] = memory[i];
+
+    }
+
+    delete memory;
+
+    this->set_Resource_Config(this->resource_count);
+
+}
+/// ///////////////////////////////////////////
+
+
+/// SET RESOURCE CONFIG
+/// ////////////////////////////////////////////////////
 void Sm::Resource_Manager::set_Resource_Config(int id) {
     std::srand(std::time(NULL));
 
@@ -43,12 +68,16 @@ void Sm::Resource_Manager::set_Resource_Config(int id) {
 
     this->resources_information->get_Config_Resource().energi = std::rand() % 5 + 1;
 
-
 }
+/// ////////////////////////////////////////////////////
 
 
+/// GET RESOURCE INFORMATION
+/// ///////////////////////////////////////////////////////////
 Sm::Resource* Sm::Resource_Manager::get_Resources_Information()
 {
     return this->resources_information;
 
 }
+/// ///////////////////////////////////////////////////////////
+
