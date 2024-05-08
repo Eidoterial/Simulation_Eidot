@@ -31,12 +31,6 @@
     <Filter Include="Исходные файлы\Organism_cpp">
       <UniqueIdentifier>{0db75d79-cd88-4dce-b7dd-04b412c192b6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы заголовков\Organism_h\Organism_Action_h">
-      <UniqueIdentifier>{f56483b1-6c56-43d9-b3b2-a5d053502423}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\Organism_cpp\Organism_Action_cpp">
-      <UniqueIdentifier>{48bb7b1b-0018-4230-8b5c-619f7fa12a66}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,14 +42,11 @@
     <ClCompile Include="Resource.cpp">
       <Filter>Исходные файлы\Resource_cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Element_Environment.cpp">
+    <ClCompile Include="Config_Environment_Zone.cpp">
       <Filter>Исходные файлы\Environment_cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Organism.cpp">
-      <Filter>Исходные файлы\Organism_cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Organism_Check_Around.cpp">
-      <Filter>Исходные файлы\Organism_cpp\Organism_Action_cpp</Filter>
+    <ClCompile Include="Resource_Manager.cpp">
+      <Filter>Исходные файлы\Resource_cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,17 +56,11 @@
     <ClInclude Include="Resource.h">
       <Filter>Файлы заголовков\Resource_h</Filter>
     </ClInclude>
-    <ClInclude Include="Element_Environment.h">
+    <ClInclude Include="Config_Environment_Zone.h">
       <Filter>Файлы заголовков\Environment_h</Filter>
     </ClInclude>
-    <ClInclude Include="Organism.h">
-      <Filter>Файлы заголовков\Organism_h</Filter>
-    </ClInclude>
-    <ClInclude Include="Organism_Move.h">
-      <Filter>Файлы заголовков\Organism_h\Organism_Action_h</Filter>
-    </ClInclude>
-    <ClInclude Include="Organism_Check_Around.h">
-      <Filter>Файлы заголовков\Organism_h\Organism_Action_h</Filter>
+    <ClInclude Include="Resource_Manager.h">
+      <Filter>Файлы заголовков\Resource_h</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

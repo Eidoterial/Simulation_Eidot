@@ -1,31 +1,34 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Element_Environment.h"
+#include "Config_Environment_Zone.h"
 
 namespace Sm {
 
-	
+	struct Config_Resource {
 
-	class Resource : public Sm::Element_Environment {
+		/// Type resource
+		/// 0 - default
+		/// 1 - poision
+		int type{ 0 };
 
-		// 0 - Default resource
-		// 1 - Super resource
-		// 2 - Destruct resource
-		int type_resource;
+		/// Count addition or subtraction energi
+		int energi{ 0 };
 
-		int energi_recover_resource;
+	};
+
+	class Resource : public Sm::Config_Environment_Zone{
+
+		/// Save main configuration resource
+		Config_Resource config_resource;
 
 	public:
 
-		Resource(); // Constructor
+		/// Main constructor
+		Resource();
 
-		// Setter
-		void set_Type_Resource(int);
-		void set_Energi_Recover_Resource(int);
+		/// Return main configuration resource
+		Config_Resource& get_Config_Resource();
 
-		// Getter
-		int get_Type_Resource();
-		int get_Energi_Recover_Resource();
 	};
 
 }

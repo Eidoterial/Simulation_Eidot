@@ -133,20 +133,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Element_Environment.cpp" />
+    <ClCompile Include="Config_Environment_Zone.cpp" />
     <ClCompile Include="Environment.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Organism.cpp" />
-    <ClCompile Include="Organism_Check_Around.cpp" />
     <ClCompile Include="Resource.cpp" />
+    <ClCompile Include="Resource_Manager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Element_Environment.h" />
+    <ClInclude Include="Config_Environment_Zone.h" />
     <ClInclude Include="Environment.h" />
-    <ClInclude Include="Organism.h" />
-    <ClInclude Include="Organism_Check_Around.h" />
-    <ClInclude Include="Organism_Move.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Resource_Manager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
