@@ -13,6 +13,7 @@ Sm::Resource_Manager::Resource_Manager(unsigned int start_count_resource, sf::Ve
     this->count_environment_zone = count_zone;
     this->resources_information = new Sm::Resource[start_count_resource];
     for (int i{ 0 }; i < start_count_resource; i++) {
+        
         this->set_Resource_Config(i);
     }
 }
@@ -27,16 +28,40 @@ void Sm::Resource_Manager::add_New_Resource() {
     this->resources_information = new Sm::Resource[this->resource_count++];
 
     for (int i{ 0 }; i < this->resource_count - 1; i++) {
+        
         this->resources_information[i] = memory[i];
 
     }
-
     delete memory;
 
-    this->set_Resource_Config(this->resource_count);
+    this->set_Resource_Config(this->resource_count - 1);
 
 }
 /// ///////////////////////////////////////////
+
+
+/// REMOVE SELECT RESOURCE
+/// ///////////////////////////////////////////////////////
+void Sm::Resource_Manager::remove_Select_Resource(int id) {
+    Sm::Resource* memory = this->resources_information;
+
+    this->resources_information = new Sm::Resource[this->resource_count--]; // 31 -- 30
+
+    int dash{ 0 };
+
+    for (int i{ 0 }; i < this->resource_count + 1; i++) { // 30
+        if (i == id) {
+            dash = 1; continue;
+        
+        }
+        std::cout << i << std::endl;
+        this->resources_information[i - dash] = memory[i];
+
+    }
+    //delete memory;
+
+}
+/// ///////////////////////////////////////////////////////
 
 
 /// SET RESOURCE CONFIG
@@ -59,14 +84,16 @@ void Sm::Resource_Manager::set_Resource_Config(int id) {
 
     }
 
-    this->resources_information->get_Config_Zone().id = sf::Vector2i(id_position_x, id_position_y);
+    this->resources_information[id].get_Config_Zone().id_E = sf::Vector2i(id_position_x, id_position_y);
 
-    this->resources_information->get_Config_Zone().position = sf::Vector2f(this->resources_information->get_Config_Zone().size.x * id_position_x,
-                                                                           this->resources_information->get_Config_Zone().size.y * id_position_y);
+    this->resources_information[id].get_Config_Zone().id_A = id;
 
-    this->resources_information->get_Config_Resource().type = std::rand() % 2;
+    this->resources_information[id].get_Config_Zone().position = sf::Vector2f(this->resources_information[id].get_Config_Zone().size.x * id_position_x,
+                                                                           this->resources_information[id].get_Config_Zone().size.y * id_position_y);
 
-    this->resources_information->get_Config_Resource().energi = std::rand() % 5 + 1;
+    this->resources_information[id].get_Config_Resource().type = std::rand() % 2;
+
+    this->resources_information[id].get_Config_Resource().energi = std::rand() % 5 + 1;
 
 }
 /// ////////////////////////////////////////////////////

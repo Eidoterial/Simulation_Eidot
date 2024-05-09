@@ -12,8 +12,10 @@ namespace Sm {
 		sf::Vector2f size = sf::Vector2f(10, 10);
 
 		/// Id zone on environment axisX and axisY
-		sf::Vector2i id;
+		sf::Vector2i id_E;
 
+		/// Id zone on self array
+		int id_A;
 	};
 
 	class Config_Environment_Zone {

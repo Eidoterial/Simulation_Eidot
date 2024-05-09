@@ -2,6 +2,9 @@
 #include "Resource_Manager.h"
 #include <iostream>
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 
 
@@ -10,7 +13,7 @@ int main() {
 	sf::RectangleShape mask;
 
 	Sm::Environment environment(sf::Vector2i(10, 10));
-	Sm::Resource_Manager resource_manager(30, environment.get_Config().count_environment_zone, environment.get_Zones_Information());
+	Sm::Resource_Manager resource_manager(4, environment.get_Config().count_environment_zone, environment.get_Zones_Information());
 
 	/// Simulation Loop
 	
@@ -18,7 +21,9 @@ int main() {
 	window.setFramerateLimit(60);
 
 	int frame{ 0 };
-
+	
+	//std::cout << resource_manager.get_Resources_Information()[0].get_Config_Zone().id_A << std::endl;
+	
 	while (window.isOpen()) {
 		sf::Event event;
 		
@@ -33,9 +38,24 @@ int main() {
 			}
 		}
 
-		if (frame == 10) {
+		
+
+		if (frame == 0) {
+			bool selcer = false;
+			int ran_id{};
+
 			resource_manager.add_New_Resource();
+
+			std::srand(std::time(NULL));
+
+			while (true) {
+				int ran_id = rand() % resource_manager.resource_count;
+
+				resource_manager.remove_Select_Resource(ran_id);
+			}
+
 			frame = 0;
+
 		}
 		else frame++;
 
