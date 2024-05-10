@@ -1,26 +1,21 @@
 #pragma once
 #include "Resource.h"
+#include <vector>
 
 namespace Sm {
 
 	class Resource_Manager {
 
 		/// Save information about resources environment
-		Sm::Resource* resources_information;
+		std::vector<Sm::Resource> resources_information;
 
 		/// Save information about zones environment -- Source Environment.h
-		int** zones_information;
+		std::vector < std::vector<int> > zones_information;
 
 		/// axisX; axisY -- Source Environment.h
 		sf::Vector2i count_environment_zone;
-	public:
 
-		/// Time 
-		/// ///////////////////////////////////////
-		/// Save count all resources in environment
-		unsigned int resource_count{ 0 };
-		/// ///////////////////////////////////////
-	
+	public:
 
 		/// Main constructor
 		///
@@ -28,10 +23,10 @@ namespace Sm {
 		/// Start count resource
 		/// Count zone in environment
 		/// Environment zones_information
-		Resource_Manager(unsigned int, sf::Vector2i, int**);
+		Resource_Manager(unsigned int, sf::Vector2i, std::vector < std::vector<int> >);
 
 		/// Return information about all resources in environment
-		Sm::Resource* get_Resources_Information();
+		std::vector<Sm::Resource>& get_Resources_Information();
 
 		/// Set configuration resource
 		///
@@ -47,6 +42,10 @@ namespace Sm {
 		/// Take 1 argument
 		/// Id resource
 		void remove_Select_Resource(int);
+
+		/// Return Information about all zone in environment 
+		std::vector < std::vector<int> > get_Zones_Information();
+		
 	};
 
 

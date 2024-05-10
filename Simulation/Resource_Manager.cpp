@@ -5,36 +5,30 @@
 #include <iostream>
 
 /// CONSTRUCTOR
-/// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Sm::Resource_Manager::Resource_Manager(unsigned int start_count_resource, sf::Vector2i count_zone, int** zones_information) {
-    this->resource_count = start_count_resource;
+/// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Sm::Resource_Manager::Resource_Manager(unsigned int start_count_resource, sf::Vector2i count_zone, std::vector < std::vector<int> > zones_information) {
 
     this->zones_information = zones_information;
+
     this->count_environment_zone = count_zone;
-    this->resources_information = new Sm::Resource[start_count_resource];
+    
+    this->resources_information.resize(start_count_resource);
+    
     for (int i{ 0 }; i < start_count_resource; i++) {
-        
         this->set_Resource_Config(i);
+
     }
+
 }
-/// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 /// ADD NEW RESOURCE
 /// ///////////////////////////////////////////
 void Sm::Resource_Manager::add_New_Resource() {
-    Sm::Resource* memory = this->resources_information;
+    this->resources_information.resize(this->resources_information.size() + 1);
 
-    this->resources_information = new Sm::Resource[this->resource_count++];
-
-    for (int i{ 0 }; i < this->resource_count - 1; i++) {
-        
-        this->resources_information[i] = memory[i];
-
-    }
-    delete memory;
-
-    this->set_Resource_Config(this->resource_count - 1);
+    this->set_Resource_Config(this->resources_information.size() - 1);
 
 }
 /// ///////////////////////////////////////////
@@ -43,23 +37,10 @@ void Sm::Resource_Manager::add_New_Resource() {
 /// REMOVE SELECT RESOURCE
 /// ///////////////////////////////////////////////////////
 void Sm::Resource_Manager::remove_Select_Resource(int id) {
-    Sm::Resource* memory = this->resources_information;
+    this->zones_information[this->resources_information[id].get_Config_Zone().id_E.y][this->resources_information[id].get_Config_Zone().id_E.x] = 0;
 
-    this->resources_information = new Sm::Resource[this->resource_count--]; // 31 -- 30
-
-    int dash{ 0 };
-
-    for (int i{ 0 }; i < this->resource_count + 1; i++) { // 30
-        if (i == id) {
-            dash = 1; continue;
-        
-        }
-        std::cout << i << std::endl;
-        this->resources_information[i - dash] = memory[i];
-
-    }
-    //delete memory;
-
+    this->resources_information.erase(this->resources_information.begin() + id);
+    
 }
 /// ///////////////////////////////////////////////////////
 
@@ -77,9 +58,8 @@ void Sm::Resource_Manager::set_Resource_Config(int id) {
         id_position_y = std::rand() % this->count_environment_zone.y;
 
         if (this->zones_information[id_position_y][id_position_x] == 0) {
-            this->zones_information[id_position_y][id_position_x] = 2;
-            break;
-
+            this->zones_information[id_position_y][id_position_x] = 2; break;
+           
         } 
 
     }
@@ -100,11 +80,18 @@ void Sm::Resource_Manager::set_Resource_Config(int id) {
 
 
 /// GET RESOURCE INFORMATION
-/// ///////////////////////////////////////////////////////////
-Sm::Resource* Sm::Resource_Manager::get_Resources_Information()
-{
+/// //////////////////////////////////////////////////////////////////////////
+std::vector<Sm::Resource>& Sm::Resource_Manager::get_Resources_Information() {
     return this->resources_information;
 
 }
-/// ///////////////////////////////////////////////////////////
+/// //////////////////////////////////////////////////////////////////////////
 
+
+/// GET ZONES INFORMATION
+/// ////////////////////////////////////////////////////////////////////////////
+std::vector < std::vector<int> > Sm::Resource_Manager::get_Zones_Information() {
+    return this->zones_information;
+
+}
+/// ////////////////////////////////////////////////////////////////////////////

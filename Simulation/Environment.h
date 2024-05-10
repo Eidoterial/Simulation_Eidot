@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 namespace Sm {
 
@@ -27,7 +28,7 @@ namespace Sm {
 		/// 0 - void
 		/// 1 - organism
 		/// 2 - resource
-		int** zones_information;
+		std::vector < std::vector<int> > zones_information;
 
 	public:
 
@@ -41,7 +42,7 @@ namespace Sm {
 		/// Getter
 
 		/// Return Information about all zone in environment
-		int** get_Zones_Information();
+		std::vector < std::vector<int> >& get_Zones_Information();
 
 		/// Return main configuration environment
 		Sm::Environment_config& get_Config();
