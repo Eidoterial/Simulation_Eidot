@@ -46,6 +46,12 @@ namespace Sm {
 		/// Return Information about all zone in environment 
 		std::vector < std::vector<int> > get_Zones_Information();
 		
+		/// Return index resource
+		///
+		/// Take 1 argument
+		/// Id resource in environment
+		int get_Resource_On_Id(sf::Vector2i);
+
 	};
 
 

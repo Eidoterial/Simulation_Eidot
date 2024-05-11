@@ -31,6 +31,12 @@
     <Filter Include="Исходные файлы\Organism_cpp">
       <UniqueIdentifier>{0db75d79-cd88-4dce-b7dd-04b412c192b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\GUI_h">
+      <UniqueIdentifier>{227a0454-e716-4296-bc16-9dacb2c6e112}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\GUI_cpp">
+      <UniqueIdentifier>{3a588e10-23d4-408b-a4b8-73df43e67c8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,6 +54,9 @@
     <ClCompile Include="Resource_Manager.cpp">
       <Filter>Исходные файлы\Resource_cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Geometry.cpp">
+      <Filter>Исходные файлы\GUI_cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Environment.h">
@@ -61,6 +70,15 @@
     </ClInclude>
     <ClInclude Include="Resource_Manager.h">
       <Filter>Файлы заголовков\Resource_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface.h">
+      <Filter>Файлы заголовков\GUI_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Element_Interface.h">
+      <Filter>Файлы заголовков\GUI_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry.h">
+      <Filter>Файлы заголовков\GUI_h</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

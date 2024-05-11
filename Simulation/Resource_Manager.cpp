@@ -66,8 +66,6 @@ void Sm::Resource_Manager::set_Resource_Config(int id) {
 
     this->resources_information[id].get_Config_Zone().id_E = sf::Vector2i(id_position_x, id_position_y);
 
-    this->resources_information[id].get_Config_Zone().id_A = id;
-
     this->resources_information[id].get_Config_Zone().position = sf::Vector2f(this->resources_information[id].get_Config_Zone().size.x * id_position_x,
                                                                            this->resources_information[id].get_Config_Zone().size.y * id_position_y);
 
@@ -77,6 +75,17 @@ void Sm::Resource_Manager::set_Resource_Config(int id) {
 
 }
 /// ////////////////////////////////////////////////////
+
+
+/// GET RESOURCE ON ID ////////////////////////////////////////
+int Sm::Resource_Manager::get_Resource_On_Id(sf::Vector2i id) {
+    for (int i{ 0 }; i < this->resources_information.size(); i++) {
+        if (this->resources_information[i].get_Config_Zone().id_E == id) return i;
+
+    }
+
+}
+/// ///////////////////////////////////////////////////////////
 
 
 /// GET RESOURCE INFORMATION

@@ -14,8 +14,6 @@ namespace Sm {
 		/// Id zone on environment axisX and axisY
 		sf::Vector2i id_E;
 
-		/// Id zone on self array
-		int id_A;
 	};
 
 	class Config_Environment_Zone {

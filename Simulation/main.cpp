@@ -17,7 +17,7 @@ int main() {
 	Sm::Resource_Manager resource_manager(10, environment.get_Config().count_environment_zone, environment.get_Zones_Information());
 
 	/// Simulation Loop
-	/*
+	
 	sf::RenderWindow window(sf::VideoMode(400, 400), "Simulation", sf::Style::Default);
 	window.setFramerateLimit(60);
 
@@ -38,7 +38,6 @@ int main() {
 			}
 
 		}
-
 
 
 		if (frame == 20) {
@@ -95,7 +94,7 @@ int main() {
 		window.display();
 
 	}
-	*/
+	
 
 
 	/// Parse tester

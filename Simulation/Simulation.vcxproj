@@ -135,13 +135,17 @@
   <ItemGroup>
     <ClCompile Include="Config_Environment_Zone.cpp" />
     <ClCompile Include="Environment.cpp" />
+    <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="Resource_Manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config_Environment_Zone.h" />
+    <ClInclude Include="Element_Interface.h" />
     <ClInclude Include="Environment.h" />
+    <ClInclude Include="Geometry.h" />
+    <ClInclude Include="Interface.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Resource_Manager.h" />
   </ItemGroup>
