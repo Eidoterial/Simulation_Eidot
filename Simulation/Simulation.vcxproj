@@ -146,8 +146,11 @@
     <ClInclude Include="Environment.h" />
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="Interface.h" />
+    <ClInclude Include="Memory_Organism.h" />
+    <ClInclude Include="Organism_Memory_Status.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Resource_Manager.h" />
+    <ClInclude Include="Resource_Memory_Status.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

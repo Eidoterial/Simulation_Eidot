@@ -73,11 +73,30 @@ void Sm::Resource_Manager::set_Resource_Config(int id) {
 
     this->resources_information[id].get_Config_Resource().energi = std::rand() % 5 + 1;
 
+    if (this->resources_information[id].get_Config_Resource().type == 0) {
+        this->resources_information[id].get_Color_Zone()._g = 200;
+
+        this->resources_information[id].get_Color_Zone()._r = 100;
+
+    }
+    else {
+        this->resources_information[id].get_Color_Zone()._g = 100;
+
+        this->resources_information[id].get_Color_Zone()._r = 200;
+
+    }
+
+    this->resources_information[id].get_Color_Zone()._b = 255 / this->resources_information[id].get_Config_Resource().energi;
+
+    this->resources_information[id].get_Color_Zone()._a = 255;
+
+
 }
 /// ////////////////////////////////////////////////////
 
 
-/// GET RESOURCE ON ID ////////////////////////////////////////
+/// GET RESOURCE ON ID
+/// ///////////////////////////////////////////////////////////
 int Sm::Resource_Manager::get_Resource_On_Id(sf::Vector2i id) {
     for (int i{ 0 }; i < this->resources_information.size(); i++) {
         if (this->resources_information[i].get_Config_Zone().id_E == id) return i;

@@ -13,6 +13,7 @@ namespace Sm {
 		/// Size restangle axisX, axisY
 		sf::Vector2f size;
 
+
 	public:
 
 		/// Main constructor 

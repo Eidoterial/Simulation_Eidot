@@ -37,6 +37,9 @@
     <Filter Include="Исходные файлы\GUI_cpp">
       <UniqueIdentifier>{3a588e10-23d4-408b-a4b8-73df43e67c8e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Organism_h\Memory_Organism_h">
+      <UniqueIdentifier>{b2be1d58-672a-4cab-a5cd-9af7e24d9d56}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -79,6 +82,15 @@
     </ClInclude>
     <ClInclude Include="Geometry.h">
       <Filter>Файлы заголовков\GUI_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory_Organism.h">
+      <Filter>Файлы заголовков\Organism_h\Memory_Organism_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource_Memory_Status.h">
+      <Filter>Файлы заголовков\Organism_h\Memory_Organism_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Organism_Memory_Status.h">
+      <Filter>Файлы заголовков\Organism_h\Memory_Organism_h</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

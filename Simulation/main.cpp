@@ -13,11 +13,12 @@ int main() {
 
 	sf::RectangleShape mask;
 
+
 	Sm::Environment environment(sf::Vector2i(10, 10));
 	Sm::Resource_Manager resource_manager(10, environment.get_Config().count_environment_zone, environment.get_Zones_Information());
 
 	/// Simulation Loop
-	
+	/*
 	sf::RenderWindow window(sf::VideoMode(400, 400), "Simulation", sf::Style::Default);
 	window.setFramerateLimit(60);
 
@@ -40,7 +41,7 @@ int main() {
 		}
 
 
-		if (frame == 20) {
+		if (frame == 120) {
 			int ran_id{ 0 };
 
 			resource_manager.add_New_Resource();
@@ -67,7 +68,6 @@ int main() {
 
 		window.clear();
 
-		int resours_counter{ 0 };
 
 		for (int i{ 0 }; i < environment.get_Config().count_environment_zone.y; i++) {
 			for (int j{ 0 }; j < environment.get_Config().count_environment_zone.x; j++) {
@@ -79,10 +79,15 @@ int main() {
 				}
 				else if (environment.get_Zones_Information()[i][j] == 2) {
 
-					mask.setSize(sf::Vector2f(resource_manager.get_Resources_Information()[resours_counter].get_Config_Zone().size));
-					mask.setPosition(sf::Vector2f(j * resource_manager.get_Resources_Information()[resours_counter].get_Config_Zone().size.x, i * resource_manager.get_Resources_Information()[resours_counter].get_Config_Zone().size.y));
-					mask.setFillColor(sf::Color::Color(60, 100, 60, 255));
-					resours_counter++;
+					int id = resource_manager.get_Resource_On_Id(sf::Vector2i(j, i));
+
+					mask.setSize(sf::Vector2f(resource_manager.get_Resources_Information()[id].get_Config_Zone().size));
+					mask.setPosition(sf::Vector2f(j * resource_manager.get_Resources_Information()[id].get_Config_Zone().size.x, i * resource_manager.get_Resources_Information()[id].get_Config_Zone().size.y));
+					mask.setFillColor(sf::Color::Color(resource_manager.get_Resources_Information()[id].get_Color_Zone()._r,
+													   resource_manager.get_Resources_Information()[id].get_Color_Zone()._g,
+													   resource_manager.get_Resources_Information()[id].get_Color_Zone()._b,
+													   resource_manager.get_Resources_Information()[id].get_Color_Zone()._a));
+
 				}
 
 				window.draw(mask);
@@ -94,7 +99,7 @@ int main() {
 		window.display();
 
 	}
-	
+	*/
 
 
 	/// Parse tester

@@ -1,6 +1,7 @@
 #include "Environment.h"
 
-/// CONSTRUCTOR /////////////////////////////////
+/// CONSTRUCTOR
+/// /////////////////////////////////////////////
 Sm::Environment::Environment(sf::Vector2i size) {
 	this->config.count_environment_zone = size;
 
@@ -13,7 +14,8 @@ Sm::Environment::Environment(sf::Vector2i size) {
 /// /////////////////////////////////////////////
 
 
-/// GET ZONES INFORMATION //////////////////////////////////////////////////
+/// GET ZONES INFORMATION
+/// ////////////////////////////////////////////////////////////////////////
 std::vector < std::vector<int> >& Sm::Environment::get_Zones_Information() {
 	return this->zones_information;
 
@@ -21,7 +23,8 @@ std::vector < std::vector<int> >& Sm::Environment::get_Zones_Information() {
 /// ////////////////////////////////////////////////////////////////////////
 
 
-/// GET CONFIG ////////////////////////////////////////
+/// GET CONFIG
+/// ///////////////////////////////////////////////////
 Sm::Environment_config& Sm::Environment::get_Config() {
 	return this->config;
 
