@@ -2,7 +2,7 @@
 
 namespace Sm {
 
-
+	/*
 	struct Memory_Target {
 		/// Red color 
 		unsigned int _r{ 0 };
@@ -35,5 +35,5 @@ namespace Sm {
 		Sm::Memory_Target& get_Bad_Resource();
 
 	};
-
+*/
 }

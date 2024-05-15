@@ -1,5 +1,6 @@
 #include "Environment.h"
 #include "Resource_Manager.h"
+#include "Organism_Manager.h"
 #include <iostream>
 
 #include <stdio.h>
@@ -15,12 +16,20 @@ int main() {
 
 
 	Sm::Environment environment(sf::Vector2i(10, 10));
-	Sm::Resource_Manager resource_manager(10, environment.get_Config().count_environment_zone, environment.get_Zones_Information());
 
+
+	Sm::Resource_Manager resource_manager(10, environment.get_Config_Zone_Manager().count_environment_zone, environment.get_Config_Zone_Manager().zones_information);
+	environment.get_Config_Zone_Manager().zones_information = resource_manager.get_Config_Zone_Manager().zones_information;
+	Sm::Organism_Manager organism_manager(5, environment.get_Config_Zone_Manager().count_environment_zone, environment.get_Config_Zone_Manager().zones_information);
+	environment.get_Config_Zone_Manager().zones_information = organism_manager.get_Config_Zone_Manager().zones_information;
+	
 	/// Simulation Loop
 	/*
 	sf::RenderWindow window(sf::VideoMode(400, 400), "Simulation", sf::Style::Default);
 	window.setFramerateLimit(60);
+
+	
+	
 
 	int frame{ 0 };
 
@@ -41,43 +50,33 @@ int main() {
 		}
 
 
-		if (frame == 120) {
-			int ran_id{ 0 };
-
-			resource_manager.add_New_Resource();
-			resource_manager.add_New_Resource();
-			resource_manager.add_New_Resource();
-
-
-			std::srand(std::time(NULL));
-
-			
-			ran_id = rand() % resource_manager.get_Resources_Information().size();
-			resource_manager.remove_Select_Resource(ran_id);
-			ran_id = rand() % resource_manager.get_Resources_Information().size();
-			resource_manager.remove_Select_Resource(ran_id);
-			ran_id = rand() % resource_manager.get_Resources_Information().size();
-			resource_manager.remove_Select_Resource(ran_id);
-			
-			frame = 0;
-			environment.get_Zones_Information() = resource_manager.get_Zones_Information();
-
-		}
-		else frame++;
-
-
 		window.clear();
 
 
-		for (int i{ 0 }; i < environment.get_Config().count_environment_zone.y; i++) {
-			for (int j{ 0 }; j < environment.get_Config().count_environment_zone.x; j++) {
+		for (int i{ 0 }; i < environment.get_Config_Zone_Manager().count_environment_zone.y; i++) {
+			for (int j{ 0 }; j < environment.get_Config_Zone_Manager().count_environment_zone.x; j++) {
 				
-				if (environment.get_Zones_Information()[i][j] == 0) {
+				if (environment.get_Config_Zone_Manager().zones_information[i][j] == 0) {
 					mask.setSize(sf::Vector2f(10, 10));
 					mask.setPosition(sf::Vector2f(j * 10, i * 10));
 					mask.setFillColor(sf::Color::Color(40, 40, 40, 255));
 				}
-				else if (environment.get_Zones_Information()[i][j] == 2) {
+				else if (environment.get_Config_Zone_Manager().zones_information[i][j] == 1) {
+
+					int id = organism_manager.get_Organism_On_Id(sf::Vector2i(j, i));
+
+					std::cout << id << std::endl;
+					organism_manager.call_Action_Organism_1_Sloy(id);
+
+					mask.setSize(sf::Vector2f(organism_manager.get_Organisms_Information()[id].get_Config_Zone().size));
+					mask.setPosition(sf::Vector2f(j * organism_manager.get_Organisms_Information()[id].get_Config_Zone().size.x, i * organism_manager.get_Organisms_Information()[id].get_Config_Zone().size.y));
+					mask.setFillColor(sf::Color::Color(organism_manager.get_Organisms_Information()[id].get_Color_Zone()._r,
+						organism_manager.get_Organisms_Information()[id].get_Color_Zone()._g,
+						organism_manager.get_Organisms_Information()[id].get_Color_Zone()._b,
+						organism_manager.get_Organisms_Information()[id].get_Color_Zone()._a));
+
+				}
+				else if (environment.get_Config_Zone_Manager().zones_information[i][j] == 2) {
 
 					int id = resource_manager.get_Resource_On_Id(sf::Vector2i(j, i));
 
@@ -98,6 +97,7 @@ int main() {
 
 		window.display();
 
+		break;
 	}
 	*/
 

@@ -133,24 +133,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Action_Organism.cpp" />
     <ClCompile Include="Config_Environment_Zone.cpp" />
     <ClCompile Include="Environment.cpp" />
+    <ClCompile Include="Genom.cpp" />
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Organism.cpp" />
+    <ClCompile Include="Organism_Manager.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="Resource_Manager.cpp" />
+    <ClCompile Include="Gen.cpp" />
+    <ClCompile Include="Zone_Manager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Action_Organism.h" />
     <ClInclude Include="Config_Environment_Zone.h" />
     <ClInclude Include="Element_Interface.h" />
     <ClInclude Include="Environment.h" />
+    <ClInclude Include="Genom.h" />
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Memory_Organism.h" />
+    <ClInclude Include="Organism.h" />
+    <ClInclude Include="Organism_Manager.h" />
     <ClInclude Include="Organism_Memory_Status.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Resource_Manager.h" />
     <ClInclude Include="Resource_Memory_Status.h" />
+    <ClInclude Include="Gen.h" />
+    <ClInclude Include="Zone_Manager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

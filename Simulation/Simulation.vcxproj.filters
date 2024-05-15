@@ -40,6 +40,12 @@
     <Filter Include="Файлы заголовков\Organism_h\Memory_Organism_h">
       <UniqueIdentifier>{b2be1d58-672a-4cab-a5cd-9af7e24d9d56}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Organism_h\Genom_h">
+      <UniqueIdentifier>{c362c1c8-9cec-405d-8912-514725a80e2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Organism_cpp\Genom_cpp">
+      <UniqueIdentifier>{3bcf2149-75aa-41eb-8966-075550c61652}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -59,6 +65,24 @@
     </ClCompile>
     <ClCompile Include="Geometry.cpp">
       <Filter>Исходные файлы\GUI_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Organism.cpp">
+      <Filter>Исходные файлы\Organism_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Organism_Manager.cpp">
+      <Filter>Исходные файлы\Organism_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Zone_Manager.cpp">
+      <Filter>Исходные файлы\Environment_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Action_Organism.cpp">
+      <Filter>Исходные файлы\Organism_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Gen.cpp">
+      <Filter>Исходные файлы\Organism_cpp\Genom_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Genom.cpp">
+      <Filter>Исходные файлы\Organism_cpp\Genom_cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +115,24 @@
     </ClInclude>
     <ClInclude Include="Organism_Memory_Status.h">
       <Filter>Файлы заголовков\Organism_h\Memory_Organism_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Organism.h">
+      <Filter>Файлы заголовков\Organism_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Organism_Manager.h">
+      <Filter>Файлы заголовков\Organism_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Zone_Manager.h">
+      <Filter>Файлы заголовков\Environment_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Action_Organism.h">
+      <Filter>Файлы заголовков\Organism_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Genom.h">
+      <Filter>Файлы заголовков\Organism_h\Genom_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Gen.h">
+      <Filter>Файлы заголовков\Organism_h\Genom_h</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

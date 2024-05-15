@@ -3,7 +3,7 @@
 #include "Resource_Memory_Status.h"
 
 namespace Sm {
-
+	/*
 	class Memory_Organism {
 		/// Save status memory about organism
 		Sm::Organism_Memory_Status organism_memory_status;
@@ -18,5 +18,5 @@ namespace Sm {
 		Memory_Organism();
 
 	};
-
+*/
 }

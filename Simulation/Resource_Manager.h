@@ -1,19 +1,13 @@
 #pragma once
 #include "Resource.h"
-#include <vector>
+#include "Zone_Manager.h"
 
 namespace Sm {
 
-	class Resource_Manager {
+	class Resource_Manager : public Sm::Zone_Manager {
 
 		/// Save information about resources environment
 		std::vector<Sm::Resource> resources_information;
-
-		/// Save information about zones environment -- Source Environment.h
-		std::vector < std::vector<int> > zones_information;
-
-		/// axisX; axisY -- Source Environment.h
-		sf::Vector2i count_environment_zone;
 
 	public:
 
@@ -42,9 +36,6 @@ namespace Sm {
 		/// Take 1 argument
 		/// Id resource
 		void remove_Select_Resource(int);
-
-		/// Return Information about all zone in environment 
-		std::vector < std::vector<int> > get_Zones_Information();
 		
 		/// Return index resource
 		///

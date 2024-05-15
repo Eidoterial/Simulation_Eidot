@@ -8,9 +8,9 @@
 /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Sm::Resource_Manager::Resource_Manager(unsigned int start_count_resource, sf::Vector2i count_zone, std::vector < std::vector<int> > zones_information) {
 
-    this->zones_information = zones_information;
+    this->get_Config_Zone_Manager().zones_information = zones_information;
 
-    this->count_environment_zone = count_zone;
+    this->get_Config_Zone_Manager().count_environment_zone = count_zone;
     
     this->resources_information.resize(start_count_resource);
     
@@ -37,7 +37,7 @@ void Sm::Resource_Manager::add_New_Resource() {
 /// REMOVE SELECT RESOURCE
 /// ///////////////////////////////////////////////////////
 void Sm::Resource_Manager::remove_Select_Resource(int id) {
-    this->zones_information[this->resources_information[id].get_Config_Zone().id_E.y][this->resources_information[id].get_Config_Zone().id_E.x] = 0;
+    this->get_Config_Zone_Manager().zones_information[this->resources_information[id].get_Config_Zone().id_E.y][this->resources_information[id].get_Config_Zone().id_E.x] = 0;
 
     this->resources_information.erase(this->resources_information.begin() + id);
     
@@ -54,11 +54,11 @@ void Sm::Resource_Manager::set_Resource_Config(int id) {
     int id_position_y;
 
     while (true) {
-        id_position_x = std::rand() % this->count_environment_zone.x;
-        id_position_y = std::rand() % this->count_environment_zone.y;
+        id_position_x = std::rand() % this->get_Config_Zone_Manager().count_environment_zone.x;
+        id_position_y = std::rand() % this->get_Config_Zone_Manager().count_environment_zone.y;
 
-        if (this->zones_information[id_position_y][id_position_x] == 0) {
-            this->zones_information[id_position_y][id_position_x] = 2; break;
+        if (this->get_Config_Zone_Manager().zones_information[id_position_y][id_position_x] == 0) {
+            this->get_Config_Zone_Manager().zones_information[id_position_y][id_position_x] = 2; break;
            
         } 
 
@@ -114,12 +114,3 @@ std::vector<Sm::Resource>& Sm::Resource_Manager::get_Resources_Information() {
 
 }
 /// //////////////////////////////////////////////////////////////////////////
-
-
-/// GET ZONES INFORMATION
-/// ////////////////////////////////////////////////////////////////////////////
-std::vector < std::vector<int> > Sm::Resource_Manager::get_Zones_Information() {
-    return this->zones_information;
-
-}
-/// ////////////////////////////////////////////////////////////////////////////
