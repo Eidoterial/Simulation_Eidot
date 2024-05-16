@@ -1,15 +1,14 @@
 #pragma once
-#include "Organism_Memory_Status.h"
-#include "Resource_Memory_Status.h"
+#include "Memory_Status.h"
 
 namespace Sm {
-	/*
+	
 	class Memory_Organism {
 		/// Save status memory about organism
-		Sm::Organism_Memory_Status organism_memory_status;
+		Sm::Memory_Status memory_organisms;
 
 		/// Save status memory about resource
-		Sm::Resource_Memory_Status resource_memory_status;
+		Sm::Memory_Status memory_resources;
 
 
 	public:
@@ -17,6 +16,12 @@ namespace Sm {
 		/// Main constructor
 		Memory_Organism();
 
+		/// Return memory about organisms
+		Sm::Memory_Status& get_Memory_Organisms();
+
+		/// Return memory about resources
+		Sm::Memory_Status& get_Memory_Resources();
+
 	};
-*/
+
 }

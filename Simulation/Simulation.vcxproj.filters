@@ -46,6 +46,9 @@
     <Filter Include="Исходные файлы\Organism_cpp\Genom_cpp">
       <UniqueIdentifier>{3bcf2149-75aa-41eb-8966-075550c61652}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Organism_cpp\Memory_Organism_cpp">
+      <UniqueIdentifier>{16c8d30f-516c-418e-bd24-ea5937181a7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -84,6 +87,12 @@
     <ClCompile Include="Genom.cpp">
       <Filter>Исходные файлы\Organism_cpp\Genom_cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Memory_Status.cpp">
+      <Filter>Исходные файлы\Organism_cpp\Memory_Organism_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory_Organism.cpp">
+      <Filter>Исходные файлы\Organism_cpp\Memory_Organism_cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Environment.h">
@@ -110,10 +119,7 @@
     <ClInclude Include="Memory_Organism.h">
       <Filter>Файлы заголовков\Organism_h\Memory_Organism_h</Filter>
     </ClInclude>
-    <ClInclude Include="Resource_Memory_Status.h">
-      <Filter>Файлы заголовков\Organism_h\Memory_Organism_h</Filter>
-    </ClInclude>
-    <ClInclude Include="Organism_Memory_Status.h">
+    <ClInclude Include="Memory_Status.h">
       <Filter>Файлы заголовков\Organism_h\Memory_Organism_h</Filter>
     </ClInclude>
     <ClInclude Include="Organism.h">

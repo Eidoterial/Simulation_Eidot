@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Organism.h"
+#include "Resource.h"
 #include <vector>
 
 namespace Sm {
@@ -23,6 +24,9 @@ namespace Sm {
 
 		/// Save result check status
 		double result_Check_Energi_Status{ 0 };
+
+		/// Save result check memory
+		std::vector<double> result_Check_Memory;
 
 	};
 
@@ -53,6 +57,13 @@ namespace Sm {
 		/// Organism
 		void check_Energi_Status(Sm::Organism);
 
+		/// Check memory organism
+		///
+		/// Take 3 argument
+		/// Organism
+		/// All organisms
+		/// All resources
+		void check_Memory(Sm::Organism, std::vector<Sm::Organism>, std::vector<Sm::Resource>);
 
 	};
 

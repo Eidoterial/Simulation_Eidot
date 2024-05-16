@@ -75,3 +75,47 @@ void Sm::Action_Organism::check_Energi_Status(Sm::Organism organism) {
 
 }
 /// //////////////////////////////////////////////////////////
+
+
+/// CHECK MEMORY
+
+void Sm::Action_Organism::check_Memory(Sm::Organism organism, std::vector<Sm::Organism> organisms, std::vector<Sm::Resource> resources) {
+	this->result_action.result_Check_Memory.resize(8);
+
+	for (int i{ 0 }; i < result_action.result_Check_Memory.size(); i++) {
+
+		if (this->result_action.result_Check_Arround[i].type == 1) {
+			Sm::Organism select_organism;
+
+			for (int j{ 0 }; j < organisms.size(); j++) {
+				if (organisms[j].get_Config_Zone().id_E == this->result_action.result_Check_Arround[i].position) {
+					select_organism = organisms[j]; break;
+
+				}
+
+			}
+
+			if (organism.get_Memory_Organisms().get_Good().size() > 0) {
+				
+				for (int j{ 0 }; j < organism.get_Memory_Organisms().get_Good().size(); j++) {
+					
+					if (organism.get_Memory_Organisms().get_Good()[j]._r == select_organism.get_Color_Zone()._r &&
+						organism.get_Memory_Organisms().get_Good()[j]._g == select_organism.get_Color_Zone()._g &&
+						organism.get_Memory_Organisms().get_Good()[j]._b == select_organism.get_Color_Zone()._b) {
+
+						//this->result_action.result_Check_Memory[i] = 0 ;
+
+					}
+
+				}
+
+			}
+			else this->result_action.result_Check_Memory[i] = 1.0;
+
+		}
+
+	}
+
+
+
+}

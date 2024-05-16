@@ -139,6 +139,8 @@
     <ClCompile Include="Genom.cpp" />
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Memory_Organism.cpp" />
+    <ClCompile Include="Memory_Status.cpp" />
     <ClCompile Include="Organism.cpp" />
     <ClCompile Include="Organism_Manager.cpp" />
     <ClCompile Include="Resource.cpp" />
@@ -157,10 +159,9 @@
     <ClInclude Include="Memory_Organism.h" />
     <ClInclude Include="Organism.h" />
     <ClInclude Include="Organism_Manager.h" />
-    <ClInclude Include="Organism_Memory_Status.h" />
+    <ClInclude Include="Memory_Status.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Resource_Manager.h" />
-    <ClInclude Include="Resource_Memory_Status.h" />
     <ClInclude Include="Gen.h" />
     <ClInclude Include="Zone_Manager.h" />
   </ItemGroup>

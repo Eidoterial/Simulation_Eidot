@@ -20,7 +20,7 @@ namespace Sm {
 	};
 
 
-	class Organism : public Sm::Config_Environment_Zone, public Sm::Genom {
+	class Organism : public Sm::Config_Environment_Zone, public Sm::Genom, public Sm::Memory_Organism {
 		/// Save main configuration organism
 		Sm::Config_Organism config_organism;
 
