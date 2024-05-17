@@ -64,6 +64,8 @@ namespace Sm {
 		/// Id organism
 		void call_Action_Organism_2_Sloy(int);
 
+		void info_action();
+
 	};
 
 }

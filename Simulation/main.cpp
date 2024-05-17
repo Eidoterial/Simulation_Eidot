@@ -24,7 +24,7 @@ int main() {
 	environment.get_Config_Zone_Manager().zones_information = organism_manager.get_Config_Zone_Manager().zones_information;
 	
 	/// Simulation Loop
-	/*
+	
 	sf::RenderWindow window(sf::VideoMode(400, 400), "Simulation", sf::Style::Default);
 	window.setFramerateLimit(60);
 
@@ -65,8 +65,11 @@ int main() {
 
 					int id = organism_manager.get_Organism_On_Id(sf::Vector2i(j, i));
 
-					std::cout << id << std::endl;
+					std::cout << "ID organism: " << id << std::endl;
 					organism_manager.call_Action_Organism_1_Sloy(id);
+					organism_manager.call_Action_Organism_2_Sloy(id);
+
+					organism_manager.info_action();
 
 					mask.setSize(sf::Vector2f(organism_manager.get_Organisms_Information()[id].get_Config_Zone().size));
 					mask.setPosition(sf::Vector2f(j * organism_manager.get_Organisms_Information()[id].get_Config_Zone().size.x, i * organism_manager.get_Organisms_Information()[id].get_Config_Zone().size.y));
@@ -99,7 +102,7 @@ int main() {
 
 		break;
 	}
-	*/
+	
 
 
 	/// Parse tester

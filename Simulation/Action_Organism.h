@@ -19,14 +19,40 @@ namespace Sm {
 
 	struct Result_Action {
 
+		/// Sloy 1
+		/// /////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////
+
 		/// Save result check arround
 		std::vector<Arround_Element_Info> result_Check_Arround;
 
 		/// Save result check status
-		double result_Check_Energi_Status{ 0 };
+		double result_Check_Energi_Status{ 0.0 };
 
 		/// Save result check memory
-		std::vector<double> result_Check_Memory;
+		std::vector<Sm::Memory_Target> result_Check_Memory_Good_Organism;
+		std::vector<Sm::Memory_Target> result_Check_Memory_Bad_Organism;
+		std::vector<Sm::Memory_Target> result_Check_Memory_Good_Resource;
+		std::vector<Sm::Memory_Target> result_Check_Memory_Bad_Resource;
+
+		/////////////////////////////////////////////////////////////
+		/// /////////////////////////////////////////////////////////
+
+
+		/// Sloy 2
+		/// /////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////
+
+		/// Save result check priority move
+		double result_Check_Priority_Move{ 0.0 };
+
+		/// Save result check priority convertation
+		double result_Check_Priority_Convertation{ 0.0 };
+
+		double result_Check_priority_Reproduction{ 0.0 };
+		
+		/////////////////////////////////////////////////////////////
+		/// /////////////////////////////////////////////////////////
 
 	};
 
@@ -42,6 +68,10 @@ namespace Sm {
 
 		/// Return results action
 		Sm::Result_Action get_Result_Action();
+
+		/// Sloy 1
+		/// /////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////
 
 		/// Check element environment arround organism
 		///
@@ -59,11 +89,37 @@ namespace Sm {
 
 		/// Check memory organism
 		///
-		/// Take 3 argument
+		/// Take 1 argument
 		/// Organism
-		/// All organisms
-		/// All resources
-		void check_Memory(Sm::Organism, std::vector<Sm::Organism>, std::vector<Sm::Resource>);
+		void check_Memory(Sm::Organism);
+
+		/////////////////////////////////////////////////////////////
+		/// /////////////////////////////////////////////////////////
+
+		/// Sloy 2
+		/// /////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////
+
+		/// Check priority move organism
+		///
+		/// Take 1 argument
+		/// Organism
+		void check_Priority_Move(Sm::Organism);
+
+		/// Check priority convertation organism
+		///
+		/// Take 1 argument
+		/// Organism
+		void check_Priority_Convertation(Sm::Organism);
+
+		/// Check priority reproduction organism
+		///
+		/// Take 1 argument
+		/// Organism
+		void check_Priority_Reproduction(Sm::Organism);
+
+		/////////////////////////////////////////////////////////////
+		/// /////////////////////////////////////////////////////////
 
 	};
 

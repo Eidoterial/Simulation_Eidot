@@ -73,7 +73,37 @@ void Sm::Organism_Manager::set_Organism_Config(int id) {
     this->organisms_information[id].get_Config_Organism().serial_number[this->organisms_information[id].get_Config_Organism().serial_number.size() - 1] = this->counter_serial_number;
     this->counter_serial_number++;
 
-    this->organisms_information[id].get_Genom().resize(9);
+    this->organisms_information[id].get_Genom().resize(10);
+
+
+    /// Test //////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    this->organisms_information[id].get_Memory_Organisms().get_Good().resize(1);
+    this->organisms_information[id].get_Memory_Organisms().get_Good()[0]._r = std::rand() % 256;
+    this->organisms_information[id].get_Memory_Organisms().get_Good()[0]._g = std::rand() % 256;
+    this->organisms_information[id].get_Memory_Organisms().get_Good()[0]._b = std::rand() % 256;
+    this->organisms_information[id].get_Memory_Organisms().get_Good()[0].value = std::rand() % 5;
+
+    this->organisms_information[id].get_Memory_Organisms().get_Bad().resize(1);
+    this->organisms_information[id].get_Memory_Organisms().get_Bad()[0]._r = std::rand() % 256;
+    this->organisms_information[id].get_Memory_Organisms().get_Bad()[0]._g = std::rand() % 256;
+    this->organisms_information[id].get_Memory_Organisms().get_Bad()[0]._b = std::rand() % 256;
+    this->organisms_information[id].get_Memory_Organisms().get_Bad()[0].value = std::rand() % 5;
+
+    this->organisms_information[id].get_Memory_Resources().get_Good().resize(1);
+    this->organisms_information[id].get_Memory_Resources().get_Good()[0]._r = std::rand() % 256;
+    this->organisms_information[id].get_Memory_Resources().get_Good()[0]._g = std::rand() % 256;
+    this->organisms_information[id].get_Memory_Resources().get_Good()[0]._b = std::rand() % 256;
+    this->organisms_information[id].get_Memory_Resources().get_Good()[0].value = std::rand() % 5;
+
+    this->organisms_information[id].get_Memory_Resources().get_Bad().resize(1);
+    this->organisms_information[id].get_Memory_Resources().get_Bad()[0]._r = std::rand() % 256;
+    this->organisms_information[id].get_Memory_Resources().get_Bad()[0]._g = std::rand() % 256;
+    this->organisms_information[id].get_Memory_Resources().get_Bad()[0]._b = std::rand() % 256;
+    this->organisms_information[id].get_Memory_Resources().get_Bad()[0].value = std::rand() % 5;
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    /// //////////////////////////////////////////////////////////////////////////////////////////////
+
     
     for (int i{ 0 }; i < this->organisms_information[id].get_Genom().size(); i++) {
         this->organisms_information[id].get_Genom()[i].get_Gen().resize(10);
@@ -101,10 +131,19 @@ void Sm::Organism_Manager::call_Action_Organism_1_Sloy(int id) {
 
     this->action_organism.check_Arround(this->organisms_information[id], this->get_Config_Zone_Manager().count_environment_zone, this->get_Config_Zone_Manager().zones_information);
     this->action_organism.check_Energi_Status(this->organisms_information[id]);
+    this->action_organism.check_Memory(this->organisms_information[id]);    
 
-    std::cout << this->action_organism.get_Result_Action().result_Check_Energi_Status << std::endl;
+}
+/// ////////////////////////////////////////////////////////////
 
-    
+
+/// CALL ACTION ORGANISM 2 SLOY
+/// ////////////////////////////////////////////////////////////
+void Sm::Organism_Manager::call_Action_Organism_2_Sloy(int id) {
+
+    this->action_organism.check_Priority_Move(this->organisms_information[id]);
+    this->action_organism.check_Priority_Convertation(this->organisms_information[id]);
+
 
 }
 /// ////////////////////////////////////////////////////////////
@@ -129,3 +168,100 @@ std::vector<Sm::Organism>& Sm::Organism_Manager::get_Organisms_Information() {
 
 }
 /// //////////////////////////////////////////////////////////////////////////
+
+
+void Sm::Organism_Manager::info_action() {
+
+    for (int i{ 0 }; i < this->action_organism.get_Result_Action().result_Check_Arround.size(); i++) {
+        std::cout << "Type element: " << this->action_organism.get_Result_Action().result_Check_Arround[i].type << " , ";
+        std::cout << "Position element: " << this->action_organism.get_Result_Action().result_Check_Arround[i].position.x << "." << this->action_organism.get_Result_Action().result_Check_Arround[i].position.y << std::endl;
+
+    }
+
+
+    std::cout << "Energi status: " << this->action_organism.get_Result_Action().result_Check_Energi_Status << std::endl;
+
+    if (this->action_organism.get_Result_Action().result_Check_Memory_Good_Organism.size() != 0) {
+        std::cout << "Memory good organism" << std::endl;
+
+        for (int i{ 0 }; i < this->action_organism.get_Result_Action().result_Check_Memory_Good_Organism.size(); i++) {
+            std::cout << "Slot: " << i << std::endl;
+
+            for (int j{ 0 }; j < 4; j++) {
+                std::cout << "Red: " << this->action_organism.get_Result_Action().result_Check_Memory_Good_Organism[i]._r << " , ";
+                std::cout << "Green: " << this->action_organism.get_Result_Action().result_Check_Memory_Good_Organism[i]._g << " , ";
+                std::cout << "Blue: " << this->action_organism.get_Result_Action().result_Check_Memory_Good_Organism[i]._b << " , ";
+                std::cout << "Value energi: " << this->action_organism.get_Result_Action().result_Check_Memory_Good_Organism[i].value << std::endl;
+
+            }
+            
+        }
+
+    }
+    else std::cout << "Not memory good organism" << std::endl;
+
+    if (this->action_organism.get_Result_Action().result_Check_Memory_Good_Organism.size() != 0) {
+        std::cout << "Memory bad organism" << std::endl;
+
+        for (int i{ 0 }; i < this->action_organism.get_Result_Action().result_Check_Memory_Bad_Organism.size(); i++) {
+            std::cout << "Slot: " << i << std::endl;
+
+            for (int j{ 0 }; j < 4; j++) {
+                std::cout << "Red: " << this->action_organism.get_Result_Action().result_Check_Memory_Bad_Organism[i]._r << " , ";
+                std::cout << "Green: " << this->action_organism.get_Result_Action().result_Check_Memory_Bad_Organism[i]._g << " , ";
+                std::cout << "Blue: " << this->action_organism.get_Result_Action().result_Check_Memory_Bad_Organism[i]._b << " , ";
+                std::cout << "Value energi: " << this->action_organism.get_Result_Action().result_Check_Memory_Bad_Organism[i].value << std::endl;
+
+            }
+
+        }
+
+    }
+    else std::cout << "Not memory bad organism" << std::endl;
+
+    if (this->action_organism.get_Result_Action().result_Check_Memory_Good_Resource.size() != 0) {
+        std::cout << "Memory good resource" << std::endl;
+
+        for (int i{ 0 }; i < this->action_organism.get_Result_Action().result_Check_Memory_Good_Resource.size(); i++) {
+            std::cout << "Slot: " << i << std::endl;
+
+            for (int j{ 0 }; j < 4; j++) {
+                std::cout << "Red: " << this->action_organism.get_Result_Action().result_Check_Memory_Good_Resource[i]._r << " , ";
+                std::cout << "Green: " << this->action_organism.get_Result_Action().result_Check_Memory_Good_Resource[i]._g << " , ";
+                std::cout << "Blue: " << this->action_organism.get_Result_Action().result_Check_Memory_Good_Resource[i]._b << " , ";
+                std::cout << "Value energi: " << this->action_organism.get_Result_Action().result_Check_Memory_Good_Resource[i].value << std::endl;
+
+            }
+
+        }
+
+    }
+    else std::cout << "Not memory good resource" << std::endl;
+
+    if (this->action_organism.get_Result_Action().result_Check_Memory_Good_Resource.size() != 0) {
+        std::cout << "Memory bad resource" << std::endl;
+
+        for (int i{ 0 }; i < this->action_organism.get_Result_Action().result_Check_Memory_Bad_Resource.size(); i++) {
+            std::cout << "Slot: " << i << std::endl;
+
+            for (int j{ 0 }; j < 4; j++) {
+                std::cout << "Red: " << this->action_organism.get_Result_Action().result_Check_Memory_Bad_Resource[i]._r << " , ";
+                std::cout << "Green: " << this->action_organism.get_Result_Action().result_Check_Memory_Bad_Resource[i]._g << " , ";
+                std::cout << "Blue: " << this->action_organism.get_Result_Action().result_Check_Memory_Bad_Resource[i]._b << " , ";
+                std::cout << "Value energi: " << this->action_organism.get_Result_Action().result_Check_Memory_Bad_Resource[i].value << std::endl;
+
+            }
+
+        }
+
+    }
+    else std::cout << "Not memory bad resource" << std::endl;
+
+    
+    std::cout << "Priority move: " << this->action_organism.get_Result_Action().result_Check_Priority_Move << std::endl;
+
+    std::cout << "Priority convertation: " << this->action_organism.get_Result_Action().result_Check_Priority_Convertation << std::endl;
+    
+    std::cout << "---------------------------------------------------------------------------------------------------------------";
+    std::cout << std::endl;
+}

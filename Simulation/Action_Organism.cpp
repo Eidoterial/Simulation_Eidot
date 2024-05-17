@@ -50,10 +50,10 @@ void Sm::Action_Organism::check_Arround(Sm::Organism organism, sf::Vector2i coun
 /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
 /// CHECK ENERGI STATUS
 /// //////////////////////////////////////////////////////////
 void Sm::Action_Organism::check_Energi_Status(Sm::Organism organism) {
+	this->result_action.result_Check_Energi_Status = 0.0;
 
 	double max = organism.gen_0_Decipherment();
 	double min = organism.gen_1_Decipherment();
@@ -78,44 +78,181 @@ void Sm::Action_Organism::check_Energi_Status(Sm::Organism organism) {
 
 
 /// CHECK MEMORY
+/// ///////////////////////////////////////////////////////////
+void Sm::Action_Organism::check_Memory(Sm::Organism organism) {
+	this->result_action.result_Check_Memory_Good_Organism.resize(0);
+	this->result_action.result_Check_Memory_Bad_Organism.resize(0);
+	this->result_action.result_Check_Memory_Good_Resource.resize(0);
+	this->result_action.result_Check_Memory_Bad_Resource.resize(0);
 
-void Sm::Action_Organism::check_Memory(Sm::Organism organism, std::vector<Sm::Organism> organisms, std::vector<Sm::Resource> resources) {
-	this->result_action.result_Check_Memory.resize(8);
+	std::vector<int> MCS = organism.gen_3_Decipherment();
 
-	for (int i{ 0 }; i < result_action.result_Check_Memory.size(); i++) {
+	Sm::Memory_Target RCM;
 
-		if (this->result_action.result_Check_Arround[i].type == 1) {
-			Sm::Organism select_organism;
 
-			for (int j{ 0 }; j < organisms.size(); j++) {
-				if (organisms[j].get_Config_Zone().id_E == this->result_action.result_Check_Arround[i].position) {
-					select_organism = organisms[j]; break;
+	for (int i{ 0 }; i < organism.get_Memory_Organisms().get_Good().size(); i++) {
+		
+		if (MCS[0] != 0) RCM._r = organism.get_Memory_Organisms().get_Good()[i]._r;
+		else RCM._r = 0;
 
-				}
+		if (MCS[1] != 0) RCM._g = organism.get_Memory_Organisms().get_Good()[i]._g;
+		else RCM._g = 0;
 
-			}
+		if (MCS[2] != 0) RCM._b = organism.get_Memory_Organisms().get_Good()[i]._b;
+		else RCM._b = 0;
 
-			if (organism.get_Memory_Organisms().get_Good().size() > 0) {
-				
-				for (int j{ 0 }; j < organism.get_Memory_Organisms().get_Good().size(); j++) {
-					
-					if (organism.get_Memory_Organisms().get_Good()[j]._r == select_organism.get_Color_Zone()._r &&
-						organism.get_Memory_Organisms().get_Good()[j]._g == select_organism.get_Color_Zone()._g &&
-						organism.get_Memory_Organisms().get_Good()[j]._b == select_organism.get_Color_Zone()._b) {
-
-						//this->result_action.result_Check_Memory[i] = 0 ;
-
-					}
-
-				}
-
-			}
-			else this->result_action.result_Check_Memory[i] = 1.0;
-
-		}
+		if (MCS[6] != 0) RCM.value = organism.get_Memory_Organisms().get_Good()[i].value;
+		else RCM.value = 0;
+		
+		this->result_action.result_Check_Memory_Good_Organism.push_back(RCM);
 
 	}
 
+	for (int i{ 0 }; i < organism.get_Memory_Organisms().get_Bad().size(); i++) {
 
+		if (MCS[3] != 0) RCM._r = organism.get_Memory_Organisms().get_Bad()[i]._r;
+		else RCM._r = 0;
+
+		if (MCS[4] != 0) RCM._g = organism.get_Memory_Organisms().get_Bad()[i]._g;
+		else RCM._g = 0;
+
+		if (MCS[5] != 0) RCM._b = organism.get_Memory_Organisms().get_Bad()[i]._b;
+		else RCM._b = 0;
+
+		if (MCS[6] != 0) RCM.value = organism.get_Memory_Organisms().get_Bad()[i].value;
+		else RCM.value = 0;
+
+		this->result_action.result_Check_Memory_Bad_Organism.push_back(RCM);
+
+	}
+
+	for (int i{ 0 }; i < organism.get_Memory_Resources().get_Good().size(); i++) {
+
+		if (MCS[0] != 0) RCM._r = organism.get_Memory_Resources().get_Good()[i]._r;
+		else RCM._r = 0;
+
+		if (MCS[1] != 0) RCM._g = organism.get_Memory_Resources().get_Good()[i]._g;
+		else RCM._g = 0;
+
+		if (MCS[2] != 0) RCM._b = organism.get_Memory_Resources().get_Good()[i]._b;
+		else RCM._b = 0;
+
+		if (MCS[6] != 0) RCM.value = organism.get_Memory_Resources().get_Good()[i].value;
+		else RCM.value = 0;
+
+		this->result_action.result_Check_Memory_Good_Resource.push_back(RCM);
+
+	}
+
+	for (int i{ 0 }; i < organism.get_Memory_Resources().get_Bad().size(); i++) {
+
+		if (MCS[3] != 0) RCM._r = organism.get_Memory_Resources().get_Bad()[i]._r;
+		else RCM._r = 0;
+
+		if (MCS[4] != 0) RCM._g = organism.get_Memory_Resources().get_Bad()[i]._g;
+		else RCM._g = 0;
+
+		if (MCS[5] != 0) RCM._b = organism.get_Memory_Resources().get_Bad()[i]._b;
+		else RCM._b = 0;
+
+		if (MCS[6] != 0) RCM.value = organism.get_Memory_Resources().get_Bad()[i].value;
+		else RCM.value = 0;
+
+		this->result_action.result_Check_Memory_Bad_Resource.push_back(RCM);
+
+	}
 
 }
+/// ///////////////////////////////////////////////////////////
+
+
+/// CHECK PRIORITY MOVE
+/// //////////////////////////////////////////////////////////////////
+void Sm::Action_Organism::check_Priority_Move(Sm::Organism organism) {
+	this->result_action.result_Check_Priority_Move = 0.0;
+
+	if (organism.gen_4_Decipherment()) {
+
+		int C_R{ 0 };
+		int C_O{ 0 };
+		int C_V{ 0 };
+
+		for (int i{ 0 }; i < this->result_action.result_Check_Arround.size(); i++) {
+			if (this->result_action.result_Check_Arround[i].type == 0) C_V++;
+			else if (this->result_action.result_Check_Arround[i].type == 1) C_O++;
+			else C_R++;
+
+		}
+
+		result_action.result_Check_Priority_Move = std::round((((((C_R + 1) / (C_O + 1)) * C_V) * this->result_action.result_Check_Energi_Status) / 100) * 100) / 100;
+
+	}
+	else this->result_action.result_Check_Priority_Move = 0.0;
+
+}
+/// //////////////////////////////////////////////////////////////////
+
+
+/// CHECK PRIORITY CONVERTATION
+/// //////////////////////////////////////////////////////////////////////////
+void Sm::Action_Organism::check_Priority_Convertation(Sm::Organism organism) {
+	this->result_action.result_Check_Priority_Convertation = 0.0;
+
+
+	if (organism.gen_8_Decipherment()) {
+
+		int C_R{ 0 };
+		int C_O{ 0 };
+		int C_V{ 0 };
+		int C_E{ 0 };
+
+		for (int i{ 0 }; i < this->result_action.result_Check_Arround.size(); i++) {
+			if (this->result_action.result_Check_Arround[i].type == 0) C_V++;
+			else if (this->result_action.result_Check_Arround[i].type == 1) C_O++;
+			else C_R++;
+
+		}
+
+		C_E = ((C_R + C_O + C_V) - (C_R + C_O)) * 2;
+
+		this->result_action.result_Check_Priority_Convertation = std::round(((C_E * this->result_action.result_Check_Energi_Status) / 100) * 100) / 100;
+
+	}
+	else this->result_action.result_Check_Priority_Convertation = 0.0;
+
+}
+/// //////////////////////////////////////////////////////////////////////////
+
+/*
+/// CHECK PRIORITY REPRODUCTION
+/// //////////////////////////////////////////////////////////////////////////
+void Sm::Action_Organism::check_Priority_Reproduction(Sm::Organism organism) {
+	this->result_action.result_Check_priority_Reproduction = 0.0;
+
+
+	if (organism.gen_6_Decipherment() && organism.get_Config_Organism().energi >= organism.gen_7_Decipherment()) {
+
+		int C_R{ 0 };
+		int C_O{ 0 };
+		int C_V{ 0 };
+		int C_E{ 0 };
+
+		for (int i{ 0 }; i < this->result_action.result_Check_Arround.size(); i++) {
+			if (this->result_action.result_Check_Arround[i].type == 0) C_V++;
+			else if (this->result_action.result_Check_Arround[i].type == 1) C_O++;
+			else C_R++;
+
+		}
+
+		if (C_V != 0) {
+
+
+
+		}
+		else this->result_action.result_Check_priority_Reproduction = 0.0;
+	}
+	else this->result_action.result_Check_priority_Reproduction = 0.0;
+
+}
+/// //////////////////////////////////////////////////////////////////////////
+*/
