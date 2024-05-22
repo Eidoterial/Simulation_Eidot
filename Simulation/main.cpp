@@ -1,6 +1,7 @@
 #include "Environment.h"
 #include "Resource_Manager.h"
 #include "Organism_Manager.h"
+#include "Interface.h"
 #include <iostream>
 
 #include <stdio.h>
@@ -17,6 +18,7 @@ int main() {
 
 	Sm::Environment environment(sf::Vector2i(10, 10));
 
+	
 
 	Sm::Resource_Manager resource_manager(10, environment.get_Config_Zone_Manager().count_environment_zone, environment.get_Config_Zone_Manager().zones_information);
 	environment.get_Config_Zone_Manager().zones_information = resource_manager.get_Config_Zone_Manager().zones_information;
@@ -28,7 +30,7 @@ int main() {
 	sf::RenderWindow window(sf::VideoMode(400, 400), "Simulation", sf::Style::Default);
 	window.setFramerateLimit(60);
 
-	
+	Sm::Interface interface_program(window.getSize());
 	
 
 	int frame{ 0 };
@@ -52,7 +54,7 @@ int main() {
 
 		window.clear();
 
-
+		/*
 		for (int i{ 0 }; i < environment.get_Config_Zone_Manager().count_environment_zone.y; i++) {
 			for (int j{ 0 }; j < environment.get_Config_Zone_Manager().count_environment_zone.x; j++) {
 				
@@ -97,10 +99,15 @@ int main() {
 			}
 
 		}
+		*/
+		
+		interface_program.draw_Interface_On_Screen(window);
+
 
 		window.display();
 
-		break;
+
+		///break;
 	}
 	
 
@@ -136,6 +143,7 @@ int main() {
 	}
 	*/
 
+	sf::Text text;
 
 	return 0;
 

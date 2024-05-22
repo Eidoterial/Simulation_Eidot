@@ -6,36 +6,82 @@ namespace Sm {
 
 	class Rectangle_Button : public Sm::Rectangle_Geom {
 
-		sf::Color color;
+		Sm::Color_sm background;
+
+		Sm::Color_sm color_text;
+
+		sf::Vector2f text_position;
 
 		std::string text;
 
 	public:
 
-
+		/// Main constructor
+		Rectangle_Button();
 		
+		/// Return background
+		Sm::Color_sm& get_Background();
+
+		/// Return color text
+		Sm::Color_sm& get_Color_Text();
+
+		/// Set text
+		void set_Text(std::string);
+
+		/// Set text position
+		void set_Text_Position(sf::Vector2f);
+
+		/// Return text
+		std::string get_Text();
+
+		/// Return text position
+		sf::Vector2f get_Text_Position();
+
 	};
 
+	class Label {
 
-	class Circle_Button : public Sm::Circle_Geom {
+		sf::Vector2f text_position;
 
-		sf::Color color;
+		Sm::Color_sm color_text;
 
 		std::string text;
 
+	public:
+
+		/// Main constructor
+		Label();
+
+		/// Return color text
+		Sm::Color_sm& get_Color_Text();
+
+		/// Set text
+		void set_Text(std::string);
+
+		/// Set text position
+		void set_Text_Position(sf::Vector2f);
+
+		/// Return text
+		std::string get_Text();
+
+		/// Return text position
+		sf::Vector2f get_Text_Position();
+
+
 	};
 
-	class Label : public Sm::Rectangle_Geom {
+	class Rectangle_Frame : public Sm::Rectangle_Geom {
 
-		sf::Color color;
+		Sm::Color_sm background;
 
-		std::string text;
 
-	};
+	public:
 
-	class Frame : public Sm::Rectangle_Geom {
+		/// Main constructor
+		Rectangle_Frame();
 
-		sf::Color color;
+		/// Return background
+		Sm::Color_sm& get_Background();
 
 	};
 

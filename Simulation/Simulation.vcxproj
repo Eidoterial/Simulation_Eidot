@@ -135,9 +135,11 @@
   <ItemGroup>
     <ClCompile Include="Action_Organism.cpp" />
     <ClCompile Include="Config_Environment_Zone.cpp" />
+    <ClCompile Include="Element_Interface.cpp" />
     <ClCompile Include="Environment.cpp" />
     <ClCompile Include="Genom.cpp" />
     <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="Interface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Memory_Organism.cpp" />
     <ClCompile Include="Memory_Status.cpp" />

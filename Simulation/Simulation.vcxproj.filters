@@ -93,6 +93,12 @@
     <ClCompile Include="Memory_Organism.cpp">
       <Filter>Исходные файлы\Organism_cpp\Memory_Organism_cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Element_Interface.cpp">
+      <Filter>Исходные файлы\GUI_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface.cpp">
+      <Filter>Исходные файлы\GUI_cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Environment.h">

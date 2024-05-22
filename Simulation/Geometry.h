@@ -5,6 +5,24 @@
 
 namespace Sm {
 
+	struct Color_sm {
+
+		/// Color red
+		int _r{ 0 };
+
+		/// Color green
+		int _g{ 0 };
+
+		/// Color blue
+		int _b{ 0 };
+
+		/// Alpha - visible
+		int _a{ 255 };
+
+
+
+	};
+
 	class Rectangle_Geom {
 
 		/// Position rectangle on screen axisX, axisY
@@ -38,41 +56,5 @@ namespace Sm {
 		sf::Vector2f get_Size();
 
 	};
-
-
-	class Circle_Geom {
-
-		/// Position circle on screen axisX, axisY
-		sf::Vector2f position;
-
-		/// Radius circle 
-		float radius{ 0.0 };
-
-	public:
-
-		/// Main constructor
-		Circle_Geom();
-
-
-		/// Set position circle
-		///
-		/// Take 1 argument
-		/// Position axisX, axisY
-		void set_Position(sf::Vector2f);
-
-		/// Set radius circle
-		///
-		/// Take 1 argument
-		/// Position axisX, axisY
-		void set_Radius(float);
-
-		/// Return position circle on screen
-		sf::Vector2f get_Position();
-
-		/// Return radius circle
-		float get_Radius();
-
-	};
-
 
 }
