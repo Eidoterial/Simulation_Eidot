@@ -25,7 +25,7 @@ namespace Sm {
 		sf::Vector2f position;
 
 		/// Size zone on screen axisX and axisY
-		sf::Vector2f size = sf::Vector2f(10, 10);
+		sf::Vector2f size = sf::Vector2f(1, 1);
 
 		/// Id zone on environment axisX and axisY
 		sf::Vector2i id_E;

@@ -14,6 +14,8 @@ namespace Sm {
 
 		std::string text;
 
+		bool active{false};
+
 	public:
 
 		/// Main constructor
@@ -37,6 +39,14 @@ namespace Sm {
 		/// Return text position
 		sf::Vector2f get_Text_Position();
 
+		/// Set status button
+		///
+		/// Take 1 argument
+		/// New status
+		void set_Status(bool);
+
+		/// Return status button
+		bool get_Status();
 	};
 
 	class Label {

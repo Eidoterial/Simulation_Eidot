@@ -3,6 +3,28 @@
 
 namespace Sm {
 
+	struct Interface_Elements {
+		Sm::Rectangle_Frame frame_information_count_resource_organism_and_void;
+
+		Sm::Label label_information_count_resource;
+
+		Sm::Rectangle_Frame frame_main_toolbar_program;
+
+
+
+
+		Sm::Rectangle_Button button_select;
+
+		Sm::Rectangle_Button button_creeate;
+
+		Sm::Rectangle_Button button_copy;
+
+		Sm::Rectangle_Button button_remove;
+
+		Sm::Rectangle_Button button_restart;
+
+	};
+
 	class Interface {
 
 		/// Scalar position element on screen
@@ -42,20 +64,12 @@ namespace Sm {
 		/// ScalarY_start
 		void SCALAR_POSITION_TEXT_ON_ELEMENT(Sm::Rectangle_Geom, Sm::Label&, float, float);
 
-
-
-		int size_font = 12;
-
-
-		Sm::Rectangle_Frame frame_information_count_resource_organism_and_void;
-
-		Sm::Label label_information_count_resource;
-
-		Sm::Rectangle_Frame frame_main_toolbar_program;
-
-		Sm::Rectangle_Button button_select;
-
 		sf::Vector2u size_screen;
+
+		int size_font{ 0 };
+
+		Sm::Interface_Elements interface_elements;
+		
 
 		sf::Font font;
 
@@ -67,6 +81,10 @@ namespace Sm {
 		/// Take 1 argument
 		/// Size screen
 		Interface(sf::Vector2u);
+
+
+		/// Return all interface elements
+		Sm::Interface_Elements& get_Interface_Elements();
 
 		/// Draw created interface on screen 
 		///

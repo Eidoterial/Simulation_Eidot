@@ -5,7 +5,7 @@
 /// /////////////////////////////////////////
 Sm::Interface::Interface(sf::Vector2u size) {
 	this->size_screen = size;
-
+	this->size_font = size.x / 100 * 3;
 
 	if (!this->font.loadFromFile("arial.ttf")) {
 		// erroe...
@@ -13,38 +13,87 @@ Sm::Interface::Interface(sf::Vector2u size) {
 	}
 
 	/// START CREATE /// frame_information_count_resource_organism_and_void
-	this->SCALAR_POSITION_ELEMENT_INTERFACE_ON_SCREEN(this->frame_information_count_resource_organism_and_void, 0.0, 0.9, 1.0, 1.0);
-	this->frame_information_count_resource_organism_and_void.get_Background()._r = 100;
-	this->frame_information_count_resource_organism_and_void.get_Background()._g = 100;
-	this->frame_information_count_resource_organism_and_void.get_Background()._b = 100;
+	this->SCALAR_POSITION_ELEMENT_INTERFACE_ON_SCREEN(this->interface_elements.frame_information_count_resource_organism_and_void, 0.0, 0.9, 1.0, 1.0);
+	this->interface_elements.frame_information_count_resource_organism_and_void.get_Background()._r = 100;
+	this->interface_elements.frame_information_count_resource_organism_and_void.get_Background()._g = 100;
+	this->interface_elements.frame_information_count_resource_organism_and_void.get_Background()._b = 100;
 	/// END CREATE /// frame_information_count_resource_organism_and_void
 	
 	/// START CREATE /// label_information_count_resourse
-	this->label_information_count_resource.set_Text("Resource:");
-	this->SCALAR_POSITION_TEXT_ON_ELEMENT(this->frame_information_count_resource_organism_and_void, this->label_information_count_resource, 0.1, 0.6);
-	this->label_information_count_resource.get_Color_Text()._r = 230;
-	this->label_information_count_resource.get_Color_Text()._g = 230;
-	this->label_information_count_resource.get_Color_Text()._b = 230;
+	this->interface_elements.label_information_count_resource.set_Text("Resource:");
+	this->SCALAR_POSITION_TEXT_ON_ELEMENT(this->interface_elements.frame_information_count_resource_organism_and_void, this->interface_elements.label_information_count_resource, 0.1, 0.6);
+	this->interface_elements.label_information_count_resource.get_Color_Text()._r = 230;
+	this->interface_elements.label_information_count_resource.get_Color_Text()._g = 230;
+	this->interface_elements.label_information_count_resource.get_Color_Text()._b = 230;
 	/// END CREATE /// label_information_count_resource
 
 	/// START CREATE /// frame_main_toolbar_program
-	this->SCALAR_POSITION_ELEMENT_INTERFACE_ON_SCREEN(this->frame_main_toolbar_program, 0.65, 0.0, 1.0, 1.0);
-	this->frame_main_toolbar_program.get_Background()._r = 120;
-	this->frame_main_toolbar_program.get_Background()._g = 120;
-	this->frame_main_toolbar_program.get_Background()._b = 120;
+	this->SCALAR_POSITION_ELEMENT_INTERFACE_ON_SCREEN(this->interface_elements.frame_main_toolbar_program, 0.5, 0.0, 1.0, 1.0);
+	this->interface_elements.frame_main_toolbar_program.get_Background()._r = 120;
+	this->interface_elements.frame_main_toolbar_program.get_Background()._g = 120;
+	this->interface_elements.frame_main_toolbar_program.get_Background()._b = 120;
 	/// END CREATE /// frame_main_toolbar_program
 
 	/// START CREATE /// button_select
-	this->SCALAR_POSITION_ELEMENT_INTERFACE_ON_ELEMENT(this->frame_main_toolbar_program, this->button_select, 0.05, 0.05, 0.45, 0.1);
-	this->button_select.set_Text("Select");
-	this->button_select.get_Color_Text()._r = 230;
-	this->button_select.get_Color_Text()._g = 230;
-	this->button_select.get_Color_Text()._b = 230;
-	this->CENTER_POSITION_TEXT_ON_BUTTON(this->button_select);
-	this->button_select.get_Background()._r = 180;
-	this->button_select.get_Background()._g = 140;
-	this->button_select.get_Background()._b = 140;
+	this->SCALAR_POSITION_ELEMENT_INTERFACE_ON_ELEMENT(this->interface_elements.frame_main_toolbar_program, this->interface_elements.button_select, 0.05, 0.05, 0.4, 0.1);
+	this->interface_elements.button_select.set_Text("Select");
+	this->interface_elements.button_select.get_Color_Text()._r = 230;
+	this->interface_elements.button_select.get_Color_Text()._g = 230;
+	this->interface_elements.button_select.get_Color_Text()._b = 230;
+	this->CENTER_POSITION_TEXT_ON_BUTTON(this->interface_elements.button_select);
+	this->interface_elements.button_select.get_Background()._r = 180;
+	this->interface_elements.button_select.get_Background()._g = 140;
+	this->interface_elements.button_select.get_Background()._b = 140;
 	/// END CREATE /// button_select
+
+	
+	/// START CREATE /// button_creeate
+	this->SCALAR_POSITION_ELEMENT_INTERFACE_ON_ELEMENT(this->interface_elements.frame_main_toolbar_program, this->interface_elements.button_creeate, 0.55, 0.05, 0.4, 0.1);
+	this->interface_elements.button_creeate.set_Text("Create");
+	this->interface_elements.button_creeate.get_Color_Text()._r = 230;
+	this->interface_elements.button_creeate.get_Color_Text()._g = 230;
+	this->interface_elements.button_creeate.get_Color_Text()._b = 230;
+	this->CENTER_POSITION_TEXT_ON_BUTTON(this->interface_elements.button_creeate);
+	this->interface_elements.button_creeate.get_Background()._r = 180;
+	this->interface_elements.button_creeate.get_Background()._g = 140;
+	this->interface_elements.button_creeate.get_Background()._b = 140;
+	/// END CREATE /// button_creeate
+
+	/// START CREATE /// button_copy
+	this->SCALAR_POSITION_ELEMENT_INTERFACE_ON_ELEMENT(this->interface_elements.frame_main_toolbar_program, this->interface_elements.button_copy, 0.05, 0.25, 0.4, 0.1);
+	this->interface_elements.button_copy.set_Text("Copy");
+	this->interface_elements.button_copy.get_Color_Text()._r = 230;
+	this->interface_elements.button_copy.get_Color_Text()._g = 230;
+	this->interface_elements.button_copy.get_Color_Text()._b = 230;
+	this->CENTER_POSITION_TEXT_ON_BUTTON(this->interface_elements.button_copy);
+	this->interface_elements.button_copy.get_Background()._r = 180;
+	this->interface_elements.button_copy.get_Background()._g = 140;
+	this->interface_elements.button_copy.get_Background()._b = 140;
+	/// END CREATE /// button_copy
+
+	/// START CREATE /// button_remove
+	this->SCALAR_POSITION_ELEMENT_INTERFACE_ON_ELEMENT(this->interface_elements.frame_main_toolbar_program, this->interface_elements.button_remove, 0.55, 0.25, 0.4, 0.1);
+	this->interface_elements.button_remove.set_Text("Remove");
+	this->interface_elements.button_remove.get_Color_Text()._r = 230;
+	this->interface_elements.button_remove.get_Color_Text()._g = 230;
+	this->interface_elements.button_remove.get_Color_Text()._b = 230;
+	this->CENTER_POSITION_TEXT_ON_BUTTON(this->interface_elements.button_remove);
+	this->interface_elements.button_remove.get_Background()._r = 180;
+	this->interface_elements.button_remove.get_Background()._g = 140;
+	this->interface_elements.button_remove.get_Background()._b = 140;
+	/// END CREATE /// button_remove
+
+	/// START CREATE /// button_restart
+	this->SCALAR_POSITION_ELEMENT_INTERFACE_ON_ELEMENT(this->interface_elements.frame_main_toolbar_program, this->interface_elements.button_restart, 0.05, 0.45, 0.4, 0.1);
+	this->interface_elements.button_restart.set_Text("Restart");
+	this->interface_elements.button_restart.get_Color_Text()._r = 230;
+	this->interface_elements.button_restart.get_Color_Text()._g = 230;
+	this->interface_elements.button_restart.get_Color_Text()._b = 230;
+	this->CENTER_POSITION_TEXT_ON_BUTTON(this->interface_elements.button_restart);
+	this->interface_elements.button_restart.get_Background()._r = 180;
+	this->interface_elements.button_restart.get_Background()._g = 140;
+	this->interface_elements.button_restart.get_Background()._b = 140;
+	/// END CREATE /// button_restart
 
 }
 /// /////////////////////////////////////////
@@ -80,20 +129,30 @@ void Sm::Interface::SCALAR_POSITION_ELEMENT_INTERFACE_ON_ELEMENT(Sm::Rectangle_G
 void Sm::Interface::CENTER_POSITION_TEXT_ON_BUTTON(Sm::Rectangle_Button& button) {
 	
 	button.set_Text_Position(sf::Vector2f(button.get_Size().x / 2 - (button.get_Text().size() + this->size_font) + button.get_Position().x,
-		(button.get_Size().y - button.get_Position().y) / 2 + button.get_Position().y));
+		button.get_Size().y / 2 - this->size_font / 2 + button.get_Position().y));
 
 }
 /// //////////////////////////////////////////////////////////////////////////////
 
 
 /// SCALAR POSITION TEXT ON ELEMENT
-
+/// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Sm::Interface::SCALAR_POSITION_TEXT_ON_ELEMENT(Sm::Rectangle_Geom parent, Sm::Label& element, float scalX_start, float scalY_start) {
 
 	element.set_Text_Position(sf::Vector2f((parent.get_Size().x - parent.get_Position().x) * scalX_start + parent.get_Position().x,
-		(parent.get_Size().y - parent.get_Position().y) * scalY_start + parent.get_Position().y));
+		(parent.get_Size().y ) / 2  + parent.get_Position().y));
 
 }
+/// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/// GET INTERFACE ELEMENTS
+/// /////////////////////////////////////////////////////////////
+Sm::Interface_Elements& Sm::Interface::get_Interface_Elements() {
+	return this->interface_elements;
+
+}
+/// /////////////////////////////////////////////////////////////
 
 
 /// DRAW INTERFACE ON SCREEN
@@ -108,52 +167,120 @@ void Sm::Interface::draw_Interface_On_Screen(sf::RenderWindow& window) {
 
 
 	/// START DRAW /// frame_information_count_resource_organism_and_void
-	rectangle_mask.setPosition(this->frame_information_count_resource_organism_and_void.get_Position());
-	rectangle_mask.setSize(this->frame_information_count_resource_organism_and_void.get_Size());
-	rectangle_mask.setFillColor(sf::Color::Color(this->frame_information_count_resource_organism_and_void.get_Background()._r,
-		this->frame_information_count_resource_organism_and_void.get_Background()._g,
-		this->frame_information_count_resource_organism_and_void.get_Background()._b,
-		this->frame_information_count_resource_organism_and_void.get_Background()._a));
+	rectangle_mask.setPosition(this->interface_elements.frame_information_count_resource_organism_and_void.get_Position());
+	rectangle_mask.setSize(this->interface_elements.frame_information_count_resource_organism_and_void.get_Size());
+	rectangle_mask.setFillColor(sf::Color::Color(this->interface_elements.frame_information_count_resource_organism_and_void.get_Background()._r,
+		this->interface_elements.frame_information_count_resource_organism_and_void.get_Background()._g,
+		this->interface_elements.frame_information_count_resource_organism_and_void.get_Background()._b,
+		this->interface_elements.frame_information_count_resource_organism_and_void.get_Background()._a));
 	window.draw(rectangle_mask);
 	/// END DRAW /// frame_information_count_resource_organism_and_void
 
 	/// START DRAW /// label_information_count_resource
-	text.setString(this->label_information_count_resource.get_Text());
-	text.setPosition(this->label_information_count_resource.get_Text_Position());
-	text.setFillColor(sf::Color::Color(this->label_information_count_resource.get_Color_Text()._r,
-		this->label_information_count_resource.get_Color_Text()._g,
-		this->label_information_count_resource.get_Color_Text()._b,
-		this->label_information_count_resource.get_Color_Text()._a));
+	text.setString(this->interface_elements.label_information_count_resource.get_Text());
+	text.setPosition(this->interface_elements.label_information_count_resource.get_Text_Position());
+	text.setFillColor(sf::Color::Color(this->interface_elements.label_information_count_resource.get_Color_Text()._r,
+		this->interface_elements.label_information_count_resource.get_Color_Text()._g,
+		this->interface_elements.label_information_count_resource.get_Color_Text()._b,
+		this->interface_elements.label_information_count_resource.get_Color_Text()._a));
 	window.draw(text);
-
 	/// END DRAW /// label_information_count_resource
 
 	/// START DRAW /// frame_main_toolbar_program
-	rectangle_mask.setPosition(this->frame_main_toolbar_program.get_Position());
-	rectangle_mask.setSize(this->frame_main_toolbar_program.get_Size());
-	rectangle_mask.setFillColor(sf::Color::Color(this->frame_main_toolbar_program.get_Background()._r,
-		this->frame_main_toolbar_program.get_Background()._g,
-		this->frame_main_toolbar_program.get_Background()._b,
-		this->frame_main_toolbar_program.get_Background()._a));
+	rectangle_mask.setPosition(this->interface_elements.frame_main_toolbar_program.get_Position());
+	rectangle_mask.setSize(this->interface_elements.frame_main_toolbar_program.get_Size());
+	rectangle_mask.setFillColor(sf::Color::Color(this->interface_elements.frame_main_toolbar_program.get_Background()._r,
+		this->interface_elements.frame_main_toolbar_program.get_Background()._g,
+		this->interface_elements.frame_main_toolbar_program.get_Background()._b,
+		this->interface_elements.frame_main_toolbar_program.get_Background()._a));
 	window.draw(rectangle_mask);
 	/// END DRAW /// frame_main_toolbar_program
 
+
 	/// START DRAW /// button_select
-	rectangle_mask.setPosition(this->button_select.get_Position());
-	rectangle_mask.setSize(this->button_select.get_Size());
-	rectangle_mask.setFillColor(sf::Color::Color(this->button_select.get_Background()._r,
-		this->button_select.get_Background()._g,
-		this->button_select.get_Background()._b,
-		this->button_select.get_Background()._a));
-	text.setString(this->button_select.get_Text());
-	text.setPosition(this->button_select.get_Text_Position());
-	text.setFillColor(sf::Color::Color(this->button_select.get_Color_Text()._r,
-		this->button_select.get_Color_Text()._g,
-		this->button_select.get_Color_Text()._b,
-		this->button_select.get_Color_Text()._a));
+	rectangle_mask.setPosition(this->interface_elements.button_select.get_Position());
+	rectangle_mask.setSize(this->interface_elements.button_select.get_Size());
+	rectangle_mask.setFillColor(sf::Color::Color(this->interface_elements.button_select.get_Background()._r,
+		this->interface_elements.button_select.get_Background()._g,
+		this->interface_elements.button_select.get_Background()._b,
+		this->interface_elements.button_select.get_Background()._a));
+	text.setString(this->interface_elements.button_select.get_Text());
+	text.setPosition(this->interface_elements.button_select.get_Text_Position());
+	text.setFillColor(sf::Color::Color(this->interface_elements.button_select.get_Color_Text()._r,
+		this->interface_elements.button_select.get_Color_Text()._g,
+		this->interface_elements.button_select.get_Color_Text()._b,
+		this->interface_elements.button_select.get_Color_Text()._a));
 	window.draw(rectangle_mask);
 	window.draw(text);
 	/// END DRAW /// button_select
+
+	/// START DRAW /// button_creeate
+	rectangle_mask.setPosition(this->interface_elements.button_creeate.get_Position());
+	rectangle_mask.setSize(this->interface_elements.button_creeate.get_Size());
+	rectangle_mask.setFillColor(sf::Color::Color(this->interface_elements.button_creeate.get_Background()._r,
+		this->interface_elements.button_creeate.get_Background()._g,
+		this->interface_elements.button_creeate.get_Background()._b,
+		this->interface_elements.button_creeate.get_Background()._a));
+	text.setString(this->interface_elements.button_creeate.get_Text());
+	text.setPosition(this->interface_elements.button_creeate.get_Text_Position());
+	text.setFillColor(sf::Color::Color(this->interface_elements.button_creeate.get_Color_Text()._r,
+		this->interface_elements.button_creeate.get_Color_Text()._g,
+		this->interface_elements.button_creeate.get_Color_Text()._b,
+		this->interface_elements.button_creeate.get_Color_Text()._a));
+	window.draw(rectangle_mask);
+	window.draw(text);
+	/// END DRAW /// button_creeate
+
+	/// START DRAW /// button_copy
+	rectangle_mask.setPosition(this->interface_elements.button_copy.get_Position());
+	rectangle_mask.setSize(this->interface_elements.button_copy.get_Size());
+	rectangle_mask.setFillColor(sf::Color::Color(this->interface_elements.button_copy.get_Background()._r,
+		this->interface_elements.button_copy.get_Background()._g,
+		this->interface_elements.button_copy.get_Background()._b,
+		this->interface_elements.button_copy.get_Background()._a));
+	text.setString(this->interface_elements.button_copy.get_Text());
+	text.setPosition(this->interface_elements.button_copy.get_Text_Position());
+	text.setFillColor(sf::Color::Color(this->interface_elements.button_copy.get_Color_Text()._r,
+		this->interface_elements.button_copy.get_Color_Text()._g,
+		this->interface_elements.button_copy.get_Color_Text()._b,
+		this->interface_elements.button_copy.get_Color_Text()._a));
+	window.draw(rectangle_mask);
+	window.draw(text);
+	/// END DRAW /// button_copy
+
+	/// START DRAW /// button_remove
+	rectangle_mask.setPosition(this->interface_elements.button_remove.get_Position());
+	rectangle_mask.setSize(this->interface_elements.button_remove.get_Size());
+	rectangle_mask.setFillColor(sf::Color::Color(this->interface_elements.button_remove.get_Background()._r,
+		this->interface_elements.button_remove.get_Background()._g,
+		this->interface_elements.button_remove.get_Background()._b,
+		this->interface_elements.button_remove.get_Background()._a));
+	text.setString(this->interface_elements.button_remove.get_Text());
+	text.setPosition(this->interface_elements.button_remove.get_Text_Position());
+	text.setFillColor(sf::Color::Color(this->interface_elements.button_remove.get_Color_Text()._r,
+		this->interface_elements.button_remove.get_Color_Text()._g,
+		this->interface_elements.button_remove.get_Color_Text()._b,
+		this->interface_elements.button_remove.get_Color_Text()._a));
+	window.draw(rectangle_mask);
+	window.draw(text);
+	/// END DRAW /// button_remove
+
+	/// START DRAW /// button_restart
+	rectangle_mask.setPosition(this->interface_elements.button_restart.get_Position());
+	rectangle_mask.setSize(this->interface_elements.button_restart.get_Size());
+	rectangle_mask.setFillColor(sf::Color::Color(this->interface_elements.button_restart.get_Background()._r,
+		this->interface_elements.button_restart.get_Background()._g,
+		this->interface_elements.button_restart.get_Background()._b,
+		this->interface_elements.button_restart.get_Background()._a));
+	text.setString(this->interface_elements.button_restart.get_Text());
+	text.setPosition(this->interface_elements.button_restart.get_Text_Position());
+	text.setFillColor(sf::Color::Color(this->interface_elements.button_restart.get_Color_Text()._r,
+		this->interface_elements.button_restart.get_Color_Text()._g,
+		this->interface_elements.button_restart.get_Color_Text()._b,
+		this->interface_elements.button_restart.get_Color_Text()._a));
+	window.draw(rectangle_mask);
+	window.draw(text);
+	/// END DRAW /// button_restart
 
 }
 /// ////////////////////////////////////////////////////////////////////

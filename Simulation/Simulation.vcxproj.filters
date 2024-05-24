@@ -99,6 +99,9 @@
     <ClCompile Include="Interface.cpp">
       <Filter>Исходные файлы\GUI_cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Interface_Action.cpp">
+      <Filter>Исходные файлы\GUI_cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Environment.h">
@@ -145,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="Gen.h">
       <Filter>Файлы заголовков\Organism_h\Genom_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface_Action.h">
+      <Filter>Файлы заголовков\GUI_h</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -140,6 +140,7 @@
     <ClCompile Include="Genom.cpp" />
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="Interface_Action.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Memory_Organism.cpp" />
     <ClCompile Include="Memory_Status.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Genom.h" />
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="Interface.h" />
+    <ClInclude Include="Interface_Action.h" />
     <ClInclude Include="Memory_Organism.h" />
     <ClInclude Include="Organism.h" />
     <ClInclude Include="Organism_Manager.h" />
