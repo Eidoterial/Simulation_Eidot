@@ -35,10 +35,8 @@ namespace Sm {
 		/// All interface program
 		/// Information about mouse
 		/// Main screen
-		int check_Activate(Sm::Interface&, sf::Mouse&, sf::RenderWindow&);
-
+		void check_Activate(Sm::Interface&, sf::Mouse&, sf::RenderWindow&);
 
 	};
-
-
+	
 }

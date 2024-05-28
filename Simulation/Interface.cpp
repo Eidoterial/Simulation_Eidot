@@ -12,20 +12,49 @@ Sm::Interface::Interface(sf::Vector2u size) {
 		std::cout << "error";
 	}
 
+	/// INFORMATION COUNT /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	/// START CREATE /// frame_information_count_resource_organism_and_void
-	this->SCALAR_POSITION_ELEMENT_INTERFACE_ON_SCREEN(this->interface_elements.frame_information_count_resource_organism_and_void, 0.0, 0.9, 1.0, 1.0);
-	this->interface_elements.frame_information_count_resource_organism_and_void.get_Background()._r = 100;
-	this->interface_elements.frame_information_count_resource_organism_and_void.get_Background()._g = 100;
-	this->interface_elements.frame_information_count_resource_organism_and_void.get_Background()._b = 100;
+	this->SCALAR_POSITION_ELEMENT_INTERFACE_ON_SCREEN(this->interface_elements.frame_information_count_resource_organism, 0.0, 0.9, 0.5, 0.1);
+	this->interface_elements.frame_information_count_resource_organism.get_Background()._r = 100;
+	this->interface_elements.frame_information_count_resource_organism.get_Background()._g = 100;
+	this->interface_elements.frame_information_count_resource_organism.get_Background()._b = 100;
 	/// END CREATE /// frame_information_count_resource_organism_and_void
 	
 	/// START CREATE /// label_information_count_resourse
 	this->interface_elements.label_information_count_resource.set_Text("Resource:");
-	this->SCALAR_POSITION_TEXT_ON_ELEMENT(this->interface_elements.frame_information_count_resource_organism_and_void, this->interface_elements.label_information_count_resource, 0.1, 0.6);
+	this->SCALAR_POSITION_TEXT_ON_ELEMENT(this->interface_elements.frame_information_count_resource_organism, this->interface_elements.label_information_count_resource, 0.01, 0.2);
 	this->interface_elements.label_information_count_resource.get_Color_Text()._r = 230;
 	this->interface_elements.label_information_count_resource.get_Color_Text()._g = 230;
 	this->interface_elements.label_information_count_resource.get_Color_Text()._b = 230;
 	/// END CREATE /// label_information_count_resource
+
+	/// START CREATE /// label_count_resource
+	this->interface_elements.label_count_resource.set_Text("0");
+	this->SCALAR_POSITION_TEXT_ON_ELEMENT(this->interface_elements.frame_information_count_resource_organism, this->interface_elements.label_count_resource, 0.29, 0.2);
+	this->interface_elements.label_count_resource.get_Color_Text()._r = 230;
+	this->interface_elements.label_count_resource.get_Color_Text()._g = 230;
+	this->interface_elements.label_count_resource.get_Color_Text()._b = 230;
+	/// END CREATE /// label_count_resource
+
+	/// START CREATE /// label_information_count_organism
+	this->interface_elements.label_information_count_organism.set_Text("Organism:");
+	this->SCALAR_POSITION_TEXT_ON_ELEMENT(this->interface_elements.frame_information_count_resource_organism, this->interface_elements.label_information_count_organism, 0.51, 0.2);
+	this->interface_elements.label_information_count_organism.get_Color_Text()._r = 230;
+	this->interface_elements.label_information_count_organism.get_Color_Text()._g = 230;
+	this->interface_elements.label_information_count_organism.get_Color_Text()._b = 230;
+	/// END CREATE /// label_information_count_organism
+
+	/// START CREATE /// label_count_organism
+	this->interface_elements.label_count_organism.set_Text("0");
+	this->SCALAR_POSITION_TEXT_ON_ELEMENT(this->interface_elements.frame_information_count_resource_organism, this->interface_elements.label_count_organism, 0.79, 0.2);
+	this->interface_elements.label_count_organism.get_Color_Text()._r = 230;
+	this->interface_elements.label_count_organism.get_Color_Text()._g = 230;
+	this->interface_elements.label_count_organism.get_Color_Text()._b = 230;
+	/// END CREATE /// label_count_organism
+
+
+	/// TOOL BAR //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	/// START CREATE /// frame_main_toolbar_program
 	this->SCALAR_POSITION_ELEMENT_INTERFACE_ON_SCREEN(this->interface_elements.frame_main_toolbar_program, 0.5, 0.0, 1.0, 1.0);
@@ -83,18 +112,6 @@ Sm::Interface::Interface(sf::Vector2u size) {
 	this->interface_elements.button_remove.get_Background()._b = 140;
 	/// END CREATE /// button_remove
 
-	/// START CREATE /// button_restart
-	this->SCALAR_POSITION_ELEMENT_INTERFACE_ON_ELEMENT(this->interface_elements.frame_main_toolbar_program, this->interface_elements.button_restart, 0.05, 0.45, 0.4, 0.1);
-	this->interface_elements.button_restart.set_Text("Restart");
-	this->interface_elements.button_restart.get_Color_Text()._r = 230;
-	this->interface_elements.button_restart.get_Color_Text()._g = 230;
-	this->interface_elements.button_restart.get_Color_Text()._b = 230;
-	this->CENTER_POSITION_TEXT_ON_BUTTON(this->interface_elements.button_restart);
-	this->interface_elements.button_restart.get_Background()._r = 180;
-	this->interface_elements.button_restart.get_Background()._g = 140;
-	this->interface_elements.button_restart.get_Background()._b = 140;
-	/// END CREATE /// button_restart
-
 }
 /// /////////////////////////////////////////
 
@@ -140,7 +157,7 @@ void Sm::Interface::CENTER_POSITION_TEXT_ON_BUTTON(Sm::Rectangle_Button& button)
 void Sm::Interface::SCALAR_POSITION_TEXT_ON_ELEMENT(Sm::Rectangle_Geom parent, Sm::Label& element, float scalX_start, float scalY_start) {
 
 	element.set_Text_Position(sf::Vector2f((parent.get_Size().x - parent.get_Position().x) * scalX_start + parent.get_Position().x,
-		(parent.get_Size().y ) / 2  + parent.get_Position().y));
+		(parent.get_Size().y ) *scalY_start  + parent.get_Position().y));
 
 }
 /// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -167,12 +184,12 @@ void Sm::Interface::draw_Interface_On_Screen(sf::RenderWindow& window) {
 
 
 	/// START DRAW /// frame_information_count_resource_organism_and_void
-	rectangle_mask.setPosition(this->interface_elements.frame_information_count_resource_organism_and_void.get_Position());
-	rectangle_mask.setSize(this->interface_elements.frame_information_count_resource_organism_and_void.get_Size());
-	rectangle_mask.setFillColor(sf::Color::Color(this->interface_elements.frame_information_count_resource_organism_and_void.get_Background()._r,
-		this->interface_elements.frame_information_count_resource_organism_and_void.get_Background()._g,
-		this->interface_elements.frame_information_count_resource_organism_and_void.get_Background()._b,
-		this->interface_elements.frame_information_count_resource_organism_and_void.get_Background()._a));
+	rectangle_mask.setPosition(this->interface_elements.frame_information_count_resource_organism.get_Position());
+	rectangle_mask.setSize(this->interface_elements.frame_information_count_resource_organism.get_Size());
+	rectangle_mask.setFillColor(sf::Color::Color(this->interface_elements.frame_information_count_resource_organism.get_Background()._r,
+		this->interface_elements.frame_information_count_resource_organism.get_Background()._g,
+		this->interface_elements.frame_information_count_resource_organism.get_Background()._b,
+		this->interface_elements.frame_information_count_resource_organism.get_Background()._a));
 	window.draw(rectangle_mask);
 	/// END DRAW /// frame_information_count_resource_organism_and_void
 
@@ -185,6 +202,43 @@ void Sm::Interface::draw_Interface_On_Screen(sf::RenderWindow& window) {
 		this->interface_elements.label_information_count_resource.get_Color_Text()._a));
 	window.draw(text);
 	/// END DRAW /// label_information_count_resource
+
+	/// START DRAW /// label_count_resource
+	text.setString(this->interface_elements.label_count_resource.get_Text());
+	text.setPosition(this->interface_elements.label_count_resource.get_Text_Position());
+	text.setFillColor(sf::Color::Color(this->interface_elements.label_count_resource.get_Color_Text()._r,
+		this->interface_elements.label_count_resource.get_Color_Text()._g,
+		this->interface_elements.label_count_resource.get_Color_Text()._b,
+		this->interface_elements.label_count_resource.get_Color_Text()._a));
+	window.draw(text);
+	/// END DRAW /// label_count_resource
+
+	/// START DRAW /// label_information_count_organism
+	text.setString(this->interface_elements.label_information_count_organism.get_Text());
+	text.setPosition(this->interface_elements.label_information_count_organism.get_Text_Position());
+	text.setFillColor(sf::Color::Color(this->interface_elements.label_information_count_organism.get_Color_Text()._r,
+		this->interface_elements.label_information_count_organism.get_Color_Text()._g,
+		this->interface_elements.label_information_count_organism.get_Color_Text()._b,
+		this->interface_elements.label_information_count_organism.get_Color_Text()._a));
+	window.draw(text);
+	/// END DRAW /// label_information_count_organism
+
+	/// START DRAW /// label_count_organism
+	text.setString(this->interface_elements.label_count_organism.get_Text());
+	text.setPosition(this->interface_elements.label_count_organism.get_Text_Position());
+	text.setFillColor(sf::Color::Color(this->interface_elements.label_count_organism.get_Color_Text()._r,
+		this->interface_elements.label_count_organism.get_Color_Text()._g,
+		this->interface_elements.label_count_organism.get_Color_Text()._b,
+		this->interface_elements.label_count_organism.get_Color_Text()._a));
+	window.draw(text);
+	/// END DRAW /// label_count_organism
+
+
+
+
+
+
+
 
 	/// START DRAW /// frame_main_toolbar_program
 	rectangle_mask.setPosition(this->interface_elements.frame_main_toolbar_program.get_Position());
@@ -264,23 +318,6 @@ void Sm::Interface::draw_Interface_On_Screen(sf::RenderWindow& window) {
 	window.draw(rectangle_mask);
 	window.draw(text);
 	/// END DRAW /// button_remove
-
-	/// START DRAW /// button_restart
-	rectangle_mask.setPosition(this->interface_elements.button_restart.get_Position());
-	rectangle_mask.setSize(this->interface_elements.button_restart.get_Size());
-	rectangle_mask.setFillColor(sf::Color::Color(this->interface_elements.button_restart.get_Background()._r,
-		this->interface_elements.button_restart.get_Background()._g,
-		this->interface_elements.button_restart.get_Background()._b,
-		this->interface_elements.button_restart.get_Background()._a));
-	text.setString(this->interface_elements.button_restart.get_Text());
-	text.setPosition(this->interface_elements.button_restart.get_Text_Position());
-	text.setFillColor(sf::Color::Color(this->interface_elements.button_restart.get_Color_Text()._r,
-		this->interface_elements.button_restart.get_Color_Text()._g,
-		this->interface_elements.button_restart.get_Color_Text()._b,
-		this->interface_elements.button_restart.get_Color_Text()._a));
-	window.draw(rectangle_mask);
-	window.draw(text);
-	/// END DRAW /// button_restart
 
 }
 /// ////////////////////////////////////////////////////////////////////

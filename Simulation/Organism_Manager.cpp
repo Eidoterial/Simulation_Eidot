@@ -156,6 +156,7 @@ int Sm::Organism_Manager::get_Organism_On_Id(sf::Vector2i id) {
         if (this->organisms_information[i].get_Config_Zone().id_E == id) return i;
 
     }
+    return this->organisms_information.size();
 
 }
 /// ///////////////////////////////////////////////////////////

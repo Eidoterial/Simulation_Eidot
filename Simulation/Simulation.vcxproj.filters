@@ -134,9 +134,6 @@
     <ClInclude Include="Organism.h">
       <Filter>Файлы заголовков\Organism_h</Filter>
     </ClInclude>
-    <ClInclude Include="Organism_Manager.h">
-      <Filter>Файлы заголовков\Organism_h</Filter>
-    </ClInclude>
     <ClInclude Include="Zone_Manager.h">
       <Filter>Файлы заголовков\Environment_h</Filter>
     </ClInclude>
@@ -151,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="Interface_Action.h">
       <Filter>Файлы заголовков\GUI_h</Filter>
+    </ClInclude>
+    <ClInclude Include="Organism_Manager.h">
+      <Filter>Файлы заголовков\Organism_h</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

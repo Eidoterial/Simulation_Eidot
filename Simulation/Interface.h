@@ -4,24 +4,28 @@
 namespace Sm {
 
 	struct Interface_Elements {
-		Sm::Rectangle_Frame frame_information_count_resource_organism_and_void;
+
+		/// INFORMATION COUNT
+
+		Sm::Rectangle_Frame frame_information_count_resource_organism;
 
 		Sm::Label label_information_count_resource;
+		Sm::Label label_count_resource;
 
+		Sm::Label label_information_count_organism;
+		Sm::Label label_count_organism;
+
+
+
+		
+
+		/// TOOL BAR
 		Sm::Rectangle_Frame frame_main_toolbar_program;
 
-
-
-
 		Sm::Rectangle_Button button_select;
-
 		Sm::Rectangle_Button button_creeate;
-
 		Sm::Rectangle_Button button_copy;
-
 		Sm::Rectangle_Button button_remove;
-
-		Sm::Rectangle_Button button_restart;
 
 	};
 

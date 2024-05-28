@@ -14,26 +14,58 @@ void Sm::Interface_Hover::check_Colision(Sm::Interface& interfaces, sf::Mouse& m
 
 	if (mouse.getPosition(window).x >= 0 && mouse.getPosition(window).y >= 0) {
 
+		if (interfaces.get_Interface_Elements().button_select.get_Status()) {
+			interfaces.get_Interface_Elements().button_select.get_Background()._r = 90;
+			interfaces.get_Interface_Elements().button_select.get_Background()._g = 70;
+			interfaces.get_Interface_Elements().button_select.get_Background()._b = 70;
 
+		}
+		else {
 			interfaces.get_Interface_Elements().button_select.get_Background()._r = 180;
 			interfaces.get_Interface_Elements().button_select.get_Background()._g = 140;
 			interfaces.get_Interface_Elements().button_select.get_Background()._b = 140;
 
+		}
+			
+		if (interfaces.get_Interface_Elements().button_creeate.get_Status()) {
+			interfaces.get_Interface_Elements().button_creeate.get_Background()._r = 90;
+			interfaces.get_Interface_Elements().button_creeate.get_Background()._g = 70;
+			interfaces.get_Interface_Elements().button_creeate.get_Background()._b = 70;
+
+		}
+		else {
 			interfaces.get_Interface_Elements().button_creeate.get_Background()._r = 180;
 			interfaces.get_Interface_Elements().button_creeate.get_Background()._g = 140;
 			interfaces.get_Interface_Elements().button_creeate.get_Background()._b = 140;
 
+		}
+
+		if (interfaces.get_Interface_Elements().button_copy.get_Status()) {
+			interfaces.get_Interface_Elements().button_copy.get_Background()._r = 90;
+			interfaces.get_Interface_Elements().button_copy.get_Background()._g = 70;
+			interfaces.get_Interface_Elements().button_copy.get_Background()._b = 70;
+
+		}
+		else {
 			interfaces.get_Interface_Elements().button_copy.get_Background()._r = 180;
 			interfaces.get_Interface_Elements().button_copy.get_Background()._g = 140;
 			interfaces.get_Interface_Elements().button_copy.get_Background()._b = 140;
 
+		};
+
+		if (interfaces.get_Interface_Elements().button_remove.get_Status()) {
+			interfaces.get_Interface_Elements().button_remove.get_Background()._r = 90;
+			interfaces.get_Interface_Elements().button_remove.get_Background()._g = 70;
+			interfaces.get_Interface_Elements().button_remove.get_Background()._b = 70;
+
+		}
+		else {
 			interfaces.get_Interface_Elements().button_remove.get_Background()._r = 180;
 			interfaces.get_Interface_Elements().button_remove.get_Background()._g = 140;
 			interfaces.get_Interface_Elements().button_remove.get_Background()._b = 140;
 
-			interfaces.get_Interface_Elements().button_restart.get_Background()._r = 180;
-			interfaces.get_Interface_Elements().button_restart.get_Background()._g = 140;
-			interfaces.get_Interface_Elements().button_restart.get_Background()._b = 140;
+		}
+
 		
 		if (this->check_Colider(interfaces.get_Interface_Elements().button_select.get_Position(), interfaces.get_Interface_Elements().button_select.get_Size(), mouse.getPosition(window))) {
 			interfaces.get_Interface_Elements().button_select.get_Background()._r = 50;
@@ -63,13 +95,6 @@ void Sm::Interface_Hover::check_Colision(Sm::Interface& interfaces, sf::Mouse& m
 
 		}
 
-		else if (this->check_Colider(interfaces.get_Interface_Elements().button_restart.get_Position(), interfaces.get_Interface_Elements().button_restart.get_Size(), mouse.getPosition(window))) {
-			interfaces.get_Interface_Elements().button_restart.get_Background()._r = 50;
-			interfaces.get_Interface_Elements().button_restart.get_Background()._g = 50;
-			interfaces.get_Interface_Elements().button_restart.get_Background()._b = 50;
-
-		}
-
 	}
 
 }
@@ -78,42 +103,51 @@ void Sm::Interface_Hover::check_Colision(Sm::Interface& interfaces, sf::Mouse& m
 
 /// CHECK ACTIVATE
 /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-int Sm::Interface_Hover::check_Activate(Sm::Interface& interfaces, sf::Mouse& mouse, sf::RenderWindow& window) {
+void Sm::Interface_Hover::check_Activate(Sm::Interface& interfaces, sf::Mouse& mouse, sf::RenderWindow& window) {
 
 	if (this->check_Colider(interfaces.get_Interface_Elements().button_select.get_Position(), interfaces.get_Interface_Elements().button_select.get_Size(), mouse.getPosition(window))) {
 		if (interfaces.get_Interface_Elements().button_select.get_Status()) interfaces.get_Interface_Elements().button_select.set_Status(false);
-		else interfaces.get_Interface_Elements().button_select.set_Status(true);
-		return 1;
-
+		else {
+			interfaces.get_Interface_Elements().button_select.set_Status(true);
+			interfaces.get_Interface_Elements().button_creeate.set_Status(false);
+			interfaces.get_Interface_Elements().button_copy.set_Status(false);
+			interfaces.get_Interface_Elements().button_remove.set_Status(false);
+		}
 	}
 
 	else if (this->check_Colider(interfaces.get_Interface_Elements().button_creeate.get_Position(), interfaces.get_Interface_Elements().button_creeate.get_Size(), mouse.getPosition(window))) {
 		if (interfaces.get_Interface_Elements().button_creeate.get_Status()) interfaces.get_Interface_Elements().button_creeate.set_Status(false);
-		else interfaces.get_Interface_Elements().button_creeate.set_Status(true);
-		return 2;
+		else {
+			interfaces.get_Interface_Elements().button_select.set_Status(false);
+			interfaces.get_Interface_Elements().button_creeate.set_Status(true);
+			interfaces.get_Interface_Elements().button_copy.set_Status(false);
+			interfaces.get_Interface_Elements().button_remove.set_Status(false);
+		}
 
 	}
 
 	else if (this->check_Colider(interfaces.get_Interface_Elements().button_copy.get_Position(), interfaces.get_Interface_Elements().button_copy.get_Size(), mouse.getPosition(window))) {
 		if (interfaces.get_Interface_Elements().button_copy.get_Status()) interfaces.get_Interface_Elements().button_copy.set_Status(false);
-		else interfaces.get_Interface_Elements().button_copy.set_Status(true);
-		return 3;
+		else {
+			interfaces.get_Interface_Elements().button_select.set_Status(false);
+			interfaces.get_Interface_Elements().button_creeate.set_Status(false);
+			interfaces.get_Interface_Elements().button_copy.set_Status(true);
+			interfaces.get_Interface_Elements().button_remove.set_Status(false);
+		}
 
 	}
 
 	else if (this->check_Colider(interfaces.get_Interface_Elements().button_remove.get_Position(), interfaces.get_Interface_Elements().button_remove.get_Size(), mouse.getPosition(window))) {
 		if (interfaces.get_Interface_Elements().button_remove.get_Status()) interfaces.get_Interface_Elements().button_remove.set_Status(false);
-		else interfaces.get_Interface_Elements().button_remove.set_Status(true);
-		return 4;
+		else {
+			interfaces.get_Interface_Elements().button_select.set_Status(false);
+			interfaces.get_Interface_Elements().button_creeate.set_Status(false);
+			interfaces.get_Interface_Elements().button_copy.set_Status(false);
+			interfaces.get_Interface_Elements().button_remove.set_Status(true);
+		}
 
 	}
 
-	else if (this->check_Colider(interfaces.get_Interface_Elements().button_restart.get_Position(), interfaces.get_Interface_Elements().button_restart.get_Size(), mouse.getPosition(window))) {
-		if (interfaces.get_Interface_Elements().button_restart.get_Status()) interfaces.get_Interface_Elements().button_restart.set_Status(false);
-		else interfaces.get_Interface_Elements().button_restart.set_Status(true);
-		return 5;
-
-	}
 }
 /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
