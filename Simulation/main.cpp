@@ -19,8 +19,11 @@ int count_organism{ 0 };
 double size_c_x{ 0 };
 double size_c_y{ 0 };
 
-
 int main_counter{ 0 };
+
+
+int copy_id{ -1 };
+
 
 int main() {
 
@@ -51,6 +54,7 @@ int main() {
 	environment.get_Config_Zone_Manager().zones_information = resource_manager.get_Config_Zone_Manager().zones_information;
 	Sm::Organism_Manager organism_manager(count_organism, environment.get_Config_Zone_Manager().count_environment_zone, environment.get_Config_Zone_Manager().zones_information);
 	environment.get_Config_Zone_Manager().zones_information = organism_manager.get_Config_Zone_Manager().zones_information;
+	resource_manager.get_Config_Zone_Manager().zones_information = environment.get_Config_Zone_Manager().zones_information;
 	
 	/// Simulation Loop
 	window.setFramerateLimit(60);
@@ -85,9 +89,62 @@ int main() {
 						int id = organism_manager.get_Organism_On_Id(select_id);
 
 						if (id != organism_manager.get_Organisms_Information().size()) {
-							std::cout << organism_manager.get_Organisms_Information()[id].get_Config_Zone().id_E.x << " " << organism_manager.get_Organisms_Information()[id].get_Config_Zone().id_E.y << std::endl;
+							interface_program.get_Interface_Elements().label_count_serial_number.set_Text(std::to_string(organism_manager.get_Organisms_Information()[id].get_Config_Organism().serial_number[0]));
+							interface_program.get_Interface_Elements().label_count_energi_status.set_Text(std::to_string(organism_manager.get_Organisms_Information()[id].get_Config_Organism().energi));
 
 						}
+						else {
+							interface_program.get_Interface_Elements().label_count_serial_number.set_Text("--");
+							interface_program.get_Interface_Elements().label_count_energi_status.set_Text("--");
+
+						}
+					}
+
+				}
+				else if (interface_program.get_Interface_Elements().button_creeate.get_Status()) {
+					if (position_mouse.x <= window.getSize().x * 0.5 && position_mouse.y <= window.getSize().y * 0.9) {
+						sf::Vector2i select_id(position_mouse.x / size_c_x, position_mouse.y / size_c_y);
+
+
+						if (copy_id != -1 && environment.get_Config_Zone_Manager().zones_information[select_id.y][select_id.x] == 0) {
+
+							organism_manager.add_Copy_Organism(copy_id, select_id);
+
+							environment.get_Config_Zone_Manager().zones_information = organism_manager.get_Config_Zone_Manager().zones_information;
+							resource_manager.get_Config_Zone_Manager().zones_information = environment.get_Config_Zone_Manager().zones_information;
+
+						};
+						
+
+					}
+
+				}
+				else if(interface_program.get_Interface_Elements().button_copy.get_Status()){
+					if (position_mouse.x <= window.getSize().x * 0.5 && position_mouse.y <= window.getSize().y * 0.9) {
+						sf::Vector2i select_id(position_mouse.x / size_c_x, position_mouse.y / size_c_y);
+
+						int id = organism_manager.get_Organism_On_Id(select_id);
+
+						if (id != organism_manager.get_Organisms_Information().size()) copy_id = id;
+						else copy_id = -1;
+
+					}
+
+				}
+				else if (interface_program.get_Interface_Elements().button_remove.get_Status()) {
+					if (position_mouse.x <= window.getSize().x * 0.5 && position_mouse.y <= window.getSize().y * 0.9) {
+						sf::Vector2i select_id(position_mouse.x / size_c_x, position_mouse.y / size_c_y);
+
+						int id = organism_manager.get_Organism_On_Id(select_id);
+
+						if (id != organism_manager.get_Organisms_Information().size()) {
+							organism_manager.remove_Select_Organism(id);
+
+							environment.get_Config_Zone_Manager().zones_information = organism_manager.get_Config_Zone_Manager().zones_information;
+							resource_manager.get_Config_Zone_Manager().zones_information = environment.get_Config_Zone_Manager().zones_information;
+
+						}
+
 					}
 
 				}
@@ -97,8 +154,36 @@ int main() {
 		}
 
 
-		window.clear();
+		if (main_counter % 120 == 0) {
+			
+			resource_manager.add_New_Resource();
 
+			environment.get_Config_Zone_Manager().zones_information = resource_manager.get_Config_Zone_Manager().zones_information;
+			organism_manager.get_Config_Zone_Manager().zones_information = environment.get_Config_Zone_Manager().zones_information;
+
+		}
+
+		if (main_counter % 10 == 0) {
+			std::vector<Sm::Organism> copyter(organism_manager.get_Organisms_Information().size());
+			copyter = organism_manager.get_Organisms_Information();
+
+			for (int i{ 0 }; i < copyter.size(); i++) {
+
+				organism_manager.call_Action_Organism_1_Sloy(copyter[i]);
+
+				organism_manager.call_Action_Organism_2_Sloy(copyter[i]);
+
+				organism_manager.call_Action_Organism(copyter[i]);
+
+				environment.get_Config_Zone_Manager().zones_information = organism_manager.get_Config_Zone_Manager().zones_information;
+				resource_manager.get_Config_Zone_Manager().zones_information = environment.get_Config_Zone_Manager().zones_information;
+
+
+			}
+
+		}
+
+		window.clear();
 
 		for (int i{ 0 }; i < environment.get_Config_Zone_Manager().count_environment_zone.y; i++) {
 			for (int j{ 0 }; j < environment.get_Config_Zone_Manager().count_environment_zone.x; j++) {
@@ -135,8 +220,6 @@ int main() {
 			}
 
 		}
-		
-
 
 
 		interface_program.get_Interface_Elements().label_count_resource.set_Text(std::to_string(resource_manager.get_Resources_Information().size()));
@@ -148,6 +231,10 @@ int main() {
 
 
 		window.display();
+
+
+
+		if (main_counter == 180) main_counter = 0;
 	}
 	
 	return 0;

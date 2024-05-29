@@ -27,6 +27,12 @@ namespace Sm {
 		Sm::Rectangle_Button button_copy;
 		Sm::Rectangle_Button button_remove;
 
+		Sm::Label label_information_serial_number;
+		Sm::Label label_count_serial_number;
+
+		Sm::Label label_information_energi_status;
+		Sm::Label label_count_energi_status;
+
 	};
 
 	class Interface {

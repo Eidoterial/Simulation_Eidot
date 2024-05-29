@@ -112,6 +112,38 @@ Sm::Interface::Interface(sf::Vector2u size) {
 	this->interface_elements.button_remove.get_Background()._b = 140;
 	/// END CREATE /// button_remove
 
+	/// START CREATE /// label_information_serial_number
+	this->interface_elements.label_information_serial_number.set_Text("Serial number:");
+	this->SCALAR_POSITION_TEXT_ON_ELEMENT(this->interface_elements.frame_main_toolbar_program, this->interface_elements.label_information_serial_number, 0.1, 0.7);
+	this->interface_elements.label_information_serial_number.get_Color_Text()._r = 230;
+	this->interface_elements.label_information_serial_number.get_Color_Text()._g = 230;
+	this->interface_elements.label_information_serial_number.get_Color_Text()._b = 230;
+	/// END CREATE /// label_information_serial_number
+
+	/// START CREATE /// label_count_serial_number
+	this->interface_elements.label_count_serial_number.set_Text("--");
+	this->SCALAR_POSITION_TEXT_ON_ELEMENT(this->interface_elements.frame_main_toolbar_program, this->interface_elements.label_count_serial_number, 0.5, 0.7);
+	this->interface_elements.label_count_serial_number.get_Color_Text()._r = 230;
+	this->interface_elements.label_count_serial_number.get_Color_Text()._g = 230;
+	this->interface_elements.label_count_serial_number.get_Color_Text()._b = 230;
+	/// END CREATE /// label_count_serial_number
+
+	/// START CREATE /// label_information_energi_status
+	this->interface_elements.label_information_energi_status.set_Text("Energi status:");
+	this->SCALAR_POSITION_TEXT_ON_ELEMENT(this->interface_elements.frame_main_toolbar_program, this->interface_elements.label_information_energi_status, 0.1, 0.8);
+	this->interface_elements.label_information_energi_status.get_Color_Text()._r = 230;
+	this->interface_elements.label_information_energi_status.get_Color_Text()._g = 230;
+	this->interface_elements.label_information_energi_status.get_Color_Text()._b = 230;
+	/// END CREATE /// label_information_energi_status
+
+	/// START CREATE /// label_count_energi_status
+	this->interface_elements.label_count_energi_status.set_Text("--");
+	this->SCALAR_POSITION_TEXT_ON_ELEMENT(this->interface_elements.frame_main_toolbar_program, this->interface_elements.label_count_energi_status, 0.5, 0.8);
+	this->interface_elements.label_count_energi_status.get_Color_Text()._r = 230;
+	this->interface_elements.label_count_energi_status.get_Color_Text()._g = 230;
+	this->interface_elements.label_count_energi_status.get_Color_Text()._b = 230;
+	/// END CREATE /// label_count_energi_status
+
 }
 /// /////////////////////////////////////////
 
@@ -318,6 +350,46 @@ void Sm::Interface::draw_Interface_On_Screen(sf::RenderWindow& window) {
 	window.draw(rectangle_mask);
 	window.draw(text);
 	/// END DRAW /// button_remove
+
+	/// START DRAW /// label_information_serial_number
+	text.setString(this->interface_elements.label_information_serial_number.get_Text());
+	text.setPosition(this->interface_elements.label_information_serial_number.get_Text_Position());
+	text.setFillColor(sf::Color::Color(this->interface_elements.label_information_serial_number.get_Color_Text()._r,
+		this->interface_elements.label_information_serial_number.get_Color_Text()._g,
+		this->interface_elements.label_information_serial_number.get_Color_Text()._b,
+		this->interface_elements.label_information_serial_number.get_Color_Text()._a));
+	window.draw(text);
+	/// END DRAW /// label_information_serial_number
+
+	/// START DRAW /// label_count_serial_number
+	text.setString(this->interface_elements.label_count_serial_number.get_Text());
+	text.setPosition(this->interface_elements.label_count_serial_number.get_Text_Position());
+	text.setFillColor(sf::Color::Color(this->interface_elements.label_count_serial_number.get_Color_Text()._r,
+		this->interface_elements.label_count_serial_number.get_Color_Text()._g,
+		this->interface_elements.label_count_serial_number.get_Color_Text()._b,
+		this->interface_elements.label_count_serial_number.get_Color_Text()._a));
+	window.draw(text);
+	/// END DRAW /// label_count_serial_number
+
+	/// START DRAW /// label_information_energi_status
+	text.setString(this->interface_elements.label_information_energi_status.get_Text());
+	text.setPosition(this->interface_elements.label_information_energi_status.get_Text_Position());
+	text.setFillColor(sf::Color::Color(this->interface_elements.label_information_energi_status.get_Color_Text()._r,
+		this->interface_elements.label_information_energi_status.get_Color_Text()._g,
+		this->interface_elements.label_information_energi_status.get_Color_Text()._b,
+		this->interface_elements.label_information_energi_status.get_Color_Text()._a));
+	window.draw(text);
+	/// END DRAW /// label_information_energi_status
+
+	/// START DRAW /// label_count_energi_status
+	text.setString(this->interface_elements.label_count_energi_status.get_Text());
+	text.setPosition(this->interface_elements.label_count_energi_status.get_Text_Position());
+	text.setFillColor(sf::Color::Color(this->interface_elements.label_count_energi_status.get_Color_Text()._r,
+		this->interface_elements.label_count_energi_status.get_Color_Text()._g,
+		this->interface_elements.label_count_energi_status.get_Color_Text()._b,
+		this->interface_elements.label_count_energi_status.get_Color_Text()._a));
+	window.draw(text);
+	/// END DRAW /// label_count_energi_status
 
 }
 /// ////////////////////////////////////////////////////////////////////

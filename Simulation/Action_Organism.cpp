@@ -1,5 +1,6 @@
 #include "Action_Organism.h"
 #include <cmath>
+#include <iostream>
 
 /// CONSTRUCTOR
 /// /////////////////////////////////////
@@ -223,7 +224,7 @@ void Sm::Action_Organism::check_Priority_Convertation(Sm::Organism organism) {
 }
 /// //////////////////////////////////////////////////////////////////////////
 
-/*
+
 /// CHECK PRIORITY REPRODUCTION
 /// //////////////////////////////////////////////////////////////////////////
 void Sm::Action_Organism::check_Priority_Reproduction(Sm::Organism organism) {
@@ -247,7 +248,7 @@ void Sm::Action_Organism::check_Priority_Reproduction(Sm::Organism organism) {
 		if (C_V != 0) {
 
 
-
+			this->result_action.result_Check_priority_Reproduction = 1.0;
 		}
 		else this->result_action.result_Check_priority_Reproduction = 0.0;
 	}
@@ -255,4 +256,57 @@ void Sm::Action_Organism::check_Priority_Reproduction(Sm::Organism organism) {
 
 }
 /// //////////////////////////////////////////////////////////////////////////
-*/
+
+
+
+/// MOVE ORGANISM
+/// ////////////////////////////////////////////////////////////////////
+sf::Vector2i Sm::Action_Organism::move_Organism(Sm::Organism organism) {
+	int selecter{ 0 };
+
+	while (true) {
+		selecter = std::rand() % this->result_action.result_Check_Arround.size();
+
+		if (this->result_action.result_Check_Arround[selecter].type == 0) break;
+
+	}
+
+	return this->result_action.result_Check_Arround[selecter].position;
+
+}
+/// ////////////////////////////////////////////////////////////////////
+
+
+/// ENERGI CONVERTATION ORGANISM
+/// //////////////////////////////////////////////////////////////////////////
+int Sm::Action_Organism::energi_Convertation_Organism(Sm::Organism organism) {
+	int count_void{ 0 };
+
+	for (int i{ 0 }; i < this->result_action.result_Check_Arround.size(); i++) {
+		if (this->result_action.result_Check_Arround[i].type == 0) count_void++;
+
+	}
+	
+	return count_void;
+
+}
+/// //////////////////////////////////////////////////////////////////////////
+
+
+/// REPRODUCTION ORGANISM
+/// ////////////////////////////////////////////////////////////////////////////
+sf::Vector2i Sm::Action_Organism::reproduction_Organism(Sm::Organism organism) {
+
+	int selecter{ 0 };
+
+	while (true) {
+		int selecter = std::rand() % this->result_action.result_Check_Arround.size();
+
+		if (this->result_action.result_Check_Arround[selecter].type == 0) break;
+
+	}
+
+	return sf::Vector2i(this->result_action.result_Check_Arround[selecter].position);
+
+}
+/// ////////////////////////////////////////////////////////////////////////////

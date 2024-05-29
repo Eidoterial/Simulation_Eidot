@@ -40,6 +40,13 @@ namespace Sm {
 		/// Addition new organism in environment
 		void add_New_Organism();
 
+		/// Addition new copy organism
+		///
+		/// Take 2 argument
+		/// Id copy organism
+		/// New position
+		void add_Copy_Organism(int, sf::Vector2i);
+
 		/// Remove select organism in environment
 		///
 		/// Take 1 argument
@@ -55,14 +62,20 @@ namespace Sm {
 		/// Call action organism 1 sloy
 		///
 		/// Take 1 argument
-		/// Id organism
-		void call_Action_Organism_1_Sloy(int);
+		/// Organism
+		void call_Action_Organism_1_Sloy(Sm::Organism);
 
 		/// Call action organism 2 sloy
 		///
 		/// Take 1 argument
-		/// Id organism
-		void call_Action_Organism_2_Sloy(int);
+		/// Organism
+		void call_Action_Organism_2_Sloy(Sm::Organism);
+
+		/// Call action organism 2 sloy
+		///
+		/// Take 1 argument
+		/// Organism
+		void call_Action_Organism(Sm::Organism);
 
 		/// Information 
 		void info_action();

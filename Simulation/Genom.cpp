@@ -123,6 +123,7 @@ std::vector<int> Sm::Genom::gen_3_Decipherment() {
 }
 /// //////////////////////////////////////////////
 
+
 /// GEN 4 DECIPHERMENT
 /// //////////////////////////////////
 bool Sm::Genom::gen_4_Decipherment() {
@@ -146,8 +147,6 @@ bool Sm::Genom::gen_4_Decipherment() {
 	if ((block_1 && block_2 && block_3 && block_4) || (block_1 && block_2 && !block_3 && !block_4) ||
 		(!block_1 && !block_2 && block_3 && block_4)) return true ;
 	else return false;
-
-
 
 }
 /// //////////////////////////////////
@@ -251,8 +250,6 @@ bool Sm::Genom::gen_8_Decipherment() {
 	if ((S_block_1 && S_block_2 && block_5) || (!S_block_1 && S_block_2 && block_5) ||
 		(S_block_1 && S_block_2 && !block_5)) return true;
 	else return false;
-
-
 
 }
 /// //////////////////////////////////

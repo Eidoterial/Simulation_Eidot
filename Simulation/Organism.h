@@ -12,7 +12,7 @@ namespace Sm {
 	struct Config_Organism {
 
 		/// Save energi organism
-		int energi{ 0 };
+		int energi{ 50 };
 
 		/// Save serial number organism
 		std::vector<int> serial_number;

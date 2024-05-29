@@ -34,12 +34,52 @@ void Sm::Organism_Manager::add_New_Organism() {
 /// ///////////////////////////////////////////
 
 
+/// ADD COPY ORGANISM
+/// /////////////////////////////////////////////////////////////////////////
+void Sm::Organism_Manager::add_Copy_Organism(int id, sf::Vector2i position) {
+    
+    this->organisms_information.resize(this->organisms_information.size() + 1);
+    int id_c = this->organisms_information.size() - 1;
+
+    this->get_Config_Zone_Manager().zones_information[position.y][position.x] = 1;
+
+    this->organisms_information[id_c].get_Config_Zone().id_E = sf::Vector2i(position.x, position.y);
+
+    this->organisms_information[id_c].get_Config_Zone().position = sf::Vector2f(this->organisms_information[id_c].get_Config_Zone().size.x * position.x,
+        this->organisms_information[id_c].get_Config_Zone().size.y * position.y);
+
+    this->organisms_information[id_c].get_Config_Organism().serial_number.resize(this->organisms_information[id_c].get_Config_Organism().serial_number.size() + 1);
+    this->organisms_information[id_c].get_Config_Organism().serial_number[this->organisms_information[id_c].get_Config_Organism().serial_number.size() - 1] = this->counter_serial_number;
+    this->counter_serial_number++;
+
+    this->organisms_information[id_c].get_Genom().resize(10);
+    for (int i{ 0 }; i < this->organisms_information[id_c].get_Genom().size(); i++) {
+        this->organisms_information[id_c].get_Genom()[i].get_Gen().resize(10);
+
+        for (int j{ 0 }; j < this->organisms_information[id].get_Genom()[i].get_Gen().size(); j++) {
+            this->organisms_information[id_c].get_Genom()[i].get_Gen()[j] = this->organisms_information[id].get_Genom()[i].get_Gen()[j];
+
+        }
+
+    }
+
+    this->organisms_information[id_c].get_Color_Zone()._r = 255;
+    this->organisms_information[id_c].get_Color_Zone()._g = 255;
+    this->organisms_information[id_c].get_Color_Zone()._b = 255;
+    this->organisms_information[id_c].get_Color_Zone()._a = 255;
+
+}
+/// /////////////////////////////////////////////////////////////////////////
+
+
 /// REMOVE SELECT ORGANISM
 /// ///////////////////////////////////////////////////////
 void Sm::Organism_Manager::remove_Select_Organism(int id) {
     this->get_Config_Zone_Manager().zones_information[this->organisms_information[id].get_Config_Zone().id_E.y][this->organisms_information[id].get_Config_Zone().id_E.x] = 0;
 
     this->organisms_information.erase(this->organisms_information.begin() + id);
+
+
 
 }
 /// ///////////////////////////////////////////////////////
@@ -78,6 +118,7 @@ void Sm::Organism_Manager::set_Organism_Config(int id) {
 
     /// Test //////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
+    /*
     this->organisms_information[id].get_Memory_Organisms().get_Good().resize(1);
     this->organisms_information[id].get_Memory_Organisms().get_Good()[0]._r = std::rand() % 256;
     this->organisms_information[id].get_Memory_Organisms().get_Good()[0]._g = std::rand() % 256;
@@ -101,6 +142,7 @@ void Sm::Organism_Manager::set_Organism_Config(int id) {
     this->organisms_information[id].get_Memory_Resources().get_Bad()[0]._g = std::rand() % 256;
     this->organisms_information[id].get_Memory_Resources().get_Bad()[0]._b = std::rand() % 256;
     this->organisms_information[id].get_Memory_Resources().get_Bad()[0].value = std::rand() % 5;
+    */
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     /// //////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -127,11 +169,11 @@ void Sm::Organism_Manager::set_Organism_Config(int id) {
 
 /// CALL ACTION ORGANISM 1 SLOY
 /// ////////////////////////////////////////////////////////////
-void Sm::Organism_Manager::call_Action_Organism_1_Sloy(int id) {
+void Sm::Organism_Manager::call_Action_Organism_1_Sloy(Sm::Organism organism) {
 
-    this->action_organism.check_Arround(this->organisms_information[id], this->get_Config_Zone_Manager().count_environment_zone, this->get_Config_Zone_Manager().zones_information);
-    this->action_organism.check_Energi_Status(this->organisms_information[id]);
-    this->action_organism.check_Memory(this->organisms_information[id]);    
+    this->action_organism.check_Arround(organism, this->get_Config_Zone_Manager().count_environment_zone, this->get_Config_Zone_Manager().zones_information);
+    this->action_organism.check_Energi_Status(organism);
+    this->action_organism.check_Memory(organism);
 
 }
 /// ////////////////////////////////////////////////////////////
@@ -139,14 +181,59 @@ void Sm::Organism_Manager::call_Action_Organism_1_Sloy(int id) {
 
 /// CALL ACTION ORGANISM 2 SLOY
 /// ////////////////////////////////////////////////////////////
-void Sm::Organism_Manager::call_Action_Organism_2_Sloy(int id) {
+void Sm::Organism_Manager::call_Action_Organism_2_Sloy(Sm::Organism organism) {
 
-    this->action_organism.check_Priority_Move(this->organisms_information[id]);
-    this->action_organism.check_Priority_Convertation(this->organisms_information[id]);
-
+    this->action_organism.check_Priority_Move(organism);
+    this->action_organism.check_Priority_Convertation(organism);
+    this->action_organism.check_Priority_Reproduction(organism);
 
 }
 /// ////////////////////////////////////////////////////////////
+
+
+/// CALL ACTION ORGANISM
+
+void Sm::Organism_Manager::call_Action_Organism(Sm::Organism organism) {
+
+    bool rem{ true };
+
+    int id = this->get_Organism_On_Id(organism.get_Config_Zone().id_E);
+
+    if (organism.get_Config_Organism().energi > organism.gen_0_Decipherment()) {
+
+        if (this->action_organism.get_Result_Action().result_Check_priority_Reproduction > 0.0) {
+            
+            this->add_Copy_Organism(id, this->action_organism.reproduction_Organism(this->organisms_information[id]));
+            this->organisms_information[this->organisms_information.size() - 1].get_Config_Organism().energi = this->organisms_information[id].get_Config_Organism().energi / 2;
+
+            this->organisms_information[id].get_Config_Organism().energi -= this->organisms_information[id].gen_7_Decipherment();
+
+        }
+
+        else if (this->action_organism.get_Result_Action().result_Check_Priority_Move > 0.0) {
+            sf::Vector2i new_position(this->action_organism.move_Organism(this->organisms_information[id]));
+
+            this->organisms_information[id].get_Config_Organism().energi--;
+
+            this->get_Config_Zone_Manager().zones_information[this->organisms_information[id].get_Config_Zone().id_E.y][this->organisms_information[id].get_Config_Zone().id_E.x] = 0;
+            this->get_Config_Zone_Manager().zones_information[new_position.y][new_position.x] = 1;
+
+            this->organisms_information[id].get_Config_Zone().id_E = new_position;
+
+        }    
+
+        else if (this->action_organism.get_Result_Action().result_Check_Priority_Convertation > 0.0) {
+            this->organisms_information[id].get_Config_Organism().energi += this->action_organism.energi_Convertation_Organism(this->organisms_information[id]);
+
+        }
+
+    }
+    else this->remove_Select_Organism(id); rem = false;
+
+    if (organism.get_Config_Organism().energi <= organism.gen_0_Decipherment() && rem) this->remove_Select_Organism(id);
+        
+
+}
 
 
 /// GET ORGANISM ON ID
