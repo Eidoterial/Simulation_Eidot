@@ -163,17 +163,17 @@ int main() {
 
 		}
 
-		if (main_counter % 10 == 0) {
-			std::vector<Sm::Organism> copyter(organism_manager.get_Organisms_Information().size());
-			copyter = organism_manager.get_Organisms_Information();
+		if (main_counter % 60 == 0) {
+			//std::vector<Sm::Organism> copyter(organism_manager.get_Organisms_Information().size());
+			//copyter = organism_manager.get_Organisms_Information();
 
-			for (int i{ 0 }; i < copyter.size(); i++) {
+			for (int i{ 0 }; i < organism_manager.get_Organisms_Information().size(); i++) {
 
-				organism_manager.call_Action_Organism_1_Sloy(copyter[i]);
+				organism_manager.call_Action_Organism_1_Sloy(organism_manager.get_Organisms_Information()[i]);
 
-				organism_manager.call_Action_Organism_2_Sloy(copyter[i]);
+				organism_manager.call_Action_Organism_2_Sloy(organism_manager.get_Organisms_Information()[i]);
 
-				organism_manager.call_Action_Organism(copyter[i]);
+				organism_manager.call_Action_Organism(organism_manager.get_Organisms_Information()[i]);
 
 				environment.get_Config_Zone_Manager().zones_information = organism_manager.get_Config_Zone_Manager().zones_information;
 				resource_manager.get_Config_Zone_Manager().zones_information = environment.get_Config_Zone_Manager().zones_information;
@@ -183,16 +183,12 @@ int main() {
 
 		}
 
-		window.clear();
+		window.clear(sf::Color::Color(40, 40, 40, 255));
 
 		for (int i{ 0 }; i < environment.get_Config_Zone_Manager().count_environment_zone.y; i++) {
 			for (int j{ 0 }; j < environment.get_Config_Zone_Manager().count_environment_zone.x; j++) {
 
-				if (environment.get_Config_Zone_Manager().zones_information[i][j] == 0) {
-					mask.setPosition(sf::Vector2f(j * size_c_x, i * size_c_y));
-					mask.setFillColor(sf::Color::Color(40, 40, 40, 255));
-				}
-				else if (environment.get_Config_Zone_Manager().zones_information[i][j] == 1) {
+				if (environment.get_Config_Zone_Manager().zones_information[i][j] == 1) {
 
 					int id = organism_manager.get_Organism_On_Id(sf::Vector2i(j, i));
 
