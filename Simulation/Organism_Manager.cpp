@@ -232,7 +232,6 @@ void Sm::Organism_Manager::call_Action_Organism(Sm::Organism organism) {
 
     if (organism.get_Config_Organism().energi <= organism.gen_0_Decipherment() && rem) this->remove_Select_Organism(id);
         
-
 }
 
 

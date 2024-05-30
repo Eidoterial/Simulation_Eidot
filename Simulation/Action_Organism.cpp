@@ -299,8 +299,10 @@ sf::Vector2i Sm::Action_Organism::reproduction_Organism(Sm::Organism organism) {
 
 	int selecter{ 0 };
 
+	std::srand(std::time(NULL));
+
 	while (true) {
-		int selecter = std::rand() % this->result_action.result_Check_Arround.size();
+		selecter = std::rand() % this->result_action.result_Check_Arround.size();
 
 		if (this->result_action.result_Check_Arround[selecter].type == 0) break;
 

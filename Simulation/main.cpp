@@ -228,11 +228,7 @@ int main() {
 		interface_program.draw_Interface_On_Screen(window);
 
 		
-
-
 		window.display();
-
-
 
 		if (main_counter == 180) main_counter = 0;
 	}
