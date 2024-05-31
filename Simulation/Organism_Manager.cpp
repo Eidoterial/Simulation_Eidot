@@ -63,6 +63,14 @@ void Sm::Organism_Manager::add_Copy_Organism(int id, sf::Vector2i position) {
 
     }
 
+    this->organisms_information[id_c].gen_0_Decipherment();
+    this->organisms_information[id_c].gen_1_Decipherment();
+    this->organisms_information[id_c].gen_3_Decipherment();
+    this->organisms_information[id_c].gen_4_Decipherment();
+    this->organisms_information[id_c].gen_6_Decipherment();
+    this->organisms_information[id_c].gen_7_Decipherment();
+    this->organisms_information[id_c].gen_8_Decipherment();
+
     this->organisms_information[id_c].get_Color_Zone()._r = 255;
     this->organisms_information[id_c].get_Color_Zone()._g = 255;
     this->organisms_information[id_c].get_Color_Zone()._b = 255;
@@ -157,7 +165,19 @@ void Sm::Organism_Manager::set_Organism_Config(int id) {
 
     }
 
-    this->organisms_information[id].get_Color_Zone()._r = 255;
+    this->organisms_information[id].gen_0_Decipherment();
+    this->organisms_information[id].gen_1_Decipherment();
+    this->organisms_information[id].gen_3_Decipherment();
+    this->organisms_information[id].gen_4_Decipherment();
+    this->organisms_information[id].gen_6_Decipherment();
+    this->organisms_information[id].gen_7_Decipherment();
+    this->organisms_information[id].gen_8_Decipherment();
+
+    int _rr, _gg, _bb;
+
+    _rr = 255 / this->organisms_information[id].get_De_Gen().de_gen_0 / this->organisms_information[id].get_De_Gen().de_gen_1;
+
+    this->organisms_information[id].get_Color_Zone()._r = _rr;
     this->organisms_information[id].get_Color_Zone()._g = 255;
     this->organisms_information[id].get_Color_Zone()._b = 255;
     this->organisms_information[id].get_Color_Zone()._a = 255;
@@ -199,14 +219,14 @@ void Sm::Organism_Manager::call_Action_Organism(Sm::Organism organism) {
 
     int id = this->get_Organism_On_Id(organism.get_Config_Zone().id_E);
 
-    if (organism.get_Config_Organism().energi > organism.gen_0_Decipherment()) {
+    if (organism.get_Config_Organism().energi > organism.get_De_Gen().de_gen_0) {
 
         if (this->action_organism.get_Result_Action().result_Check_priority_Reproduction > 0.0) {
             
             this->add_Copy_Organism(id, this->action_organism.reproduction_Organism(this->organisms_information[id]));
             this->organisms_information[this->organisms_information.size() - 1].get_Config_Organism().energi = this->organisms_information[id].get_Config_Organism().energi / 2;
 
-            this->organisms_information[id].get_Config_Organism().energi -= this->organisms_information[id].gen_7_Decipherment();
+            this->organisms_information[id].get_Config_Organism().energi -= this->organisms_information[id].get_De_Gen().de_gen_7;
 
         }
 
@@ -230,7 +250,7 @@ void Sm::Organism_Manager::call_Action_Organism(Sm::Organism organism) {
     }
     else this->remove_Select_Organism(id); rem = false;
 
-    if (organism.get_Config_Organism().energi <= organism.gen_0_Decipherment() && rem) this->remove_Select_Organism(id);
+    if (organism.get_Config_Organism().energi <= organism.get_De_Gen().de_gen_0 && rem) this->remove_Select_Organism(id);
         
 }
 

@@ -15,9 +15,18 @@ std::vector<Sm::Gen>& Sm::Genom::get_Genom() {
 /// //////////////////////////////////////////
 
 
+/// GET DE GEN
+/// /////////////////////////////////
+Sm::De_gen& Sm::Genom::get_De_Gen() {
+	return this->de_gen;
+
+}
+/// /////////////////////////////////
+
+
 /// GEN 0 DECIPHERMENT
 /// ////////////////////////////////////
-double Sm::Genom::gen_0_Decipherment() {
+void Sm::Genom::gen_0_Decipherment() {
 	double block_1{ 10 };
 	double block_2{ 0 };
 	double block_3{ 5 };
@@ -44,7 +53,7 @@ double Sm::Genom::gen_0_Decipherment() {
 	if (this->genom[0].get_Gen()[9] == 0) block_6 = 2;
 	else if (this->genom[0].get_Gen()[9] == 1) block_6 = 1;
 
-	return std::round((((block_1 / block_2 + block_3 + block_4) / block_5) * block_6) * 10) / 10;
+	this->de_gen.de_gen_0 = std::round((((block_1 / block_2 + block_3 + block_4) / block_5) * block_6) * 10) / 10;
 
 }
 /// ////////////////////////////////////
@@ -52,7 +61,7 @@ double Sm::Genom::gen_0_Decipherment() {
 
 /// GEN 1 DECIPHERMENT
 /// ////////////////////////////////////
-double Sm::Genom::gen_1_Decipherment() {
+void Sm::Genom::gen_1_Decipherment() {
 	double block_1{ 5 };
 	double block_2{ 1 };
 	double block_3{ 6 };
@@ -76,7 +85,7 @@ double Sm::Genom::gen_1_Decipherment() {
 	if (this->genom[0].get_Gen()[8] == 1) block_5 += 2;
 	if (this->genom[0].get_Gen()[9] == 1) block_5 += 1;
 
-	return std::round((block_1 * block_2 / block_3 * block_4 + block_5) * 10) / 10;
+	this->de_gen.de_gen_1 = std::round((block_1 * block_2 / block_3 * block_4 + block_5) * 10) / 10;
 
 }
 /// ////////////////////////////////////
@@ -84,7 +93,7 @@ double Sm::Genom::gen_1_Decipherment() {
 
 /// GEN 3 DECIPHERMENT
 /// //////////////////////////////////////////////
-std::vector<int> Sm::Genom::gen_3_Decipherment() {
+void Sm::Genom::gen_3_Decipherment() {
 	std::vector<int> MCS(7);
 
 	int lich{ 0 };
@@ -118,7 +127,7 @@ std::vector<int> Sm::Genom::gen_3_Decipherment() {
 
 	}
 
-	return MCS;
+	this->de_gen.de_gen_3 = MCS;
 
 }
 /// //////////////////////////////////////////////
@@ -126,7 +135,7 @@ std::vector<int> Sm::Genom::gen_3_Decipherment() {
 
 /// GEN 4 DECIPHERMENT
 /// //////////////////////////////////
-bool Sm::Genom::gen_4_Decipherment() {
+void Sm::Genom::gen_4_Decipherment() {
 	bool block_1{ false };
 	bool block_2{ false };
 	bool block_3{ false };
@@ -145,8 +154,8 @@ bool Sm::Genom::gen_4_Decipherment() {
 	else block_4 = true;
 
 	if ((block_1 && block_2 && block_3 && block_4) || (block_1 && block_2 && !block_3 && !block_4) ||
-		(!block_1 && !block_2 && block_3 && block_4)) return true ;
-	else return false;
+		(!block_1 && !block_2 && block_3 && block_4)) this->de_gen.de_gen_4 = true ;
+	else this->de_gen.de_gen_4 = false;
 
 }
 /// //////////////////////////////////
@@ -154,7 +163,7 @@ bool Sm::Genom::gen_4_Decipherment() {
 
 /// GEN 6 DECIPHERMENT
 /// //////////////////////////////////
-bool Sm::Genom::gen_6_Decipherment() {
+void Sm::Genom::gen_6_Decipherment() {
 	bool block_1{ false };
 	bool block_2{ false };
 	bool block_3{ false };
@@ -178,8 +187,8 @@ bool Sm::Genom::gen_6_Decipherment() {
 	else block_3 = true;
 
 	if ((block_1 && block_2 && block_3) || (!block_1 && block_2 && block_3) ||
-		(block_1 && block_2 && !block_3)) return true;
-	else return false;
+		(block_1 && block_2 && !block_3)) this->de_gen.de_gen_6 = true;
+	else this->de_gen.de_gen_6 = false;
 
 }
 /// //////////////////////////////////
@@ -187,7 +196,7 @@ bool Sm::Genom::gen_6_Decipherment() {
 
 /// GEN 7 DECIPHERMENT
 /// /////////////////////////////////
-int Sm::Genom::gen_7_Decipherment() {
+void Sm::Genom::gen_7_Decipherment() {
 	int block_1{ 0 };
 	int block_2{ 0 };
 	int block_3{ 2 };
@@ -207,7 +216,7 @@ int Sm::Genom::gen_7_Decipherment() {
 	if (this->genom[7].get_Gen()[8] == 1) block_4 += 2;
 	if (this->genom[7].get_Gen()[9] == 1) block_4 += 1;
 
-	return block_1 * block_2 / block_3 + block_4;
+	this->de_gen.de_gen_7 = block_1 * block_2 / block_3 + block_4;
 
 }
 /// /////////////////////////////////
@@ -215,7 +224,7 @@ int Sm::Genom::gen_7_Decipherment() {
 
 /// GEN 8 DECIPHERMENT
 /// //////////////////////////////////
-bool Sm::Genom::gen_8_Decipherment() {
+void Sm::Genom::gen_8_Decipherment() {
 	bool block_1{ false };
 	bool block_2{ false };
 	bool block_3{ false };
@@ -248,8 +257,8 @@ bool Sm::Genom::gen_8_Decipherment() {
 	else S_block_2 = true;
 
 	if ((S_block_1 && S_block_2 && block_5) || (!S_block_1 && S_block_2 && block_5) ||
-		(S_block_1 && S_block_2 && !block_5)) return true;
-	else return false;
+		(S_block_1 && S_block_2 && !block_5)) this->de_gen.de_gen_8 = true;
+	else this->de_gen.de_gen_8 = false;
 
 }
 /// //////////////////////////////////

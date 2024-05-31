@@ -161,7 +161,7 @@ int main() {
 
 		}
 
-		/*
+		
 		if (main_counter % 60 == 0) {
 
 			for (int i{ 0 }; i < organism_manager.get_Organisms_Information().size(); i++) {
@@ -178,7 +178,7 @@ int main() {
 			}
 
 		}
-		*/
+		
 
 
 		window.clear(sf::Color::Color(40, 40, 40, 255));

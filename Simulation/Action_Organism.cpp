@@ -55,8 +55,8 @@ void Sm::Action_Organism::check_Arround(Sm::Organism organism, sf::Vector2i coun
 void Sm::Action_Organism::check_Energi_Status(Sm::Organism organism) {
 	this->result_action.result_Check_Energi_Status = 0.0;
 
-	double max = organism.gen_0_Decipherment();
-	double min = organism.gen_1_Decipherment();
+	double max = organism.get_De_Gen().de_gen_0;
+	double min = organism.get_De_Gen().de_gen_1;
 
 	if (max < min) {
 		double t = max;
@@ -85,7 +85,7 @@ void Sm::Action_Organism::check_Memory(Sm::Organism organism) {
 	this->result_action.result_Check_Memory_Good_Resource.resize(0);
 	this->result_action.result_Check_Memory_Bad_Resource.resize(0);
 
-	std::vector<int> MCS = organism.gen_3_Decipherment();
+	std::vector<int> MCS = organism.get_De_Gen().de_gen_3;
 
 	Sm::Memory_Target RCM;
 
@@ -171,7 +171,7 @@ void Sm::Action_Organism::check_Memory(Sm::Organism organism) {
 void Sm::Action_Organism::check_Priority_Move(Sm::Organism organism) {
 	this->result_action.result_Check_Priority_Move = 0.0;
 
-	if (organism.gen_4_Decipherment()) {
+	if (organism.get_De_Gen().de_gen_4) {
 
 		int C_R{ 0 };
 		int C_O{ 0 };
@@ -199,7 +199,7 @@ void Sm::Action_Organism::check_Priority_Convertation(Sm::Organism organism) {
 	this->result_action.result_Check_Priority_Convertation = 0.0;
 
 
-	if (organism.gen_8_Decipherment()) {
+	if (organism.get_De_Gen().de_gen_8) {
 
 		int C_R{ 0 };
 		int C_O{ 0 };
@@ -230,7 +230,7 @@ void Sm::Action_Organism::check_Priority_Reproduction(Sm::Organism organism) {
 	this->result_action.result_Check_priority_Reproduction = 0.0;
 
 
-	if (organism.gen_6_Decipherment() && organism.get_Config_Organism().energi >= organism.gen_7_Decipherment()) {
+	if (organism.get_De_Gen().de_gen_6 && organism.get_Config_Organism().energi >= organism.get_De_Gen().de_gen_7) {
 
 		int C_R{ 0 };
 		int C_O{ 0 };

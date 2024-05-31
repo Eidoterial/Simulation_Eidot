@@ -4,6 +4,24 @@
 
 namespace Sm {
 
+	struct De_gen {
+
+		double de_gen_0{ 0.0 };
+
+		double de_gen_1{ 0.0 };
+
+		std::vector<int> de_gen_3;
+
+		bool de_gen_4{ false };
+
+		bool de_gen_6{ false };
+
+		int de_gen_7{ false };
+
+		bool de_gen_8{ false };
+
+	};
+
 
 	class Genom {
 
@@ -21,34 +39,39 @@ namespace Sm {
 		/// 9 - Posibility aggression
 		std::vector<Sm::Gen> genom;
 
+		Sm::De_gen de_gen;
+
 	public:
 
 		/// Main constructor
 		Genom();
 
+		/// Return de_gen
+		Sm::De_gen& get_De_Gen();
+
 		/// Return genom organism
 		std::vector<Sm::Gen>& get_Genom();
 
 		/// Decipherment 0 - gen
-		double gen_0_Decipherment();
+		void gen_0_Decipherment();
 
 		/// Decipherment 1 - gen
-		double gen_1_Decipherment();
+		void gen_1_Decipherment();
 
 		/// Decipherment 3 - gen
-		std::vector<int> gen_3_Decipherment();
+		void gen_3_Decipherment();
 
 		/// Decipherment 4 - gen
-		bool gen_4_Decipherment();
+		void gen_4_Decipherment();
 
 		/// Deciphrement 6 - gen
-		bool gen_6_Decipherment();
+		void gen_6_Decipherment();
 
 		/// Decipherment 7 - gen
-		int gen_7_Decipherment();
+		void gen_7_Decipherment();
 
 		/// Decipherment 8 - gen
-		bool gen_8_Decipherment();
+		void gen_8_Decipherment();
 		
 		
 	};
