@@ -26,7 +26,6 @@ void Sm::Action_Organism::check_Arround(Sm::Organism organism, sf::Vector2i coun
 
 	Sm::Arround_Element_Info el;
 
-
 	for (int i{ 0 }; i < 3; i++) {
 		for (int j{ 0 }; j < 3; j++) {
 
@@ -298,8 +297,6 @@ int Sm::Action_Organism::energi_Convertation_Organism(Sm::Organism organism) {
 sf::Vector2i Sm::Action_Organism::reproduction_Organism(Sm::Organism organism) {
 
 	int selecter{ 0 };
-
-	std::srand(std::time(NULL));
 
 	while (true) {
 		selecter = std::rand() % this->result_action.result_Check_Arround.size();

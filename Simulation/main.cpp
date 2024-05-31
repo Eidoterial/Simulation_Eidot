@@ -21,7 +21,6 @@ double size_c_y{ 0 };
 
 int main_counter{ 0 };
 
-
 int copy_id{ -1 };
 
 
@@ -33,7 +32,7 @@ int main() {
 	std::cin >> count_organism;
 
 
-	sf::RenderWindow window(sf::VideoMode(400, 400), "Simulation", sf::Style::None);
+	sf::RenderWindow window(sf::VideoMode(400, 400), "Simulation", sf::Style::Fullscreen);
 
 	Sm::Interface interface_program(window.getSize());
 
@@ -115,7 +114,6 @@ int main() {
 
 						};
 						
-
 					}
 
 				}
@@ -163,9 +161,8 @@ int main() {
 
 		}
 
+		/*
 		if (main_counter % 60 == 0) {
-			//std::vector<Sm::Organism> copyter(organism_manager.get_Organisms_Information().size());
-			//copyter = organism_manager.get_Organisms_Information();
 
 			for (int i{ 0 }; i < organism_manager.get_Organisms_Information().size(); i++) {
 
@@ -178,45 +175,36 @@ int main() {
 				environment.get_Config_Zone_Manager().zones_information = organism_manager.get_Config_Zone_Manager().zones_information;
 				resource_manager.get_Config_Zone_Manager().zones_information = environment.get_Config_Zone_Manager().zones_information;
 
-
 			}
 
 		}
+		*/
+
 
 		window.clear(sf::Color::Color(40, 40, 40, 255));
 
-		for (int i{ 0 }; i < environment.get_Config_Zone_Manager().count_environment_zone.y; i++) {
-			for (int j{ 0 }; j < environment.get_Config_Zone_Manager().count_environment_zone.x; j++) {
+		for (int i{ 0 }; i < organism_manager.get_Organisms_Information().size(); i++) {
 
-				if (environment.get_Config_Zone_Manager().zones_information[i][j] == 1) {
+			mask.setPosition(sf::Vector2f(organism_manager.get_Organisms_Information()[i].get_Config_Zone().id_E.x * size_c_x, organism_manager.get_Organisms_Information()[i].get_Config_Zone().id_E.y * size_c_y));
+			mask.setFillColor(sf::Color::Color(organism_manager.get_Organisms_Information()[i].get_Color_Zone()._r,
+				organism_manager.get_Organisms_Information()[i].get_Color_Zone()._g,
+				organism_manager.get_Organisms_Information()[i].get_Color_Zone()._b,
+				organism_manager.get_Organisms_Information()[i].get_Color_Zone()._a));
 
-					int id = organism_manager.get_Organism_On_Id(sf::Vector2i(j, i));
-
-					mask.setPosition(sf::Vector2f(j * size_c_x, i * size_c_y));
-					mask.setFillColor(sf::Color::Color(organism_manager.get_Organisms_Information()[id].get_Color_Zone()._r,
-						organism_manager.get_Organisms_Information()[id].get_Color_Zone()._g,
-						organism_manager.get_Organisms_Information()[id].get_Color_Zone()._b,
-						organism_manager.get_Organisms_Information()[id].get_Color_Zone()._a));
-
-				}
-				else if (environment.get_Config_Zone_Manager().zones_information[i][j] == 2) {
-
-					int id = resource_manager.get_Resource_On_Id(sf::Vector2i(j, i));
-
-					mask.setPosition(sf::Vector2f(j * size_c_x, i * size_c_y));
-					mask.setFillColor(sf::Color::Color(resource_manager.get_Resources_Information()[id].get_Color_Zone()._r,
-						resource_manager.get_Resources_Information()[id].get_Color_Zone()._g,
-						resource_manager.get_Resources_Information()[id].get_Color_Zone()._b,
-						resource_manager.get_Resources_Information()[id].get_Color_Zone()._a));
-
-				}
-
-				window.draw(mask);
-
-			}
+			window.draw(mask);
 
 		}
 
+		for (int i{ 0 }; i < resource_manager.get_Resources_Information().size(); i++) {
+			mask.setPosition(sf::Vector2f(resource_manager.get_Resources_Information()[i].get_Config_Zone().id_E.x* size_c_x, resource_manager.get_Resources_Information()[i].get_Config_Zone().id_E.y* size_c_y));
+			mask.setFillColor(sf::Color::Color(resource_manager.get_Resources_Information()[i].get_Color_Zone()._r,
+				resource_manager.get_Resources_Information()[i].get_Color_Zone()._g,
+				resource_manager.get_Resources_Information()[i].get_Color_Zone()._b,
+				resource_manager.get_Resources_Information()[i].get_Color_Zone()._a));
+
+			window.draw(mask);
+
+		}
 
 		interface_program.get_Interface_Elements().label_count_resource.set_Text(std::to_string(resource_manager.get_Resources_Information().size()));
 		interface_program.get_Interface_Elements().label_count_organism.set_Text(std::to_string(organism_manager.get_Organisms_Information().size()));

@@ -6,7 +6,6 @@ namespace Sm {
 	struct Interface_Elements {
 
 		/// INFORMATION COUNT
-
 		Sm::Rectangle_Frame frame_information_count_resource_organism;
 
 		Sm::Label label_information_count_resource;
@@ -14,10 +13,6 @@ namespace Sm {
 
 		Sm::Label label_information_count_organism;
 		Sm::Label label_count_organism;
-
-
-
-		
 
 		/// TOOL BAR
 		Sm::Rectangle_Frame frame_main_toolbar_program;
