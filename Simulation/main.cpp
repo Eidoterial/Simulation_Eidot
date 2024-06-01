@@ -32,7 +32,7 @@ int main() {
 	std::cin >> count_organism;
 
 
-	sf::RenderWindow window(sf::VideoMode(400, 400), "Simulation", sf::Style::Fullscreen);
+	sf::RenderWindow window(sf::VideoMode(400, 400), "Simulation", sf::Style::None);
 
 	Sm::Interface interface_program(window.getSize());
 
@@ -152,7 +152,7 @@ int main() {
 		}
 
 
-		if (main_counter % 120 == 0) {
+		if (main_counter % 30 == 0) {
 			
 			resource_manager.add_New_Resource();
 
@@ -170,7 +170,14 @@ int main() {
 
 				organism_manager.call_Action_Organism_2_Sloy(organism_manager.get_Organisms_Information()[i]);
 
-				organism_manager.call_Action_Organism(organism_manager.get_Organisms_Information()[i]);
+				int id_R = organism_manager.call_Action_Organism(organism_manager.get_Organisms_Information()[i], resource_manager);
+
+				if (id_R != -1) {
+					if (resource_manager.get_Resources_Information()[id_R].get_Config_Resource().type == 0) organism_manager.get_Organisms_Information()[i].get_Config_Organism().energi += resource_manager.get_Resources_Information()[id_R].get_Config_Resource().energi;
+					else organism_manager.get_Organisms_Information()[i].get_Config_Organism().energi -= resource_manager.get_Resources_Information()[id_R].get_Config_Resource().energi;
+
+
+				}
 
 				environment.get_Config_Zone_Manager().zones_information = organism_manager.get_Config_Zone_Manager().zones_information;
 				resource_manager.get_Config_Zone_Manager().zones_information = environment.get_Config_Zone_Manager().zones_information;

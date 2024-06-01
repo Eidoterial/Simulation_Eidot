@@ -10,7 +10,11 @@ namespace Sm {
 
 		double de_gen_1{ 0.0 };
 
+		std::vector<bool> de_gen_2;
+
 		std::vector<int> de_gen_3;
+
+		bool de_gen_5{ false };
 
 		bool de_gen_4{ false };
 
@@ -19,6 +23,8 @@ namespace Sm {
 		int de_gen_7{ false };
 
 		bool de_gen_8{ false };
+
+		bool de_gen_9{ false };
 
 	};
 
@@ -58,11 +64,17 @@ namespace Sm {
 		/// Decipherment 1 - gen
 		void gen_1_Decipherment();
 
+		/// Decipherment 2 - gen
+		void gen_2_Decipherment();
+
 		/// Decipherment 3 - gen
 		void gen_3_Decipherment();
 
 		/// Decipherment 4 - gen
 		void gen_4_Decipherment();
+
+		/// Decipherment 5 - gen
+		void gen_5_Decipherment();
 
 		/// Deciphrement 6 - gen
 		void gen_6_Decipherment();
@@ -72,6 +84,9 @@ namespace Sm {
 
 		/// Decipherment 8 - gen
 		void gen_8_Decipherment();
+
+		/// Decipherment 9 - gen
+		void gen_9_Decipherment();
 		
 		
 	};

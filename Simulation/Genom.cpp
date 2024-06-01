@@ -91,6 +91,39 @@ void Sm::Genom::gen_1_Decipherment() {
 /// ////////////////////////////////////
 
 
+/// GEN 2 DECIPHERMENT
+/// //////////////////////////////////
+void Sm::Genom::gen_2_Decipherment() {
+	this->de_gen.de_gen_2.resize(3);
+	bool block_1{ false };
+	bool block_2{ false };
+	bool block_3{ false };
+	bool block_4{ false };
+	bool block_5{ false };
+
+	if (this->genom[0].get_Gen()[0] == 1 || this->genom[0].get_Gen()[1] == 1) block_1 = true;
+
+	if (this->genom[0].get_Gen()[2] == 1 || this->genom[0].get_Gen()[3] == 1) block_2 = true;
+
+	if (this->genom[0].get_Gen()[4] == 1 || this->genom[0].get_Gen()[5] == 1) block_3 = true;
+
+	if (this->genom[0].get_Gen()[6] == 1 || this->genom[0].get_Gen()[7] == 1) block_4 = true;
+
+	if (this->genom[0].get_Gen()[8] == 1 || this->genom[0].get_Gen()[9] == 1) block_5 = true;
+
+	if (block_1 || block_2) this->de_gen.de_gen_2[0] = true;
+	else this->de_gen.de_gen_2[0] = false;
+
+	if (block_3) this->de_gen.de_gen_2[1] = true;
+	else this->de_gen.de_gen_2[1] = false;
+
+	if (block_4 && block_5) this->de_gen.de_gen_2[2] = true;
+	else this->de_gen.de_gen_2[2] = false;
+
+}
+/// //////////////////////////////////
+
+
 /// GEN 3 DECIPHERMENT
 /// //////////////////////////////////////////////
 void Sm::Genom::gen_3_Decipherment() {
@@ -156,6 +189,29 @@ void Sm::Genom::gen_4_Decipherment() {
 	if ((block_1 && block_2 && block_3 && block_4) || (block_1 && block_2 && !block_3 && !block_4) ||
 		(!block_1 && !block_2 && block_3 && block_4)) this->de_gen.de_gen_4 = true ;
 	else this->de_gen.de_gen_4 = false;
+
+}
+/// //////////////////////////////////
+
+
+/// GEN 5 DECIPHERMENT
+/// //////////////////////////////////
+void Sm::Genom::gen_5_Decipherment() {
+	bool block_1{ false };
+	bool block_2{ false };
+	bool block_3{ false };
+	bool block_4{ false };
+
+	if (this->genom[4].get_Gen()[0] == 1 || this->genom[4].get_Gen()[1] == 1 || this->genom[4].get_Gen()[2] == 1) block_1 = true;
+
+	if (this->genom[4].get_Gen()[3] == 0 || this->genom[4].get_Gen()[4] == 0) block_2 = true;
+
+	if (this->genom[4].get_Gen()[5] == 0 || this->genom[4].get_Gen()[6] == 0) block_3 = true;
+
+	if (this->genom[4].get_Gen()[7] == 1 || this->genom[4].get_Gen()[8] == 1 || this->genom[4].get_Gen()[9] == 1) block_4 = true;
+
+	if ((!block_1 || !block_2) && (!block_3 || !block_4)) this->de_gen.de_gen_5 = false;
+	else this->de_gen.de_gen_5 = true;
 
 }
 /// //////////////////////////////////
@@ -259,6 +315,25 @@ void Sm::Genom::gen_8_Decipherment() {
 	if ((S_block_1 && S_block_2 && block_5) || (!S_block_1 && S_block_2 && block_5) ||
 		(S_block_1 && S_block_2 && !block_5)) this->de_gen.de_gen_8 = true;
 	else this->de_gen.de_gen_8 = false;
+
+}
+/// //////////////////////////////////
+
+
+/// GEN 9 DECIPHERMENT
+/// //////////////////////////////////
+void Sm::Genom::gen_9_Decipherment() {
+	int counter_1{ 0 };
+	int counter_0{ 0 };
+
+	for (int i{ 0 }; i < this->genom[7].get_Gen().size(); i++) {
+		if (this->genom[7].get_Gen()[i] == 1) counter_1++;
+		else counter_0++;
+
+	}
+
+	if (counter_1 > counter_0) this->de_gen.de_gen_9 = true;
+	else this->de_gen.de_gen_9 = false;
 
 }
 /// //////////////////////////////////

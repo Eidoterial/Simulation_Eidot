@@ -49,7 +49,11 @@ namespace Sm {
 		/// Save result check priority convertation
 		double result_Check_Priority_Convertation{ 0.0 };
 
-		double result_Check_priority_Reproduction{ 0.0 };
+		/// Save result check priority reproduction
+		double result_Check_Priority_Reproduction{ 0.0 };
+
+		/// Save result check priority absorption
+		double  result_Check_Priority_Absorption{ 0.0 };
 		
 		/////////////////////////////////////////////////////////////
 		/// /////////////////////////////////////////////////////////
@@ -118,6 +122,12 @@ namespace Sm {
 		/// Organism
 		void check_Priority_Reproduction(Sm::Organism);
 
+		/// Check priority absorption organism
+		///
+		/// Take 1 argument
+		/// Organism
+		void check_Priority_Absorption(Sm::Organism);
+
 		/////////////////////////////////////////////////////////////
 		/// /////////////////////////////////////////////////////////
 		
@@ -143,6 +153,12 @@ namespace Sm {
 		/// Take 1 argument
 		/// Organism
 		sf::Vector2i reproduction_Organism(Sm::Organism);
+
+		/// Adsorption organism
+		///
+		/// Take 1 argument
+		/// Organism
+		sf::Vector2i Adsorption_Organism(Sm::Organism);
 
 		/////////////////////////////////////////////////////////////
 		/// /////////////////////////////////////////////////////////

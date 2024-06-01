@@ -1,5 +1,6 @@
 #pragma once
 #include "Action_Organism.h"
+#include "Resource_Manager.h"
 #include "Organism.h"
 #include "Zone_Manager.h"
 
@@ -75,7 +76,8 @@ namespace Sm {
 		///
 		/// Take 1 argument
 		/// Organism
-		void call_Action_Organism(Sm::Organism);
+		/// Resourse manager
+		int call_Action_Organism(Sm::Organism, Sm::Resource_Manager&);
 
 		/// Information 
 		void info_action();

@@ -172,22 +172,16 @@ void Sm::Action_Organism::check_Priority_Move(Sm::Organism organism) {
 	this->result_action.result_Check_Priority_Move = 0.0;
 
 	if (organism.get_De_Gen().de_gen_4) {
-
-		int C_R{ 0 };
-		int C_O{ 0 };
-		int C_V{ 0 };
+		int count_r_o{ 0 };
 
 		for (int i{ 0 }; i < this->result_action.result_Check_Arround.size(); i++) {
-			if (this->result_action.result_Check_Arround[i].type == 0) C_V++;
-			else if (this->result_action.result_Check_Arround[i].type == 1) C_O++;
-			else C_R++;
+			if (this->result_action.result_Check_Arround[i].type == 1 || this->result_action.result_Check_Arround[i].type == 2) count_r_o++;
 
 		}
 
-		result_action.result_Check_Priority_Move = std::round((((((C_R + 1) / (C_O + 1)) * C_V) * this->result_action.result_Check_Energi_Status) / 100) * 100) / 100;
+		result_action.result_Check_Priority_Move = std::round(1.0 / (1 + count_r_o) * (1 + this->result_action.result_Check_Energi_Status) * 100) / 100;
 
 	}
-	else this->result_action.result_Check_Priority_Move = 0.0;
 
 }
 /// //////////////////////////////////////////////////////////////////
@@ -198,27 +192,17 @@ void Sm::Action_Organism::check_Priority_Move(Sm::Organism organism) {
 void Sm::Action_Organism::check_Priority_Convertation(Sm::Organism organism) {
 	this->result_action.result_Check_Priority_Convertation = 0.0;
 
-
 	if (organism.get_De_Gen().de_gen_8) {
-
-		int C_R{ 0 };
-		int C_O{ 0 };
-		int C_V{ 0 };
-		int C_E{ 0 };
+		int count_r_o{ 0 };
 
 		for (int i{ 0 }; i < this->result_action.result_Check_Arround.size(); i++) {
-			if (this->result_action.result_Check_Arround[i].type == 0) C_V++;
-			else if (this->result_action.result_Check_Arround[i].type == 1) C_O++;
-			else C_R++;
+			if (this->result_action.result_Check_Arround[i].type == 1 || this->result_action.result_Check_Arround[i].type == 2) count_r_o++;
 
 		}
 
-		C_E = ((C_R + C_O + C_V) - (C_R + C_O)) * 2;
-
-		this->result_action.result_Check_Priority_Convertation = std::round(((C_E * this->result_action.result_Check_Energi_Status) / 100) * 100) / 100;
+		this->result_action.result_Check_Priority_Convertation = std::round(1.0 / (1 + count_r_o) / (1 + this->result_action.result_Check_Energi_Status) * 100) / 100;
 
 	}
-	else this->result_action.result_Check_Priority_Convertation = 0.0;
 
 }
 /// //////////////////////////////////////////////////////////////////////////
@@ -227,41 +211,53 @@ void Sm::Action_Organism::check_Priority_Convertation(Sm::Organism organism) {
 /// CHECK PRIORITY REPRODUCTION
 /// //////////////////////////////////////////////////////////////////////////
 void Sm::Action_Organism::check_Priority_Reproduction(Sm::Organism organism) {
-	this->result_action.result_Check_priority_Reproduction = 0.0;
+	this->result_action.result_Check_Priority_Reproduction = 0.0;
 
 
 	if (organism.get_De_Gen().de_gen_6 && organism.get_Config_Organism().energi >= organism.get_De_Gen().de_gen_7) {
 
-		int C_R{ 0 };
-		int C_O{ 0 };
-		int C_V{ 0 };
-		int C_E{ 0 };
-
 		for (int i{ 0 }; i < this->result_action.result_Check_Arround.size(); i++) {
-			if (this->result_action.result_Check_Arround[i].type == 0) C_V++;
-			else if (this->result_action.result_Check_Arround[i].type == 1) C_O++;
-			else C_R++;
+			if (this->result_action.result_Check_Arround[i].type == 0) {
+				this->result_action.result_Check_Priority_Reproduction = 1.0;
+				break;
+
+			}
 
 		}
 
-		if (C_V != 0) {
-
-
-			this->result_action.result_Check_priority_Reproduction = 1.0;
-		}
-		else this->result_action.result_Check_priority_Reproduction = 0.0;
 	}
-	else this->result_action.result_Check_priority_Reproduction = 0.0;
 
 }
 /// //////////////////////////////////////////////////////////////////////////
 
+
+/// CHECK PRIORITY ABSORPTION
+/// ////////////////////////////////////////////////////////////////////////
+void Sm::Action_Organism::check_Priority_Absorption(Sm::Organism organism) {
+	this->result_action.result_Check_Priority_Absorption = 0.0;
+
+	if (organism.get_De_Gen().de_gen_5) {
+		int count_v{ 0 };
+
+		for (int i{ 0 }; i < this->result_action.result_Check_Arround.size(); i++) {
+			if (this->result_action.result_Check_Arround[i].type == 0) count_v++;
+
+		}
+
+		this->result_action.result_Check_Priority_Absorption = std::round(1.0 / (1 + count_v) * (1 + this->result_action.result_Check_Energi_Status) * 100) / 100;
+
+	}
+
+}
+/// ////////////////////////////////////////////////////////////////////////
 
 
 /// MOVE ORGANISM
 /// ////////////////////////////////////////////////////////////////////
 sf::Vector2i Sm::Action_Organism::move_Organism(Sm::Organism organism) {
 	int selecter{ 0 };
+
+	std::cout << "M";
 
 	while (true) {
 		selecter = std::rand() % this->result_action.result_Check_Arround.size();
@@ -281,6 +277,8 @@ sf::Vector2i Sm::Action_Organism::move_Organism(Sm::Organism organism) {
 int Sm::Action_Organism::energi_Convertation_Organism(Sm::Organism organism) {
 	int count_void{ 0 };
 
+	std::cout << "C";
+
 	for (int i{ 0 }; i < this->result_action.result_Check_Arround.size(); i++) {
 		if (this->result_action.result_Check_Arround[i].type == 0) count_void++;
 
@@ -298,6 +296,8 @@ sf::Vector2i Sm::Action_Organism::reproduction_Organism(Sm::Organism organism) {
 
 	int selecter{ 0 };
 
+	std::cout << "R";
+
 	while (true) {
 		selecter = std::rand() % this->result_action.result_Check_Arround.size();
 
@@ -309,3 +309,25 @@ sf::Vector2i Sm::Action_Organism::reproduction_Organism(Sm::Organism organism) {
 
 }
 /// ////////////////////////////////////////////////////////////////////////////
+
+
+/// ABSORPTION ORGANISM
+/// //////////////////////////////////////////////////////////////////////////
+sf::Vector2i Sm::Action_Organism::Adsorption_Organism(Sm::Organism organism) {
+	int selecter{ 0 };
+
+	int limiter{ 0 };
+
+	std::cout << "A";
+
+	while (10 > limiter) {
+		selecter = std::rand() % this->result_action.result_Check_Arround.size();
+
+		if (this->result_action.result_Check_Arround[selecter].type == 2) return sf::Vector2i(this->result_action.result_Check_Arround[selecter].position);
+
+		limiter++;
+	}
+
+	return sf::Vector2i(-1, -1);
+}
+/// //////////////////////////////////////////////////////////////////////////
