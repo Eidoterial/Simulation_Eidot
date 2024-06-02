@@ -74,19 +74,19 @@ void Sm::Resource_Manager::set_Resource_Config(int id) {
     this->resources_information[id].get_Config_Resource().energi = std::rand() % 5 + 1;
 
     if (this->resources_information[id].get_Config_Resource().type == 0) {
-        this->resources_information[id].get_Color_Zone()._g = 200;
+        this->resources_information[id].get_Color_Zone()._g = 100;
+
+        this->resources_information[id].get_Color_Zone()._r = 50;
+
+    }
+    else {
+        this->resources_information[id].get_Color_Zone()._g = 50;
 
         this->resources_information[id].get_Color_Zone()._r = 100;
 
     }
-    else {
-        this->resources_information[id].get_Color_Zone()._g = 100;
 
-        this->resources_information[id].get_Color_Zone()._r = 200;
-
-    }
-
-    this->resources_information[id].get_Color_Zone()._b = 255 / this->resources_information[id].get_Config_Resource().energi;
+    this->resources_information[id].get_Color_Zone()._b = 150 / this->resources_information[id].get_Config_Resource().energi;
 
     this->resources_information[id].get_Color_Zone()._a = 255;
 

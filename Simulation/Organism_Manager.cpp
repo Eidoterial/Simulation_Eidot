@@ -79,13 +79,13 @@ void Sm::Organism_Manager::add_Copy_Organism(int id, sf::Vector2i position) {
     if (this->organisms_information[id_c].get_De_Gen().de_gen_9) _rr = 255;
     else _rr = 255 / this->organisms_information[id_c].get_De_Gen().de_gen_0 / this->organisms_information[id_c].get_De_Gen().de_gen_1;
 
-    if (this->organisms_information[id_c].get_De_Gen().de_gen_8 && this->organisms_information[id_c].get_De_Gen().de_gen_5) _gg = 150;
-    else if (this->organisms_information[id_c].get_De_Gen().de_gen_8 || this->organisms_information[id_c].get_De_Gen().de_gen_5) _gg = 100;
-    else _gg = 50;
+    if (this->organisms_information[id_c].get_De_Gen().de_gen_8 && this->organisms_information[id_c].get_De_Gen().de_gen_5) _gg = 200;
+    else if (this->organisms_information[id_c].get_De_Gen().de_gen_8 || this->organisms_information[id_c].get_De_Gen().de_gen_5) _gg = 150;
+    else _gg = 100;
 
-    if (this->organisms_information[id_c].get_De_Gen().de_gen_6 && this->organisms_information[id_c].get_De_Gen().de_gen_4) _bb = 150;
-    else if (this->organisms_information[id_c].get_De_Gen().de_gen_6 || this->organisms_information[id_c].get_De_Gen().de_gen_4) _bb = 100;
-    else _bb = 50;
+    if (this->organisms_information[id_c].get_De_Gen().de_gen_6 && this->organisms_information[id_c].get_De_Gen().de_gen_4) _bb = 200;
+    else if (this->organisms_information[id_c].get_De_Gen().de_gen_6 || this->organisms_information[id_c].get_De_Gen().de_gen_4) _bb = 150;
+    else _bb = 100;
 
     this->organisms_information[id_c].get_Color_Zone()._r = _rr;
     this->organisms_information[id_c].get_Color_Zone()._g = _gg;
@@ -197,13 +197,13 @@ void Sm::Organism_Manager::set_Organism_Config(int id) {
     if (this->organisms_information[id].get_De_Gen().de_gen_9) _rr = 255;
     else _rr = 255 / this->organisms_information[id].get_De_Gen().de_gen_0 / this->organisms_information[id].get_De_Gen().de_gen_1;
     
-    if (this->organisms_information[id].get_De_Gen().de_gen_8 && this->organisms_information[id].get_De_Gen().de_gen_5) _gg = 150;
-    else if (this->organisms_information[id].get_De_Gen().de_gen_8 || this->organisms_information[id].get_De_Gen().de_gen_5) _gg = 100;
-    else _gg = 50;
+    if (this->organisms_information[id].get_De_Gen().de_gen_8 && this->organisms_information[id].get_De_Gen().de_gen_5) _gg = 200;
+    else if (this->organisms_information[id].get_De_Gen().de_gen_8 || this->organisms_information[id].get_De_Gen().de_gen_5) _gg = 150;
+    else _gg = 100;
 
-    if (this->organisms_information[id].get_De_Gen().de_gen_6 && this->organisms_information[id].get_De_Gen().de_gen_4) _bb = 150;
-    else if (this->organisms_information[id].get_De_Gen().de_gen_6 || this->organisms_information[id].get_De_Gen().de_gen_4) _bb = 100;
-    else _bb = 50;
+    if (this->organisms_information[id].get_De_Gen().de_gen_6 && this->organisms_information[id].get_De_Gen().de_gen_4) _bb = 200;
+    else if (this->organisms_information[id].get_De_Gen().de_gen_6 || this->organisms_information[id].get_De_Gen().de_gen_4) _bb = 150;
+    else _bb = 100;
 
     this->organisms_information[id].get_Color_Zone()._r = _rr;
     this->organisms_information[id].get_Color_Zone()._g = _gg;
@@ -260,6 +260,15 @@ int Sm::Organism_Manager::call_Action_Organism(Sm::Organism organism, Sm::Resour
 
             this->organisms_information[id].get_Config_Organism().energi -= this->organisms_information[id].get_De_Gen().de_gen_7;
 
+            if (std::rand() % 100 < 10) {
+                int id_genom = std::rand() % 10;
+                int id_gen = std::rand() % 10;
+
+                if (this->organisms_information[this->organisms_information.size() - 1].get_Genom()[id_genom].get_Gen()[id_gen] == 0) this->organisms_information[this->organisms_information.size() - 1].get_Genom()[id_genom].get_Gen()[id_gen] = 1;
+                else this->organisms_information[this->organisms_information.size() - 1].get_Genom()[id_genom].get_Gen()[id_gen] = 0;
+
+            }
+
         }
         else {
             double max_act{ this->action_organism.get_Result_Action().result_Check_Priority_Move };
@@ -279,6 +288,7 @@ int Sm::Organism_Manager::call_Action_Organism(Sm::Organism organism, Sm::Resour
                 }
                 else {
                     if (this->action_organism.Adsorption_Organism(this->organisms_information[id]).x != -1) {
+
                         res = resources.get_Resource_On_Id(this->action_organism.Adsorption_Organism(this->organisms_information[id]));
                        
                     }
@@ -295,6 +305,7 @@ int Sm::Organism_Manager::call_Action_Organism(Sm::Organism organism, Sm::Resour
                 }
                 else {
                     if (this->action_organism.Adsorption_Organism(this->organisms_information[id]).x != -1) {
+
                         res = resources.get_Resource_On_Id(this->action_organism.Adsorption_Organism(this->organisms_information[id]));
 
                        
@@ -308,7 +319,7 @@ int Sm::Organism_Manager::call_Action_Organism(Sm::Organism organism, Sm::Resour
 
     }
     else this->remove_Select_Organism(id); rem = false;
-
+        
     if (organism.get_Config_Organism().energi <= organism.get_De_Gen().de_gen_0 && rem) this->remove_Select_Organism(id);
 
     return res;

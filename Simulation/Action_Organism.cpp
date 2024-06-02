@@ -257,7 +257,7 @@ void Sm::Action_Organism::check_Priority_Absorption(Sm::Organism organism) {
 sf::Vector2i Sm::Action_Organism::move_Organism(Sm::Organism organism) {
 	int selecter{ 0 };
 
-	std::cout << "M";
+
 
 	while (true) {
 		selecter = std::rand() % this->result_action.result_Check_Arround.size();
@@ -277,7 +277,7 @@ sf::Vector2i Sm::Action_Organism::move_Organism(Sm::Organism organism) {
 int Sm::Action_Organism::energi_Convertation_Organism(Sm::Organism organism) {
 	int count_void{ 0 };
 
-	std::cout << "C";
+
 
 	for (int i{ 0 }; i < this->result_action.result_Check_Arround.size(); i++) {
 		if (this->result_action.result_Check_Arround[i].type == 0) count_void++;
@@ -296,7 +296,7 @@ sf::Vector2i Sm::Action_Organism::reproduction_Organism(Sm::Organism organism) {
 
 	int selecter{ 0 };
 
-	std::cout << "R";
+
 
 	while (true) {
 		selecter = std::rand() % this->result_action.result_Check_Arround.size();
@@ -318,7 +318,7 @@ sf::Vector2i Sm::Action_Organism::Adsorption_Organism(Sm::Organism organism) {
 
 	int limiter{ 0 };
 
-	std::cout << "A";
+	
 
 	while (10 > limiter) {
 		selecter = std::rand() % this->result_action.result_Check_Arround.size();
@@ -327,6 +327,7 @@ sf::Vector2i Sm::Action_Organism::Adsorption_Organism(Sm::Organism organism) {
 
 		limiter++;
 	}
+
 
 	return sf::Vector2i(-1, -1);
 }
